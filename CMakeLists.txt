@@ -13,8 +13,8 @@ if(ENABLE_PROFILING)
     find_package(Tracy CONFIG REQUIRED)
 endif(ENABLE_PROFILING)
 
-#add_subdirectory(core/)
-#add_subdirectory(api/)
+add_subdirectory(core/)
+add_subdirectory(api/)
 
 add_executable(main main.cc)
 target_link_libraries(main PRIVATE api core)
