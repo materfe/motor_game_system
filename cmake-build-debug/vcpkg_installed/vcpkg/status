@@ -1,0 +1,43 @@
+Package: vcpkg-cmake-config
+Version: 2022-02-06
+Port-Version: 1
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 3c871f0fc71a996593a1074cba56ca3f1c0989a66656fcae56c974a989ce0c90
+Status: install ok installed
+
+Package: vcpkg-cmake
+Version: 2024-04-18
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 507e81625eb918abdb91df3092729c7828e27af603940d3a9c4194320fe57af4
+Status: install ok installed
+
+Package: gtest
+Version: 1.14.0
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 6f0ef3801bbd4bb38199e6d7c940ad7d342eeae8866273df3d24c60692f3322c
+Description: Google Testing and Mocking Framework
+Status: install ok installed
+
+Package: tracy
+Version: 0.10.0
+Port-Version: 2
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 5adf9c549df29e603931dc0d873b9f03fc431f2de82720c1387be084ff96acc8
+Description: A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications.
+Default-Features: crash-handler
+Status: install ok installed
+
+Package: tracy
+Feature: crash-handler
+Architecture: x64-windows
+Multi-Arch: same
+Description: Enable crash handler
+Status: install ok installed
+
