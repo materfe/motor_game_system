@@ -170,7 +170,7 @@ rule CXX_STATIC_LIBRARY_LINKER__api_RelWithDebInfo
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\Mat\Desktop\game_motor_system\motor_game_system -BC:\Users\Mat\Desktop\game_motor_system\motor_game_system\cmake-build-relwithdebinfo
+  command = "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\Mat\special_repo\game_motor_system\motor_game_system -BC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo
   description = Re-running CMake...
   generator = 1
 

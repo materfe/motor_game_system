@@ -1,0 +1,7 @@
+# ninja log v6
+3	44	7488043016666617	core/CMakeFiles/core.dir/src/empty.cc.obj	4610fdb80fd1f479
+7	50	7488043016711772	api/CMakeFiles/api.dir/src/empty.cc.obj	baa08cc6d9a89df0
+44	81	7488043017088806	core/core.lib	586d5f6f5b656c56
+81	114	7488043017454744	api/api.lib	b00803947590579
+12	642	7488051686100628	CMakeFiles/main.dir/main.cc.obj	b10711f85071ae76
+643	1106	7488051692409403	main.exe	6fdabf7e3d03e68b

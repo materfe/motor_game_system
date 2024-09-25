@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Mat/Desktop/game_motor_system/motor_game_system/api
+# Install script for directory: C:/Users/Mat/special_repo/game_motor_system/motor_game_system/api
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

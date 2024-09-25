@@ -1,26 +1,7 @@
-waiting to take filesystem lock on C:\vcpkg\vcpkg\.vcpkg-root...
 Detecting compiler hash for triplet x64-windows...
 Compiler found: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.41.34120/bin/Hostx64/x64/cl.exe
-The following packages will be built and installed:
-    gtest:x64-windows@1.14.0#1 -- C:\vcpkg\vcpkg\buildtrees\versioning_\versions\gtest\75ebdb53e37267a1d5f6283223367cd0aa1104ef
-    tracy[core,crash-handler]:x64-windows@0.10.0#2 -- C:\vcpkg\vcpkg\buildtrees\versioning_\versions\tracy\6be8e3b56374cde0053ca09807520831c97f4441
-  * vcpkg-cmake:x64-windows@2024-04-18 -- C:\vcpkg\vcpkg\buildtrees\versioning_\versions\vcpkg-cmake\a10a94e8d0071ed4804d40d0f0f0c5e4e7180afd
-  * vcpkg-cmake-config:x64-windows@2022-02-06#1 -- C:\vcpkg\vcpkg\buildtrees\versioning_\versions\vcpkg-cmake-config\8d54cc4f487d51b655abec5f9c9c3f86ca83311f
-Additional packages (*) will be modified to complete this operation.
-Restored 4 package(s) from C:\Users\Mat\AppData\Local\vcpkg\archives in 166 ms. Use --debug to see more details.
-Installing 1/4 vcpkg-cmake-config:x64-windows@2022-02-06#1...
-Elapsed time to handle vcpkg-cmake-config:x64-windows: 4.99 ms
-vcpkg-cmake-config:x64-windows package ABI: 3c871f0fc71a996593a1074cba56ca3f1c0989a66656fcae56c974a989ce0c90
-Installing 2/4 vcpkg-cmake:x64-windows@2024-04-18...
-Elapsed time to handle vcpkg-cmake:x64-windows: 4.61 ms
-vcpkg-cmake:x64-windows package ABI: 507e81625eb918abdb91df3092729c7828e27af603940d3a9c4194320fe57af4
-Installing 3/4 gtest:x64-windows@1.14.0#1...
-Elapsed time to handle gtest:x64-windows: 36.2 ms
-gtest:x64-windows package ABI: 6f0ef3801bbd4bb38199e6d7c940ad7d342eeae8866273df3d24c60692f3322c
-Installing 4/4 tracy[core,crash-handler]:x64-windows@0.10.0#2...
-Elapsed time to handle tracy:x64-windows: 27.6 ms
-tracy:x64-windows package ABI: 5adf9c549df29e603931dc0d873b9f03fc431f2de82720c1387be084ff96acc8
-Total install time: 73.6 ms
+All requested packages are currently installed.
+Total install time: 1.1 us
 The package gtest is compatible with built-in CMake targets:
 
     enable_testing()

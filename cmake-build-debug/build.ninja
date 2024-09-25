@@ -39,7 +39,7 @@ include CMakeFiles\rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = C$:\Users\Mat\Desktop\game_motor_system\motor_game_system\cmake-build-debug\
+cmake_ninja_workdir = C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-debug\
 # =============================================================================
 # Object build statements for EXECUTABLE target main
 
@@ -49,9 +49,9 @@ cmake_ninja_workdir = C$:\Users\Mat\Desktop\game_motor_system\motor_game_system\
 
 build cmake_object_order_depends_target_main: phony || cmake_object_order_depends_target_api cmake_object_order_depends_target_core
 
-build CMakeFiles\main.dir\main.cc.obj: CXX_COMPILER__main_unscanned_Debug C$:\Users\Mat\Desktop\game_motor_system\motor_game_system\main.cc || cmake_object_order_depends_target_main
+build CMakeFiles\main.dir\main.cc.obj: CXX_COMPILER__main_unscanned_Debug C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\main.cc || cmake_object_order_depends_target_main
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -std:c++20 -MDd
-  INCLUDES = -IC:\Users\Mat\Desktop\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\Desktop\game_motor_system\motor_game_system\core\include
+  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\vcpkg\vcpkg\installed\x64-windows\include -external:IC:\vcpkg\vcpkg\installed\x64-windows\include\SDL2 -external:W0
   OBJECT_DIR = CMakeFiles\main.dir
   OBJECT_FILE_DIR = CMakeFiles\main.dir
   TARGET_COMPILE_PDB = CMakeFiles\main.dir\
@@ -65,12 +65,12 @@ build CMakeFiles\main.dir\main.cc.obj: CXX_COMPILER__main_unscanned_Debug C$:\Us
 #############################################
 # Link the executable main.exe
 
-build main.exe: CXX_EXECUTABLE_LINKER__main_Debug CMakeFiles\main.dir\main.cc.obj | api\api.lib core\core.lib || api\api.lib core\core.lib
+build main.exe: CXX_EXECUTABLE_LINKER__main_Debug CMakeFiles\main.dir\main.cc.obj | api\api.lib core\core.lib C$:\vcpkg\vcpkg\installed\x64-windows\debug\lib\manual-link\SDL2maind.lib C$:\vcpkg\vcpkg\installed\x64-windows\debug\lib\SDL2d.lib || api\api.lib core\core.lib
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = api\api.lib  core\core.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_LIBRARIES = api\api.lib  core\core.lib  C:\vcpkg\vcpkg\installed\x64-windows\debug\lib\manual-link\SDL2maind.lib  C:\vcpkg\vcpkg\installed\x64-windows\debug\lib\SDL2d.lib  shell32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = CMakeFiles\main.dir
-  POST_BUILD = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\Desktop\game_motor_system\motor_game_system\cmake-build-debug && C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/vcpkg/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/Mat/Desktop/game_motor_system/motor_game_system/cmake-build-debug/main.exe -installedDir C:/Users/Mat/Desktop/game_motor_system/motor_game_system/cmake-build-debug/vcpkg_installed/x64-windows/debug/bin -OutVariable out"
+  POST_BUILD = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-debug && C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/vcpkg/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-debug/main.exe -installedDir C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-debug/vcpkg_installed/x64-windows/debug/bin -OutVariable out && cd /D C:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E copy_if_different C:/vcpkg/vcpkg/installed/x64-windows/bin/SDL2.dll C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-debug"
   PRE_LINK = cd .
   TARGET_COMPILE_PDB = CMakeFiles\main.dir\
   TARGET_FILE = main.exe
@@ -82,7 +82,7 @@ build main.exe: CXX_EXECUTABLE_LINKER__main_Debug CMakeFiles\main.dir\main.cc.ob
 # Utility command for test
 
 build CMakeFiles\test.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\Desktop\game_motor_system\motor_game_system\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\ctest.exe" --force-new-ctest-process "
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\ctest.exe" --force-new-ctest-process "
   DESC = Running tests...
   pool = console
   restat = 1
@@ -94,7 +94,7 @@ build test: phony CMakeFiles\test.util
 # Utility command for edit_cache
 
 build CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\Desktop\game_motor_system\motor_game_system\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -105,7 +105,7 @@ build edit_cache: phony CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\Desktop\game_motor_system\motor_game_system\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\Mat\Desktop\game_motor_system\motor_game_system -BC:\Users\Mat\Desktop\game_motor_system\motor_game_system\cmake-build-debug"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\Mat\special_repo\game_motor_system\motor_game_system -BC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -114,7 +114,7 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# C:/Users/Mat/Desktop/game_motor_system/motor_game_system/CMakeLists.txt
+# C:/Users/Mat/special_repo/game_motor_system/motor_game_system/CMakeLists.txt
 # =============================================================================
 
 # =============================================================================
@@ -126,9 +126,9 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 
 build cmake_object_order_depends_target_core: phony || .
 
-build core\CMakeFiles\core.dir\src\empty.cc.obj: CXX_COMPILER__core_unscanned_Debug C$:\Users\Mat\Desktop\game_motor_system\motor_game_system\core\src\empty.cc || cmake_object_order_depends_target_core
+build core\CMakeFiles\core.dir\src\empty.cc.obj: CXX_COMPILER__core_unscanned_Debug C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\src\empty.cc || cmake_object_order_depends_target_core
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -std:c++20 -MDd
-  INCLUDES = -IC:\Users\Mat\Desktop\game_motor_system\motor_game_system\core\include
+  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include
   OBJECT_DIR = core\CMakeFiles\core.dir
   OBJECT_FILE_DIR = core\CMakeFiles\core.dir\src
   TARGET_COMPILE_PDB = core\CMakeFiles\core.dir\core.pdb
@@ -157,7 +157,7 @@ build core\core.lib: CXX_STATIC_LIBRARY_LINKER__core_Debug core\CMakeFiles\core.
 # Utility command for test
 
 build core\CMakeFiles\test.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\Desktop\game_motor_system\motor_game_system\cmake-build-debug\core && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\ctest.exe" --force-new-ctest-process "
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-debug\core && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\ctest.exe" --force-new-ctest-process "
   DESC = Running tests...
   pool = console
   restat = 1
@@ -169,7 +169,7 @@ build core\test: phony core\CMakeFiles\test.util
 # Utility command for edit_cache
 
 build core\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\Desktop\game_motor_system\motor_game_system\cmake-build-debug\core && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-debug\core && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -180,7 +180,7 @@ build core\edit_cache: phony core\CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build core\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\Desktop\game_motor_system\motor_game_system\cmake-build-debug\core && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\Mat\Desktop\game_motor_system\motor_game_system -BC:\Users\Mat\Desktop\game_motor_system\motor_game_system\cmake-build-debug"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-debug\core && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\Mat\special_repo\game_motor_system\motor_game_system -BC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -189,7 +189,7 @@ build core\rebuild_cache: phony core\CMakeFiles\rebuild_cache.util
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# C:/Users/Mat/Desktop/game_motor_system/motor_game_system/CMakeLists.txt
+# C:/Users/Mat/special_repo/game_motor_system/motor_game_system/CMakeLists.txt
 # =============================================================================
 
 # =============================================================================
@@ -201,9 +201,9 @@ build core\rebuild_cache: phony core\CMakeFiles\rebuild_cache.util
 
 build cmake_object_order_depends_target_api: phony || cmake_object_order_depends_target_core
 
-build api\CMakeFiles\api.dir\src\empty.cc.obj: CXX_COMPILER__api_unscanned_Debug C$:\Users\Mat\Desktop\game_motor_system\motor_game_system\api\src\empty.cc || cmake_object_order_depends_target_api
+build api\CMakeFiles\api.dir\src\empty.cc.obj: CXX_COMPILER__api_unscanned_Debug C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\src\empty.cc || cmake_object_order_depends_target_api
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -std:c++20 -MDd
-  INCLUDES = -IC:\Users\Mat\Desktop\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\Desktop\game_motor_system\motor_game_system\core\include
+  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include
   OBJECT_DIR = api\CMakeFiles\api.dir
   OBJECT_FILE_DIR = api\CMakeFiles\api.dir\src
   TARGET_COMPILE_PDB = api\CMakeFiles\api.dir\api.pdb
@@ -232,7 +232,7 @@ build api\api.lib: CXX_STATIC_LIBRARY_LINKER__api_Debug api\CMakeFiles\api.dir\s
 # Utility command for test
 
 build api\CMakeFiles\test.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\Desktop\game_motor_system\motor_game_system\cmake-build-debug\api && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\ctest.exe" --force-new-ctest-process "
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-debug\api && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\ctest.exe" --force-new-ctest-process "
   DESC = Running tests...
   pool = console
   restat = 1
@@ -244,7 +244,7 @@ build api\test: phony api\CMakeFiles\test.util
 # Utility command for edit_cache
 
 build api\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\Desktop\game_motor_system\motor_game_system\cmake-build-debug\api && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-debug\api && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -255,7 +255,7 @@ build api\edit_cache: phony api\CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build api\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\Desktop\game_motor_system\motor_game_system\cmake-build-debug\api && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\Mat\Desktop\game_motor_system\motor_game_system -BC:\Users\Mat\Desktop\game_motor_system\motor_game_system\cmake-build-debug"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-debug\api && "C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\Mat\special_repo\game_motor_system\motor_game_system -BC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -281,21 +281,21 @@ build main: phony main.exe
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/Mat/Desktop/game_motor_system/motor_game_system/cmake-build-debug
+# Folder: C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-debug
 
 build all: phony main.exe core\all api\all
 
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/Mat/Desktop/game_motor_system/motor_game_system/cmake-build-debug/api
+# Folder: C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-debug/api
 
 build api\all: phony api\api.lib
 
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/Mat/Desktop/game_motor_system/motor_game_system/cmake-build-debug/core
+# Folder: C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-debug/core
 
 build core\all: phony core\core.lib
 
@@ -306,14 +306,14 @@ build core\all: phony core\core.lib
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeCInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeDependentOption.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeFindDependencyMacro.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeRCInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Compiler\MSVC.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake C$:\Users\Mat\Desktop\game_motor_system\motor_game_system\CMakeLists.txt C$:\Users\Mat\Desktop\game_motor_system\motor_game_system\api\CMakeLists.txt C$:\Users\Mat\Desktop\game_motor_system\motor_game_system\core\CMakeLists.txt C$:\Users\Mat\Desktop\game_motor_system\motor_game_system\vcpkg.json C$:\vcpkg\vcpkg\scripts\buildsystems\vcpkg.cmake CMakeCache.txt CMakeFiles\3.29.6\CMakeCCompiler.cmake CMakeFiles\3.29.6\CMakeCXXCompiler.cmake CMakeFiles\3.29.6\CMakeRCCompiler.cmake CMakeFiles\3.29.6\CMakeSystem.cmake vcpkg_installed\x64-windows\share\gtest\GTestConfig.cmake vcpkg_installed\x64-windows\share\gtest\GTestConfigVersion.cmake vcpkg_installed\x64-windows\share\gtest\GTestTargets-debug.cmake vcpkg_installed\x64-windows\share\gtest\GTestTargets-release.cmake vcpkg_installed\x64-windows\share\gtest\GTestTargets.cmake
+build build.ninja: RERUN_CMAKE | C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeCInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeDependentOption.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeFindDependencyMacro.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeRCInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Compiler\MSVC.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\FeatureSummary.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\CMakeLists.txt C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\CMakeLists.txt C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\CMakeLists.txt C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\vcpkg.json C$:\vcpkg\vcpkg\installed\x64-windows\share\sdl2\SDL2Config.cmake C$:\vcpkg\vcpkg\installed\x64-windows\share\sdl2\SDL2ConfigVersion.cmake C$:\vcpkg\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-debug.cmake C$:\vcpkg\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-release.cmake C$:\vcpkg\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets.cmake C$:\vcpkg\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-debug.cmake C$:\vcpkg\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-release.cmake C$:\vcpkg\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets.cmake C$:\vcpkg\vcpkg\installed\x64-windows\share\sdl2\sdlfind.cmake C$:\vcpkg\vcpkg\scripts\buildsystems\vcpkg.cmake CMakeCache.txt CMakeFiles\3.29.6\CMakeCCompiler.cmake CMakeFiles\3.29.6\CMakeCXXCompiler.cmake CMakeFiles\3.29.6\CMakeRCCompiler.cmake CMakeFiles\3.29.6\CMakeSystem.cmake vcpkg_installed\x64-windows\share\gtest\GTestConfig.cmake vcpkg_installed\x64-windows\share\gtest\GTestConfigVersion.cmake vcpkg_installed\x64-windows\share\gtest\GTestTargets-debug.cmake vcpkg_installed\x64-windows\share\gtest\GTestTargets-release.cmake vcpkg_installed\x64-windows\share\gtest\GTestTargets.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeCInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeDependentOption.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeFindDependencyMacro.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeRCInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Compiler\MSVC.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake C$:\Users\Mat\Desktop\game_motor_system\motor_game_system\CMakeLists.txt C$:\Users\Mat\Desktop\game_motor_system\motor_game_system\api\CMakeLists.txt C$:\Users\Mat\Desktop\game_motor_system\motor_game_system\core\CMakeLists.txt C$:\Users\Mat\Desktop\game_motor_system\motor_game_system\vcpkg.json C$:\vcpkg\vcpkg\scripts\buildsystems\vcpkg.cmake CMakeCache.txt CMakeFiles\3.29.6\CMakeCCompiler.cmake CMakeFiles\3.29.6\CMakeCXXCompiler.cmake CMakeFiles\3.29.6\CMakeRCCompiler.cmake CMakeFiles\3.29.6\CMakeSystem.cmake vcpkg_installed\x64-windows\share\gtest\GTestConfig.cmake vcpkg_installed\x64-windows\share\gtest\GTestConfigVersion.cmake vcpkg_installed\x64-windows\share\gtest\GTestTargets-debug.cmake vcpkg_installed\x64-windows\share\gtest\GTestTargets-release.cmake vcpkg_installed\x64-windows\share\gtest\GTestTargets.cmake: phony
+build C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeCInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeDependentOption.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeFindDependencyMacro.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeRCInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Compiler\MSVC.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\FeatureSummary.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\Windows.cmake C$:\Program$ Files\JetBrains\CLion$ 2024.2.1\bin\cmake\win\x64\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\CMakeLists.txt C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\CMakeLists.txt C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\CMakeLists.txt C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\vcpkg.json C$:\vcpkg\vcpkg\installed\x64-windows\share\sdl2\SDL2Config.cmake C$:\vcpkg\vcpkg\installed\x64-windows\share\sdl2\SDL2ConfigVersion.cmake C$:\vcpkg\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-debug.cmake C$:\vcpkg\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets-release.cmake C$:\vcpkg\vcpkg\installed\x64-windows\share\sdl2\SDL2Targets.cmake C$:\vcpkg\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-debug.cmake C$:\vcpkg\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets-release.cmake C$:\vcpkg\vcpkg\installed\x64-windows\share\sdl2\SDL2mainTargets.cmake C$:\vcpkg\vcpkg\installed\x64-windows\share\sdl2\sdlfind.cmake C$:\vcpkg\vcpkg\scripts\buildsystems\vcpkg.cmake CMakeCache.txt CMakeFiles\3.29.6\CMakeCCompiler.cmake CMakeFiles\3.29.6\CMakeCXXCompiler.cmake CMakeFiles\3.29.6\CMakeRCCompiler.cmake CMakeFiles\3.29.6\CMakeSystem.cmake vcpkg_installed\x64-windows\share\gtest\GTestConfig.cmake vcpkg_installed\x64-windows\share\gtest\GTestConfigVersion.cmake vcpkg_installed\x64-windows\share\gtest\GTestTargets-debug.cmake vcpkg_installed\x64-windows\share\gtest\GTestTargets-release.cmake vcpkg_installed\x64-windows\share\gtest\GTestTargets.cmake: phony
 
 
 #############################################
