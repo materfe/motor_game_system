@@ -3,6 +3,7 @@ C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwit
 C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/CMakeFiles/edit_cache.dir
 C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/CMakeFiles/rebuild_cache.dir
 C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/core/CMakeFiles/core.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/core/CMakeFiles/core_test.dir
 C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/core/CMakeFiles/test.dir
 C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/core/CMakeFiles/edit_cache.dir
 C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/core/CMakeFiles/rebuild_cache.dir

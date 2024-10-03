@@ -310,6 +310,15 @@ game_motor_engine_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 game_motor_engine_SOURCE_DIR:STATIC=C:/Users/Mat/special_repo/game_motor_system/motor_game_system
 
+//The directory containing a CMake configuration file for glad.
+glad_DIR:PATH=glad_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for hello-imgui.
+hello-imgui_DIR:PATH=C:/vcpkg/vcpkg/installed/x64-windows/share/hello-imgui
+
+//The directory containing a CMake configuration file for imgui.
+imgui_DIR:PATH=C:/vcpkg/vcpkg/installed/x64-windows/share/imgui
+
 
 ########################
 # INTERNAL cache entries

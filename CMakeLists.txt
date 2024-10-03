@@ -1,4 +1,3 @@
-#setup
 cmake_minimum_required(VERSION 3.17)
 project(game_motor_engine)
 set (CMAKE_CXX_STANDARD 20)
@@ -7,10 +6,11 @@ set (CMAKE_CXX_STANDARD_REQUIRED ON)
 # Set CMAKE_PREFIX_PATH to help CMake find SDL2
 set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};C:/vcpkg/vcpkg/installed/x64-windows/share/sdl2")
 
-#enable test and packages
+# Enable testing and find necessary packages
 enable_testing()
 find_package(GTest CONFIG REQUIRED)
 find_package(SDL2 CONFIG REQUIRED)
+find_package(imgui CONFIG REQUIRED)
 
 #profiler
 if(ENABLE_PROFILING)
@@ -21,8 +21,24 @@ endif(ENABLE_PROFILING)
 add_subdirectory(core/)
 add_subdirectory(api/)
 
+# Store SDL2 libraries in a variable
+set(SDL2_LIBRARIES
+        $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>
+        $<IF:$<TARGET_EXISTS:SDL2::SDL2>,SDL2::SDL2,SDL2::SDL2-static>
+)
+
+# Link SDL2 libraries and include directories to the api library
+target_link_libraries(api PUBLIC ${SDL2_LIBRARIES})
+
+# Add SDL2 include directories to api
+if(NOT SDL2_INCLUDE_DIRS)
+    get_target_property(SDL2_INCLUDE_DIRS SDL2::SDL2 INTERFACE_INCLUDE_DIRECTORIES)
+endif()
+
+target_include_directories(api PUBLIC ${SDL2_INCLUDE_DIRS})
+
 #main
-add_executable(main main.cc)
+add_executable(main main.cpp)
 
 add_custom_command(TARGET main POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
@@ -30,12 +46,8 @@ add_custom_command(TARGET main POST_BUILD
         $<TARGET_FILE_DIR:main>
 )
 
-#target links
+# Link core and api libraries to the main executable
 target_link_libraries(main PRIVATE api core)
-target_link_libraries(main
-        PRIVATE
-        $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>
-        $<IF:$<TARGET_EXISTS:SDL2::SDL2>,SDL2::SDL2,SDL2::SDL2-static>
-)
+target_link_libraries(main PRIVATE imgui::imgui)
 
 option(ENABLE_PROFILING "Enable Tracy Profiling" OFF)
