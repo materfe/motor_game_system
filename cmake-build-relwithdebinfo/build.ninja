@@ -188,6 +188,33 @@ build core\CMakeFiles\core_test.dir\test\Test_vec4f.cpp.obj: CXX_COMPILER__core_
   TARGET_COMPILE_PDB = core\CMakeFiles\core_test.dir\
   TARGET_PDB = core\core_test.pdb
 
+build core\CMakeFiles\core_test.dir\test\Test_matrix2.cpp.obj: CXX_COMPILER__core_test_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\test\Test_matrix2.cpp || cmake_object_order_depends_target_core_test
+  DEFINES = -DGTEST_LINKED_AS_SHARED_LIBRARY=1
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:W0
+  OBJECT_DIR = core\CMakeFiles\core_test.dir
+  OBJECT_FILE_DIR = core\CMakeFiles\core_test.dir\test
+  TARGET_COMPILE_PDB = core\CMakeFiles\core_test.dir\
+  TARGET_PDB = core\core_test.pdb
+
+build core\CMakeFiles\core_test.dir\test\Test_matrix3.cpp.obj: CXX_COMPILER__core_test_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\test\Test_matrix3.cpp || cmake_object_order_depends_target_core_test
+  DEFINES = -DGTEST_LINKED_AS_SHARED_LIBRARY=1
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:W0
+  OBJECT_DIR = core\CMakeFiles\core_test.dir
+  OBJECT_FILE_DIR = core\CMakeFiles\core_test.dir\test
+  TARGET_COMPILE_PDB = core\CMakeFiles\core_test.dir\
+  TARGET_PDB = core\core_test.pdb
+
+build core\CMakeFiles\core_test.dir\test\Test_matrix4.cpp.obj: CXX_COMPILER__core_test_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\test\Test_matrix4.cpp || cmake_object_order_depends_target_core_test
+  DEFINES = -DGTEST_LINKED_AS_SHARED_LIBRARY=1
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:W0
+  OBJECT_DIR = core\CMakeFiles\core_test.dir
+  OBJECT_FILE_DIR = core\CMakeFiles\core_test.dir\test
+  TARGET_COMPILE_PDB = core\CMakeFiles\core_test.dir\
+  TARGET_PDB = core\core_test.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target core_test
@@ -196,7 +223,7 @@ build core\CMakeFiles\core_test.dir\test\Test_vec4f.cpp.obj: CXX_COMPILER__core_
 #############################################
 # Link the executable core\core_test.exe
 
-build core\core_test.exe: CXX_EXECUTABLE_LINKER__core_test_RelWithDebInfo core\CMakeFiles\core_test.dir\test\Test_vec2f.cpp.obj core\CMakeFiles\core_test.dir\test\Test_vec3f.cpp.obj core\CMakeFiles\core_test.dir\test\Test_vec4f.cpp.obj | core\core.lib vcpkg_installed\x64-windows\lib\manual-link\gtest_main.lib vcpkg_installed\x64-windows\lib\gtest.lib || core\core.lib
+build core\core_test.exe: CXX_EXECUTABLE_LINKER__core_test_RelWithDebInfo core\CMakeFiles\core_test.dir\test\Test_vec2f.cpp.obj core\CMakeFiles\core_test.dir\test\Test_vec3f.cpp.obj core\CMakeFiles\core_test.dir\test\Test_vec4f.cpp.obj core\CMakeFiles\core_test.dir\test\Test_matrix2.cpp.obj core\CMakeFiles\core_test.dir\test\Test_matrix3.cpp.obj core\CMakeFiles\core_test.dir\test\Test_matrix4.cpp.obj | core\core.lib vcpkg_installed\x64-windows\lib\manual-link\gtest_main.lib vcpkg_installed\x64-windows\lib\gtest.lib || core\core.lib
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = core\core.lib  vcpkg_installed\x64-windows\lib\manual-link\gtest_main.lib  vcpkg_installed\x64-windows\lib\gtest.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

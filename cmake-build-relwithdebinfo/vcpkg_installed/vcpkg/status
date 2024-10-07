@@ -41,3 +41,37 @@ Multi-Arch: same
 Description: Enable crash handler
 Status: install ok installed
 
+Package: sdl2
+Version: 2.30.1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: faee28b42870d381544d18e75618dba566bec13a875043091325588e13ddecfb
+Description: Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D.
+Status: install ok installed
+
+Package: imgui
+Version: 1.90.2
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 2c886c33d5fac11eb76b791b68b5560e93340224acc1f1ed7d5d53074b39d267
+Description: Bloat-free Immediate Mode Graphical User interface for C++ with minimal dependencies.
+Status: install ok installed
+
+Package: imgui
+Feature: sdl2-binding
+Depends: sdl2
+Architecture: x64-windows
+Multi-Arch: same
+Description: Make available SDL2 binding
+Status: install ok installed
+
+Package: imgui
+Feature: sdl2-renderer-binding
+Depends: sdl2
+Architecture: x64-windows
+Multi-Arch: same
+Description: Make available SDL2 Renderer binding
+Status: install ok installed
+

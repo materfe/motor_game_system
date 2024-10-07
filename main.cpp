@@ -1,3 +1,5 @@
+#include <chrono>
+#include <imgui_internal.h>
 #include "Circle.h"
 #include "Renderer.h"
 #include "Window.h"
@@ -36,14 +38,20 @@ int main(int argc, char *argv[]) {
     bool running = true;
     SDL_Event event;
 
+    // ImGui_ImplSDL2_InitForSDLRenderer(window, renderer);
+    // ImGui_ImplSDLRenderer2_Init(renderer);
+
     srand(time(NULL));
+    float timer = 0.0f;
+
     while (running) {
         currentTime = SDL_GetTicks();
+        const auto time_laped_in_seconds = currentTime / 1000;
         deltaTime = currentTime - lastTime;
         lastTime = currentTime;
 
         const float deltaTimeSec = static_cast<float>(deltaTime) / 1000.0f; // Convert to seconds
-
+        
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
                 running = false;
@@ -69,7 +77,9 @@ int main(int argc, char *argv[]) {
 
 
         const auto time = deltaTime / 1000;
-        if(time % 2) {
+        deltaTime = 0;
+
+        if(static_cast<int>(timer) % 2) {
             // Draw each circle
             renderer.SetDrawColor(llllll, llllli, lllllr, 255);
         }
@@ -77,15 +87,37 @@ int main(int argc, char *argv[]) {
         for (const auto& circle : circles) {
             renderer.DrawCircle(circle);
         }
-        if(time % 2) {
-
+        if(static_cast<int>(timer) % 2) {
             renderer.SetDrawColor(llllle, llllls, llllld, 255);
-
         }
+
+        //std::cout << "timer : [" << timer << "]\n";
+        //std::cout << "delta : [" << currentTime / 1000 << "]\n";
+        // if(timer >= 2) {
+        //     timer = 0.0f;
+        // }
+        timer += static_cast<float>(time_laped_in_seconds);
 
         for (const auto& rec : rectangles) {
             renderer.DrawRectangle(rec);
         }
+
+        // Start the Dear ImGui frame
+        // ImGui_ImplSDLRenderer2_NewFrame();
+        // ImGui_ImplSDL2_NewFrame();
+        // ImGui::NewFrame();
+        //
+        // ImGui::Begin("Splash Online");
+        // //...
+        // //ImGui::End();
+        //
+        // ImGui::Render();
+        // ImGuiIO& io = ImGui::GetIO();
+        // SDL_RenderSetScale(renderer,
+        //     io.DisplayFramebufferScale.x,
+        //     io.DisplayFramebufferScale.y);
+        // //Update screen
+        // ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), renderer);
 
 
         // Present the rendered frame

@@ -7,7 +7,10 @@ target_include_directories(core PUBLIC include/)
 add_executable(core_test
         test/Test_vec2f.cpp
         test/Test_vec3f.cpp
-        test/Test_vec4f.cpp)
+        test/Test_vec4f.cpp
+        test/Test_matrix2.cpp
+        test/Test_matrix3.cpp
+        test/Test_matrix4.cpp)
 
 if(ENABLE_PROFILING)
     target_link_libraries(core PUBLIC Tracy::TracyClient)
