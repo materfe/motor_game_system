@@ -5,12 +5,13 @@ add_library(core ${SRC_FILES} ${HEADER_FILES})
 target_include_directories(core PUBLIC include/)
 
 add_executable(core_test
-        test/Test_vec2f.cpp
-        test/Test_vec3f.cpp
-        test/Test_vec4f.cpp
-        test/Test_matrix2.cpp
-        test/Test_matrix3.cpp
-        test/Test_matrix4.cpp)
+        test/test_vec2f.cc
+        test/test_vec3f.cc
+        test/test_vec4f.cc
+        test/test_matrix2.cc
+        test/test_matrix3.cc
+        test/test_matrix4.cc
+        test/test_common.cc)
 
 if(ENABLE_PROFILING)
     target_link_libraries(core PUBLIC Tracy::TracyClient)

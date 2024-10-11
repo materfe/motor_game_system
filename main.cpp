@@ -1,10 +1,11 @@
 #include <chrono>
 #include <imgui_internal.h>
-#include "Circle.h"
-#include "Renderer.h"
-#include "Window.h"
+#include "circle.h"
+#include "renderer.h"
+#include "window.h"
 #include <iostream>
 #include <vector>
+#include "common.h"
 #include <random>
 
 int main(int argc, char *argv[]) {
@@ -13,18 +14,18 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
-    Window window("Window", 800, 600);
-    const Renderer renderer(window);
+    window window("Window", 800, 600);
+    const renderer renderer(window);
 
     // Create a vector to store multiple circles
-    std::vector<Circle> circles = {
+    std::vector<circle> circles = {
         {400, 300, 20, 0, 0, 0.0f, 0.8f},
         {200, 150, 20, 0, 0, 10.2f, 0.8f},
         {600, 450, 80, 0, 0, 10.2f, 0.8f},
         {300, 400, 20, 0, 0, 10.2f, 0.8f}
     };
 
-    std::vector<Rectangle> rectangles = {
+    std::vector<rectangle> rectangles = {
         {0, 300, 27, 15, 0, 0.0f, 0.8f},
         {250, 150, 200, 50, 0, 10.2f, 0.8f},
         {580, 450, 80, 80, 0, 10.2f, 0.8f},
@@ -101,6 +102,7 @@ int main(int argc, char *argv[]) {
         for (const auto& rec : rectangles) {
             renderer.DrawRectangle(rec);
         }
+        func();
 
         // Start the Dear ImGui frame
         // ImGui_ImplSDLRenderer2_NewFrame();

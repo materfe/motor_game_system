@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/gtest-x64-windows-1.14.0#1-6e307cdf-fd8a-4163-a3b9-464cbbcc469c",
-  "name": "gtest:x64-windows@1.14.0#1 6f0ef3801bbd4bb38199e6d7c940ad7d342eeae8866273df3d24c60692f3322c",
+  "documentNamespace": "https://spdx.org/spdxdocs/gtest-x64-windows-1.14.0#1-7e069969-4788-4a06-bc61-f0c86f755b3a",
+  "name": "gtest:x64-windows@1.14.0#1 88f7214df01a504fc6dd08f2a22bcbc919ca8f97ca87f285cc97f08465055a4f",
   "creationInfo": {
     "creators": [
       "Tool: vcpkg-d6945642ee5c3076addd1a42c331bbf4cfc97457"
     ],
-    "created": "2024-09-11T11:15:19Z"
+    "created": "2024-10-10T13:21:00Z"
   },
   "relationships": [
     {
@@ -88,7 +88,7 @@
       "name": "gtest",
       "SPDXID": "SPDXRef-port",
       "versionInfo": "1.14.0#1",
-      "downloadLocation": "NOASSERTION",
+      "downloadLocation": "git+https://github.com/Microsoft/vcpkg@75ebdb53e37267a1d5f6283223367cd0aa1104ef",
       "homepage": "https://github.com/google/googletest",
       "licenseConcluded": "BSD-3-Clause",
       "licenseDeclared": "NOASSERTION",
@@ -99,7 +99,7 @@
     {
       "name": "gtest:x64-windows",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "6f0ef3801bbd4bb38199e6d7c940ad7d342eeae8866273df3d24c60692f3322c",
+      "versionInfo": "88f7214df01a504fc6dd08f2a22bcbc919ca8f97ca87f285cc97f08465055a4f",
       "downloadLocation": "NONE",
       "licenseConcluded": "BSD-3-Clause",
       "licenseDeclared": "NOASSERTION",
@@ -123,7 +123,7 @@
   ],
   "files": [
     {
-      "fileName": "./C:/vcpkg/vcpkg/ports/gtest/001-fix-UWP-death-test.patch",
+      "fileName": "./C:/vcpkg/vcpkg/buildtrees/versioning_/versions/gtest/75ebdb53e37267a1d5f6283223367cd0aa1104ef/001-fix-UWP-death-test.patch",
       "SPDXID": "SPDXRef-file-0",
       "checksums": [
         {
@@ -135,7 +135,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./C:/vcpkg/vcpkg/ports/gtest/clang-tidy-no-lint.patch",
+      "fileName": "./C:/vcpkg/vcpkg/buildtrees/versioning_/versions/gtest/75ebdb53e37267a1d5f6283223367cd0aa1104ef/clang-tidy-no-lint.patch",
       "SPDXID": "SPDXRef-file-1",
       "checksums": [
         {
@@ -147,7 +147,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./C:/vcpkg/vcpkg/ports/gtest/fix-main-lib-path.patch",
+      "fileName": "./C:/vcpkg/vcpkg/buildtrees/versioning_/versions/gtest/75ebdb53e37267a1d5f6283223367cd0aa1104ef/fix-main-lib-path.patch",
       "SPDXID": "SPDXRef-file-2",
       "checksums": [
         {
@@ -159,7 +159,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./C:/vcpkg/vcpkg/ports/gtest/portfile.cmake",
+      "fileName": "./C:/vcpkg/vcpkg/buildtrees/versioning_/versions/gtest/75ebdb53e37267a1d5f6283223367cd0aa1104ef/portfile.cmake",
       "SPDXID": "SPDXRef-file-3",
       "checksums": [
         {
@@ -171,7 +171,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./C:/vcpkg/vcpkg/ports/gtest/usage",
+      "fileName": "./C:/vcpkg/vcpkg/buildtrees/versioning_/versions/gtest/75ebdb53e37267a1d5f6283223367cd0aa1104ef/usage",
       "SPDXID": "SPDXRef-file-4",
       "checksums": [
         {
@@ -183,7 +183,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": "./C:/vcpkg/vcpkg/ports/gtest/vcpkg.json",
+      "fileName": "./C:/vcpkg/vcpkg/buildtrees/versioning_/versions/gtest/75ebdb53e37267a1d5f6283223367cd0aa1104ef/vcpkg.json",
       "SPDXID": "SPDXRef-file-5",
       "checksums": [
         {
