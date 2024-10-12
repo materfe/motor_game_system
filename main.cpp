@@ -102,7 +102,6 @@ int main(int argc, char *argv[]) {
         for (const auto& rec : rectangles) {
             renderer.DrawRectangle(rec);
         }
-        func();
 
         // Start the Dear ImGui frame
         // ImGui_ImplSDLRenderer2_NewFrame();

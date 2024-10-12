@@ -192,3 +192,19 @@ TEST(test_vec3f, crash_test_division_when_normalising) {
 
 	EXPECT_EXIT(const auto truc = vec_3.Normalise(), ::testing::ExitedWithCode(3), "");
 }
+
+TEST(test_vec3f, crash_test_operator_) {
+	constexpr auto vec_1 = core::vec3<float>{1.3f, 3.5f, 4.0f};
+
+	EXPECT_EXIT(vec_1[3], ::testing::ExitedWithCode(3), "");
+	EXPECT_EXIT(vec_1[-1], ::testing::ExitedWithCode(3), "");
+}
+
+
+TEST(test_vec3f, test_operator_) {
+	constexpr auto vec_1 = core::vec3<float>{1.3f, 3.5f, 4.0f};
+
+	EXPECT_EQ(vec_1[0], 1.3f);
+	EXPECT_EQ(vec_1[1], 3.5f);
+	EXPECT_EQ(vec_1[2], 4.0f);
+}

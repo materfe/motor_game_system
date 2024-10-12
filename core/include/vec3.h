@@ -45,6 +45,20 @@ namespace core
 			return { x * scalar, y * scalar, z * scalar };
 		}
 
+		constexpr T operator[](const int index) const {
+			if (index < 0 || index > 2) {
+				std::terminate();
+			}
+			if (index == 0) {
+				return x;
+			}
+			if (index == 1) {
+				return y;
+			}
+			return z;
+		}
+
+
 		// Divide by scalar
 		constexpr vec3 operator/(T scalar) const
 		{

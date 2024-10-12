@@ -9,7 +9,7 @@
 #include "vec3.h"
 
 namespace core {
-    template <typename T>
+    template<typename T>
     struct matrix3 {
     private:
         // Three column array
@@ -22,15 +22,18 @@ namespace core {
             columns_[1] = vec3<T>(d, e, f);
             columns_[2] = vec3<T>(g, h, i);
         }
-        matrix3(const vec3<T>& col1, const vec3<T>& col2, const vec3<T>& col3) {
+
+        matrix3(const vec3<T> &col1, const vec3<T> &col2, const vec3<T> &col3) {
             columns_[0] = col1;
             columns_[1] = col2;
             columns_[2] = col3;
         }
+
         explicit matrix3(std::array<vec3<T>, 3> cols) {
             columns_ = cols;
         }
-        matrix3(std::initializer_list<vec3<T>>& init) {
+
+        matrix3(std::initializer_list<vec3<T> > &init) {
             columns_[0] = init[0];
             columns_[1] = init[1];
             columns_[2] = init[2];
@@ -45,31 +48,55 @@ namespace core {
         [[nodiscard]] constexpr vec3<T> GetFirstColumn() const {
             return columns_[0];
         }
+
         [[nodiscard]] constexpr vec3<T> GetSecondColumn() const {
             return columns_[1];
         }
+
         [[nodiscard]] constexpr vec3<T> GetThirdColumn() const {
             return columns_[2];
         }
 
 
         // Matrix addition
-        constexpr matrix3<T> operator+(const matrix3<T>& other) const {
+        constexpr matrix3<T> operator+(const matrix3<T> &other) const {
             return matrix3<T>(columns_[0] + other.columns_[0],
-                columns_[1] + other.columns_[1],
-                columns_[2] + other.columns_[2]);
+                              columns_[1] + other.columns_[1],
+                              columns_[2] + other.columns_[2]);
         }
 
         // Matrix subtraction
-        constexpr matrix3<T> operator-(const matrix3<T>& other) const {
+        constexpr matrix3<T> operator-(const matrix3<T> &other) const {
             return matrix3<T>(columns_[0] - other.columns_[0],
-                columns_[1] - other.columns_[1],
-                columns_[2] - other.columns_[2]);
+                              columns_[1] - other.columns_[1],
+                              columns_[2] - other.columns_[2]);
         }
 
-        // Matrix multiplication
-        constexpr matrix3<T> operator*(const matrix3<T>& other) const {
 
+        //i stands for the column number and j for the element number
+        constexpr T operator()(const int i, const int j) const {
+            if (j < 0 || j >= 3 || i < 0 || i >= 3) {
+                std::terminate();
+            }
+
+            switch (i) {
+                case 0:
+                    return columns_[0][j];
+                    break;
+                case 1:
+                    return columns_[1][j];
+                    break;
+                case 2:
+                    return columns_[2][j];
+                    break;
+                default:
+                    std::terminate();
+            }
+        }
+
+
+        // Matrix multiplication
+        constexpr matrix3<T> operator*(const matrix3<T> &other) const {
             //returned matrix
             matrix3<T> result = Identity();
 
@@ -77,9 +104,12 @@ namespace core {
             for (int j = 0; j < 3; ++j) {
                 // Each column in the result is a linear combination of the columns of A
                 result.columns_[j] = vec3<T>(
-                    columns_[0].x * other.columns_[j].x + columns_[1].x * other.columns_[j].y + columns_[2].x * other.columns_[j].z, // First row
-                    columns_[0].y * other.columns_[j].x + columns_[1].y * other.columns_[j].y + columns_[2].y * other.columns_[j].z, // Second row
-                    columns_[0].z * other.columns_[j].x + columns_[1].z * other.columns_[j].y + columns_[2].z * other.columns_[j].z  // Third row
+                    columns_[0].x * other.columns_[j].x + columns_[1].x * other.columns_[j].y + columns_[2].x * other.
+                    columns_[j].z, // First row
+                    columns_[0].y * other.columns_[j].x + columns_[1].y * other.columns_[j].y + columns_[2].y * other.
+                    columns_[j].z, // Second row
+                    columns_[0].z * other.columns_[j].x + columns_[1].z * other.columns_[j].y + columns_[2].z * other.
+                    columns_[j].z // Third row
                 );
             }
 
@@ -94,8 +124,8 @@ namespace core {
         // Determinant of the matrix
         [[nodiscard]] T determinant() const {
             return columns_[0].x * (columns_[1].y * columns_[2].z - columns_[2].y * columns_[1].z)
-            - columns_[1].x * (columns_[0].y * columns_[2].z - columns_[2].y * columns_[0].z)
-            + columns_[2].x * (columns_[0].y * columns_[1].z - columns_[1].y * columns_[0].z);
+                   - columns_[1].x * (columns_[0].y * columns_[2].z - columns_[2].y * columns_[0].z)
+                   + columns_[2].x * (columns_[0].y * columns_[1].z - columns_[1].y * columns_[0].z);
         }
     };
 }

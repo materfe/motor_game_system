@@ -11,7 +11,7 @@ namespace core {
     /**
      * \brief Vec2f is a struct that allow basic maths
      */
-    template <typename T>
+    template<typename T>
     struct vec2 {
         T x_ = 0, y_ = 0;
 
@@ -37,6 +37,16 @@ namespace core {
         //multiply
         constexpr vec2 operator*(T scalar) const {
             return {x_ * scalar, y_ * scalar};
+        }
+
+        constexpr T operator[](const int index) const {
+            if (index < 0 || index > 1) {
+                std::terminate();
+            }
+            if (index == 0) {
+                return x_;
+            }
+            return y_;
         }
 
         //divide
@@ -74,7 +84,7 @@ namespace core {
         //normalise and sqr normalise your vector
         [[nodiscard]] vec2 Normalise() const {
             const T magnitude = Magnitude();
-            if(magnitude == 0) {
+            if (magnitude == 0) {
                 std::terminate();
             }
 
@@ -86,8 +96,7 @@ namespace core {
 
         //calculate magnitude and sqr magnitude
         [[nodiscard]] T Magnitude() const
-        requires std::is_floating_point_v<T>
-        {
+            requires std::is_floating_point_v<T> {
             const float length = std::sqrt(x_ * x_ + y_ * y_);
             return length;
         }
@@ -98,12 +107,12 @@ namespace core {
         }
     }; //struct Vec2f
 
-    template <typename T>
+    template<typename T>
     constexpr vec2<T> operator*(const T t, const vec2<T> &vec) {
         return {t * vec.x_, t * vec.y_};
     }
 
-    template <typename T>
+    template<typename T>
     constexpr vec2<T> operator/(const T t, const vec2<T> &vec) {
         if (vec.x_ == 0 || vec.y_ == 0) {
             std::terminate();

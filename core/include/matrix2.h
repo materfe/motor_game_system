@@ -40,7 +40,7 @@ namespace core {
             return columns_[1];
         }
 
-        //indentity
+        //identity
         [[nodiscard]] static constexpr matrix2<T> Identity() {
             return matrix2<T>(1, 0, 0, 1);
         }
@@ -77,6 +77,14 @@ namespace core {
             return matrix2<T>(columns_[0] * scalar, columns_[1] * scalar);
         }
 
+        //i stands for the column number and j for the element number
+        constexpr T operator()(const int i, const int j) const {
+            if (j < 0 || j >= 2 || i < 0 || i >= 2) {
+                std::terminate();
+            }
+            return i == 0 ? columns_[0][j] : columns_[1][j];
+        }
+
 
         // Determinant of the matrix
         [[nodiscard]] T Determinant() const {
@@ -84,7 +92,7 @@ namespace core {
         }
 
         //inverse
-        //place an optionnel instead of the std::terminate()
+        //place an optionel instead of the std::terminate()
         matrix2<T> Inverse() const {
             T det = Determinant();
             if (det == 0) {
@@ -98,7 +106,7 @@ namespace core {
         }
     };
     template <typename T>
-    matrix2<T> operator*(T scalar, matrix2<T>& other) {
+    constexpr matrix2<T> operator*(T scalar, matrix2<T>& other) {
         return matrix2<T>(scalar * other.columns_[0], scalar * other.columns_[1]);
     }
 }

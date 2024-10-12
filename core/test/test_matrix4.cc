@@ -316,3 +316,37 @@ TEST(test_matrix_4, identity) {
     EXPECT_EQ(actual.GetFourthColumn().z, 0);
     EXPECT_EQ(actual.GetFourthColumn().w, 1);
 }
+
+TEST(test_matrix_4, operator_) {
+    const auto result = core::matrix4<int>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
+
+    EXPECT_EQ(result(0, 0), 1);
+    EXPECT_EQ(result(0, 1), 2);
+    EXPECT_EQ(result(0, 2), 3);
+    EXPECT_EQ(result(0, 3), 4);
+
+    EXPECT_EQ(result(1, 0), 5);
+    EXPECT_EQ(result(1, 1), 6);
+    EXPECT_EQ(result(1, 2), 7);
+    EXPECT_EQ(result(1, 3), 8);
+
+    EXPECT_EQ(result(2, 0), 9);
+    EXPECT_EQ(result(2, 1), 10);
+    EXPECT_EQ(result(2, 2), 11);
+    EXPECT_EQ(result(2, 3), 12);
+
+    EXPECT_EQ(result(3, 0), 13);
+    EXPECT_EQ(result(3, 1), 14);
+    EXPECT_EQ(result(3, 2), 15);
+    EXPECT_EQ(result(3, 3), 16);
+}
+
+TEST(test_matrix_4, operator_crash) {
+
+    const auto v = core::matrix3<int>{4, 5, 6, 7, 8, 9, 10, 11, 12};
+
+    EXPECT_EXIT(v(5, 0), ::testing::ExitedWithCode(3), "");
+    EXPECT_EXIT(v(-1, 0), ::testing::ExitedWithCode(3), "");
+    EXPECT_EXIT(v(0, 4), ::testing::ExitedWithCode(3), "");
+    EXPECT_EXIT(v(0, -1), ::testing::ExitedWithCode(3), "");
+}

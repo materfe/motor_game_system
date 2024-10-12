@@ -88,6 +88,31 @@ namespace core {
             );
         }
 
+        //i stands for the column number and j for the element number
+        constexpr T operator()(const int i, const int j) const {
+            if (j < 0 || j >= 4 || i < 0 || i >= 4) {
+                std::terminate();
+            }
+
+            switch (i) {
+                case 0:
+                    return columns_[0][j];
+                    break;
+                case 1:
+                    return columns_[1][j];
+                    break;
+                case 2:
+                    return columns_[2][j];
+                    break;
+                case 3:
+                    return columns_[3][j];
+                    break;
+                default:
+                    std::terminate();
+            }
+        }
+
+
         // Matrix multiplication
         constexpr matrix4<T> operator*(const matrix4<T> &other) const {
             matrix4<T> result = Identity();

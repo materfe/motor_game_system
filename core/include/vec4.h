@@ -47,6 +47,23 @@ namespace core
 			return vec4( x * scalar, y * scalar, z * scalar, w * scalar);
 		}
 
+		constexpr T operator[](const int index) const {
+			if (index < 0 || index > 3) {
+				std::terminate();
+			}
+			if (index == 0) {
+				return x;
+			}
+			if (index == 1) {
+				return y;
+			}
+			if (index == 2) {
+				return z;
+			}
+			return w;
+		}
+
+
 		// Divide by scalar
 		constexpr vec4 operator/(const T scalar) const
 		{

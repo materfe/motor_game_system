@@ -180,7 +180,7 @@ TEST(test_matrix_2, identity) {
 }
 
 
-TEST(test_matrix_2, constructor) {
+TEST(test_matrix_2, constructor_and_initialiser_list) {
     constexpr int x = 12, y = 13, z = 14, w = 15;
 
     const auto v = core::matrix2<int>{4, 5, 6, 7};
@@ -196,4 +196,28 @@ TEST(test_matrix_2, constructor) {
     EXPECT_EQ(m.GetFirstColumn().y_, 2);
     EXPECT_EQ(m.GetSecondColumn().x_, 2);
     EXPECT_EQ(m.GetSecondColumn().y_, 3);
+}
+
+
+TEST(test_matrix_2, operator_) {
+    constexpr int x = 12, y = 13, z = 14, w = 15;
+
+    const auto v = core::matrix2<int>{4, 5, 6, 7};
+
+    EXPECT_EQ(v(0, 0), 4);
+    EXPECT_EQ(v(0, 1), 5);
+    EXPECT_EQ(v(1, 0), 6);
+    EXPECT_EQ(v(1, 1), 7);
+}
+
+
+TEST(test_matrix_2, operator_crash) {
+    constexpr int x = 12, y = 13, z = 14, w = 15;
+
+    const auto v = core::matrix2<int>{4, 5, 6, 7};
+
+    EXPECT_EXIT(v(4, 0), ::testing::ExitedWithCode(3), "");
+    EXPECT_EXIT(v(-1, 0), ::testing::ExitedWithCode(3), "");
+    EXPECT_EXIT(v(0, 4), ::testing::ExitedWithCode(3), "");
+    EXPECT_EXIT(v(0, -1), ::testing::ExitedWithCode(3), "");
 }
