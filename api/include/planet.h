@@ -5,57 +5,39 @@
 #ifndef PLANET_H
 #define PLANET_H
 
-#include "common.h"
-#include <cmath>
-
 class Planet {
 private:
-    float x, y;                  // Current position of the circle
-    float centerX, centerY;       // Center of the orbit
-    float radius;                 // Circle's own radius
-    float orbitRadius;            // Radius of the orbit (distance from center point)
-    float angularVelocity;        // Speed of the orbit (radians per second)
-    float angle;                  // Current angle of rotation (in radians)
+    float x_, y_;                  // Current position of the circle
+    float center_x_, center_y_;       // Center of the orbit
+    float radius_;                 // Circle's own radius
+    float orbit_radius_;            // Radius of the orbit (distance from center point)
+    float angular_velocity_;        // Speed of the orbit (radians per second)
+    float angle_;                  // Current angle of rotation (in radians)
 
 public:
     Planet(const float centerX, const float centerY, const float radius, const float orbitRadius, const float angularVelocity)
-        : centerX(centerX), centerY(centerY), radius(radius), orbitRadius(orbitRadius),angularVelocity(angularVelocity) {
-        angle = 0.0f;
-        x = 0.0f;
-        y = 0.0f;
+        : center_x_(centerX), center_y_(centerY), radius_(radius), orbit_radius_(orbitRadius),angular_velocity_(angularVelocity) {
+        angle_ = 0.0f;
+        x_ = 0.0f;
+        y_ = 0.0f;
         Begin();
     }
     ~Planet() {End();};
 
     // Initialize circle values (start at the correct position on the orbit)
-    void Begin() {
-        x = centerX + orbitRadius * std::cos(angle);
-        y = centerY + orbitRadius * std::sin(angle);
-    }
+    void Begin();
 
     // Update the circle's position (move in circular orbit)
-    void Update(const float deltaTime) {
-        // Update the angle over time using angular velocity
-        angle += angularVelocity * deltaTime;
-
-        // Keep angle in the range of [0, 2 * PI]
-        if (angle > 2 * PI) {
-            angle -= 2 * PI;
-        }
-
-        // Calculate the new position based on the updated angle
-        x = centerX + orbitRadius * std::cos(angle);
-        y = centerY + orbitRadius * std::sin(angle);
-    }
+    void Update(float deltaTime);
 
     // Handle any cleanup (optional, no specific cleanup here)
     void End() const {
     }
 
     // Get
-    [[nodiscard]] float getX() const { return x; }
-    [[nodiscard]] float getY() const { return y; }
-    [[nodiscard]] float getRadius() const { return radius; }
+    [[nodiscard]] float getX() const { return x_; }
+    [[nodiscard]] float getY() const { return y_; }
+    [[nodiscard]] float getRadius() const { return radius_; }
 };
 
 #endif //PLANET_H

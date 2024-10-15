@@ -2,7 +2,7 @@
 // Created by Mat on 02.10.2024.
 //
 #include <iostream>
-#include "Window.h"
+#include "window.h"
 
 Window::Window(const char *title, const int width, const int height) {
     window_ = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);

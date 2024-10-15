@@ -7,8 +7,8 @@
 
 #include <imgui_internal.h>
 #include <SDL2/SDL.h>
-#include "Renderer.h"
-#include "Window.h"
+#include "renderer.h"
+#include "window.h"
 #include "planet.h"
 #include <iostream>
 #include <chrono>
@@ -16,20 +16,20 @@
 
 class GameEngine {
 private:
-    int windowHeight;
-    int windowWidth;
+    int window_height_;
+    int window_width_;
     float timer;
-    bool running;
+    bool running_;
 
-    const char *windowTitle;
-    std::array<Planet, 2> planets;
+    const char *window_title_;
+    std::array<Planet, 2> planets_;
 
-    Uint32 lastTime;
-    Uint32 currentTime;
-    Uint32 deltaTime;
+    Uint32 last_time_;
+    Uint32 current_time_;
+    Uint32 delta_time_;
 
-    Window *window;
-    Renderer *renderer;
+    Window *window_;
+    Renderer *renderer_;
 
 public:
     void SetVariablesToNothing();

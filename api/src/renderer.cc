@@ -2,7 +2,7 @@
 // Created by Mat on 02.10.2024.
 //
 
-#include "Renderer.h"
+#include "renderer.h"
 #include <iostream>
 
 Renderer::Renderer(const Window &window) {
@@ -20,7 +20,6 @@ void Renderer::DrawRectangle(const Rectangle &rect) const {
     const SDL_Rect sdlRect = { rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight() };
     SDL_RenderFillRect(renderer_, &sdlRect);
 }
-
 void Renderer::DrawCircle(const Circle &circle) const {
     int offsetX = 0;
     int offsetY = circle.getRadius();
@@ -54,7 +53,6 @@ void Renderer::DrawCircle(const Circle &circle) const {
         DrawCirclePoints(offsetX, offsetY);
     }
 }
-
 void Renderer::DrawPlanet(const Planet &planet) const {
     int offsetX = 0;
     int offsetY = static_cast<int>(planet.getRadius());
@@ -91,5 +89,12 @@ void Renderer::DrawPlanet(const Planet &planet) const {
         ++offsetX;
         DrawCirclePoints(offsetX, offsetY);
     }
+}
+
+//sf::clear
+void Renderer::ClearScreen() const
+{
+    SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
+    SDL_RenderClear(renderer_);
 }
 

@@ -3,7 +3,7 @@
 Detecting compiler hash for triplet x64-windows...
 Compiler found: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.41.34120/bin/Hostx64/x64/cl.exe
 All requested packages are currently installed.
-Total install time: 900 ns
+Total install time: 1.3 us
 The package gtest is compatible with built-in CMake targets:
 
     enable_testing()
@@ -35,6 +35,6 @@ tracy provides CMake targets:
   target_link_libraries(main PRIVATE Tracy::TracyClient)
 
 -- Running vcpkg install - done
--- Configuring done (2.3s)
--- Generating done (0.0s)
+-- Configuring done (6.2s)
+-- Generating done (0.1s)
 -- Build files have been written to: C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo

@@ -317,6 +317,14 @@ build api\CMakeFiles\api.dir\src\game_engine.cc.obj: CXX_COMPILER__api_unscanned
   TARGET_COMPILE_PDB = api\CMakeFiles\api.dir\api.pdb
   TARGET_PDB = api\api.pdb
 
+build api\CMakeFiles\api.dir\src\planet.cc.obj: CXX_COMPILER__api_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\src\planet.cc || cmake_object_order_depends_target_api
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\vcpkg\vcpkg\installed\x64-windows\include -external:IC:\vcpkg\vcpkg\installed\x64-windows\include\SDL2 -external:W0
+  OBJECT_DIR = api\CMakeFiles\api.dir
+  OBJECT_FILE_DIR = api\CMakeFiles\api.dir\src
+  TARGET_COMPILE_PDB = api\CMakeFiles\api.dir\api.pdb
+  TARGET_PDB = api\api.pdb
+
 build api\CMakeFiles\api.dir\src\rectangle.cc.obj: CXX_COMPILER__api_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\src\rectangle.cc || cmake_object_order_depends_target_api
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
   INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\vcpkg\vcpkg\installed\x64-windows\include -external:IC:\vcpkg\vcpkg\installed\x64-windows\include\SDL2 -external:W0
@@ -349,7 +357,7 @@ build api\CMakeFiles\api.dir\src\windows.cc.obj: CXX_COMPILER__api_unscanned_Rel
 #############################################
 # Link the static library api\api.lib
 
-build api\api.lib: CXX_STATIC_LIBRARY_LINKER__api_RelWithDebInfo api\CMakeFiles\api.dir\src\circle.cc.obj api\CMakeFiles\api.dir\src\empty.cc.obj api\CMakeFiles\api.dir\src\game_engine.cc.obj api\CMakeFiles\api.dir\src\rectangle.cc.obj api\CMakeFiles\api.dir\src\renderer.cc.obj api\CMakeFiles\api.dir\src\windows.cc.obj || core\core.lib
+build api\api.lib: CXX_STATIC_LIBRARY_LINKER__api_RelWithDebInfo api\CMakeFiles\api.dir\src\circle.cc.obj api\CMakeFiles\api.dir\src\empty.cc.obj api\CMakeFiles\api.dir\src\game_engine.cc.obj api\CMakeFiles\api.dir\src\planet.cc.obj api\CMakeFiles\api.dir\src\rectangle.cc.obj api\CMakeFiles\api.dir\src\renderer.cc.obj api\CMakeFiles\api.dir\src\windows.cc.obj || core\core.lib
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = api\CMakeFiles\api.dir
