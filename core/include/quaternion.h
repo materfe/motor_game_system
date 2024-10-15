@@ -6,15 +6,12 @@
 #define QUATERNION_H
 
 #include <cmath>
-#include "vec3.h" // Include Vec3 class
+#include "vec3.h"
 #include "common.h"
 
 template <typename T>
 struct Quaternion {
     T w, x, y, z; // Components of the quaternion
-
-    // Default constructor (identity quaternion)
-    Quaternion() : w(1), x(0), y(0), z(0) {}
 
     // Constructor to initialize quaternion with specific values
     Quaternion(T w, T x, T y, T z) : w(w), x(x), y(y), z(z) {}
@@ -23,27 +20,17 @@ struct Quaternion {
     Quaternion(const Quaternion& q) : w(q.w), x(q.x), y(q.y), z(q.z) {}
 
     // Addition of two quaternions
-    Quaternion operator+(const Quaternion& q) const {
+    constexpr Quaternion operator+(const Quaternion& q) const {
         return Quaternion(w + q.w, x + q.x, y + q.y, z + q.z);
     }
 
     // Subtraction of two quaternions
-    Quaternion operator-(const Quaternion& q) const {
+    constexpr Quaternion operator-(const Quaternion& q) const {
         return Quaternion(w - q.w, x - q.x, y - q.y, z - q.z);
     }
 
-    // Multiplication of two quaternions
-    Quaternion operator*(const Quaternion& q) const {
-        return Quaternion(
-            w * q.w - x * q.x - y * q.y - z * q.z,  // New w
-            w * q.x + x * q.w + y * q.z - z * q.y,  // New x
-            w * q.y - x * q.z + y * q.w + z * q.x,  // New y
-            w * q.z + x * q.y - y * q.x + z * q.w   // New z
-        );
-    }
-
     // Scalar multiplication
-    Quaternion operator*(T scalar) const {
+    constexpr Quaternion operator*(T scalar) const {
         return Quaternion(w * scalar, x * scalar, y * scalar, z * scalar);
     }
 
@@ -63,17 +50,17 @@ struct Quaternion {
         if (n == 0) {
             std::terminate();
         }
-        return Inverse() * (1.0 / (n * n));
+        return Inverse() * (1.0f/ (n * n));
     }
 
     // Rotation using Euler angles (yaw, pitch, roll) in radians
-    Quaternion rotate(T yaw, T pitch, T roll) {
-        T cy = std::cos(yaw * 0.5);   // cos(yaw/2)
-        T sy = std::sin(yaw * 0.5);   // sin(yaw/2)
-        T cp = std::cos(pitch * 0.5); // cos(pitch/2)
-        T sp = std::sin(pitch * 0.5); // sin(pitch/2)
-        T cr = std::cos(roll * 0.5);  // cos(roll/2)
-        T sr = std::sin(roll * 0.5);  // sin(roll/2)
+    Quaternion Rotate(T yaw, T pitch, T roll) const {
+        T cy = std::cos(yaw * 0.5);
+        T sy = std::sin(yaw * 0.5);
+        T cp = std::cos(pitch * 0.5);
+        T sp = std::sin(pitch * 0.5);
+        T cr = std::cos(roll * 0.5);
+        T sr = std::sin(roll * 0.5);
 
         return Quaternion(
             cr * cp * cy + sr * sp * sy,   // w component
@@ -84,14 +71,14 @@ struct Quaternion {
     }
 
     // Method to rotate using Euler angles provided as Vec3
-    Quaternion rotateFromEuler(const core::vec3<T>& eulerAngles) {
-        return rotate(eulerAngles.z, eulerAngles.y, eulerAngles.x);
+    Quaternion<T> RotateFromEuler(const core::vec3<T>& eulerAngles) const {
+        return Rotate(eulerAngles.z, eulerAngles.y, eulerAngles.x);
     }
 
     // Convert a Vec3 (axis-angle) into a quaternion (assuming Vec3 represents axis and angle magnitude as radians)
     static Quaternion Vec3ToQuaternion(const core::vec3<T>& v) {
-        T angle = v.Magnitude();
-        if (angle == 0) {
+        T angle = static_cast<float>(v.Magnitude());
+        if (common::AproximateZeroForFloats(angle)) {
             return Quaternion(1, 0, 0, 0);
         }
 

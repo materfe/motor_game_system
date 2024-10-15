@@ -215,6 +215,15 @@ build core\CMakeFiles\core_test.dir\test\test_matrix4.cc.obj: CXX_COMPILER__core
   TARGET_COMPILE_PDB = core\CMakeFiles\core_test.dir\
   TARGET_PDB = core\core_test.pdb
 
+build core\CMakeFiles\core_test.dir\test\test_quaternion.cc.obj: CXX_COMPILER__core_test_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\test\test_quaternion.cc || cmake_object_order_depends_target_core_test
+  DEFINES = -DGTEST_LINKED_AS_SHARED_LIBRARY=1
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:W0
+  OBJECT_DIR = core\CMakeFiles\core_test.dir
+  OBJECT_FILE_DIR = core\CMakeFiles\core_test.dir\test
+  TARGET_COMPILE_PDB = core\CMakeFiles\core_test.dir\
+  TARGET_PDB = core\core_test.pdb
+
 build core\CMakeFiles\core_test.dir\test\test_common.cc.obj: CXX_COMPILER__core_test_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\test\test_common.cc || cmake_object_order_depends_target_core_test
   DEFINES = -DGTEST_LINKED_AS_SHARED_LIBRARY=1
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
@@ -232,7 +241,7 @@ build core\CMakeFiles\core_test.dir\test\test_common.cc.obj: CXX_COMPILER__core_
 #############################################
 # Link the executable core\core_test.exe
 
-build core\core_test.exe: CXX_EXECUTABLE_LINKER__core_test_RelWithDebInfo core\CMakeFiles\core_test.dir\test\test_vec2f.cc.obj core\CMakeFiles\core_test.dir\test\test_vec3f.cc.obj core\CMakeFiles\core_test.dir\test\test_vec4f.cc.obj core\CMakeFiles\core_test.dir\test\test_matrix2.cc.obj core\CMakeFiles\core_test.dir\test\test_matrix3.cc.obj core\CMakeFiles\core_test.dir\test\test_matrix4.cc.obj core\CMakeFiles\core_test.dir\test\test_common.cc.obj | core\core.lib vcpkg_installed\x64-windows\lib\manual-link\gtest_main.lib vcpkg_installed\x64-windows\lib\gtest.lib || core\core.lib
+build core\core_test.exe: CXX_EXECUTABLE_LINKER__core_test_RelWithDebInfo core\CMakeFiles\core_test.dir\test\test_vec2f.cc.obj core\CMakeFiles\core_test.dir\test\test_vec3f.cc.obj core\CMakeFiles\core_test.dir\test\test_vec4f.cc.obj core\CMakeFiles\core_test.dir\test\test_matrix2.cc.obj core\CMakeFiles\core_test.dir\test\test_matrix3.cc.obj core\CMakeFiles\core_test.dir\test\test_matrix4.cc.obj core\CMakeFiles\core_test.dir\test\test_quaternion.cc.obj core\CMakeFiles\core_test.dir\test\test_common.cc.obj | core\core.lib vcpkg_installed\x64-windows\lib\manual-link\gtest_main.lib vcpkg_installed\x64-windows\lib\gtest.lib || core\core.lib
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = core\core.lib  vcpkg_installed\x64-windows\lib\manual-link\gtest_main.lib  vcpkg_installed\x64-windows\lib\gtest.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
