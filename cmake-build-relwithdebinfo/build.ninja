@@ -50,7 +50,7 @@ cmake_ninja_workdir = C$:\Users\Mat\special_repo\game_motor_system\motor_game_sy
 build cmake_object_order_depends_target_main: phony || cmake_object_order_depends_target_api cmake_object_order_depends_target_core
 
 build CMakeFiles\main.dir\main.cpp.obj: CXX_COMPILER__main_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\main.cpp || cmake_object_order_depends_target_main
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /W4 /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
   INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\vcpkg\vcpkg\installed\x64-windows\include -external:IC:\vcpkg\vcpkg\installed\x64-windows\include\SDL2 -external:W0
   OBJECT_DIR = CMakeFiles\main.dir
   OBJECT_FILE_DIR = CMakeFiles\main.dir
@@ -66,7 +66,7 @@ build CMakeFiles\main.dir\main.cpp.obj: CXX_COMPILER__main_unscanned_RelWithDebI
 # Link the executable main.exe
 
 build main.exe: CXX_EXECUTABLE_LINKER__main_RelWithDebInfo CMakeFiles\main.dir\main.cpp.obj | api\api.lib core\core.lib C$:\vcpkg\vcpkg\installed\x64-windows\lib\imgui.lib C$:\vcpkg\vcpkg\installed\x64-windows\lib\manual-link\SDL2main.lib C$:\vcpkg\vcpkg\installed\x64-windows\lib\SDL2.lib || api\api.lib core\core.lib
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /W4 /Zi /O2 /Ob1 /DNDEBUG -MD
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = api\api.lib  core\core.lib  C:\vcpkg\vcpkg\installed\x64-windows\lib\imgui.lib  C:\vcpkg\vcpkg\installed\x64-windows\lib\manual-link\SDL2main.lib  shell32.lib  C:\vcpkg\vcpkg\installed\x64-windows\lib\SDL2.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = CMakeFiles\main.dir

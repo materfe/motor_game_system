@@ -7,12 +7,12 @@
 
 class Planet {
 private:
-    float x_, y_;                  // Current position of the circle
+    float x_, y_;                     // Current position of the circle
     float center_x_, center_y_;       // Center of the orbit
-    float radius_;                 // Circle's own radius
-    float orbit_radius_;            // Radius of the orbit (distance from center point)
-    float angular_velocity_;        // Speed of the orbit (radians per second)
-    float angle_;                  // Current angle of rotation (in radians)
+    float radius_;                    // Circle's radius
+    float orbit_radius_;              // Radius of the orbit (distance from center point)
+    float angular_velocity_;          // Speed of the orbit (radians per second [currently per frame])
+    float angle_;                     // Current angle of rotation (in radians)
 
 public:
     Planet(const float centerX, const float centerY, const float radius, const float orbitRadius, const float angularVelocity)

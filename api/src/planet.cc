@@ -14,12 +14,18 @@ void Planet::Begin()
 
 void Planet::Update(const float deltaTime)
 {
+    //early exit
+    if(common::AproximateZeroForFloats(radius_))
+    {
+        return;
+    }
+
     // Update the angle over time using angular velocity
     angle_ += angular_velocity_ * deltaTime;
 
-    // Keep angle in the range of [0, 2 * PI]
+    // Keep angle in radians
     if (angle_ > 2 * PI) {
-        angle_ -= 2 * PI;
+        common::ToRadians(angle_);
     }
 
     // Calculate the new position based on the updated angle
