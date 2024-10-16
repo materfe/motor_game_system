@@ -5,12 +5,10 @@
 #ifndef GAME_ENGINE_H
 #define GAME_ENGINE_H
 
-#include <imgui_internal.h>
 #include <SDL2/SDL.h>
 #include "renderer.h"
 #include "window.h"
 #include "planet.h"
-#include <iostream>
 #include <chrono>
 #include <array>
 
@@ -18,11 +16,10 @@ class GameEngine {
 private:
     int window_height_;
     int window_width_;
-    float timer;
     bool running_;
 
     const char *window_title_;
-    std::array<Planet, 2> planets_;
+    std::array<Planet, 4> planets_;
 
     Uint32 last_time_;
     Uint32 current_time_;

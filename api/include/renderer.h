@@ -12,27 +12,34 @@
 #include "rectangle.h"
 
 class Renderer {
-public:
-    SDL_Renderer* renderer_;
+ private :
+  SDL_Renderer *renderer_;
 
-    explicit Renderer(const Window& window);
+  void RenderDraw(int x, int y) const;
+  void TestDrawCircle(int center_x, int center_y, int radius) const;
+  void FillCircle(int center_x, int center_y, int radius) const;
+ public:
 
-    ~Renderer() {
-        SDL_DestroyRenderer(renderer_);
-    }
+  explicit Renderer(const Window &window);
 
-    //drawing methods
-    void DrawCircle(const Circle& circle) const;
-    void DrawPlanet(const Planet& planet) const;
-    void DrawRectangle(const Rectangle& rect) const;
+  ~Renderer() {
+    SDL_DestroyRenderer(renderer_);
+  }
 
+  //drawing methods
+  void DrawCircle(const Circle &circle) const;
+  void DrawRectangle(const Rectangle &rect) const;
+  void DrawCornersOfPlanet(const Planet &planet) const;
+  void DrawFullPlanet(int center_x, int center_y, int radius) const;
 
-    void ClearScreen() const;
+  void ClearScreen() const;
 
-    void Present() const {SDL_RenderPresent(renderer_);}
+  void Present() const { SDL_RenderPresent(renderer_); }
 
-    void SetDrawColor(const Uint8 r, const Uint8 g, const Uint8 b, const Uint8 a) const {SDL_SetRenderDrawColor(renderer_, r, g, b, a);}
+  void SetDrawColor(const Uint8 r,
+                    const Uint8 g,
+                    const Uint8 b,
+                    const Uint8 a) const { SDL_SetRenderDrawColor(renderer_, r, g, b, a); }
 };
-
 
 #endif //RENDERER_H

@@ -65,13 +65,13 @@ namespace core {
         }
 
         //perpenducular
-        [[nodiscard]] constexpr Vec2 Perpendicular() const //FAIRE perpendicular 2
+        [[nodiscard]] constexpr Vec2 Perpendicular() const
         {
             return {-y_, x_};
         }
 
         //perpendicular 2
-        [[nodiscard]] constexpr Vec2 Perpendicular2() const //FAIRE perpendicular 2
+        [[nodiscard]] constexpr Vec2 Perpendicular2() const
         {
             return {y_, -x_};
         }
