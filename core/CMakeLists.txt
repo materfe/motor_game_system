@@ -12,6 +12,7 @@ add_executable(core_test
         test/test_matrix3.cc
         test/test_matrix4.cc
         test/test_quaternion.cc
+        test/test_four_vec_2.cc
         test/test_common.cc)
 
 if(ENABLE_PROFILING)
