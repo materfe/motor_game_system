@@ -33,3 +33,9 @@
 67	771	7506951764976229	api/CMakeFiles/api.dir/src/rectangle.cc.obj	cc5d9841997c353
 18	1033	7507685575722441	api/CMakeFiles/api.dir/src/game_engine.cc.obj	7a16c8727d4a3661
 18	1483	7506991671724134	core/CMakeFiles/core_test.dir/test/test_quaternion.cc.obj	afda6f035e18962f
+8	524	7507741709585655	api/CMakeFiles/api.dir/src/planet.cc.obj	1ec824c43e57a296
+11	882	7507741709626938	api/CMakeFiles/api.dir/src/renderer.cc.obj	f42adf7cf2106b9
+15	1387	7507741709659991	CMakeFiles/main.dir/main.cpp.obj	c23efc0d64584c65
+3	1417	7507741709550215	api/CMakeFiles/api.dir/src/game_engine.cc.obj	7a16c8727d4a3661
+1417	1465	7507741723688454	api/api.lib	3319b444d4801f66
+1465	1976	7507741724164698	main.exe	462b7b4e2cb88709

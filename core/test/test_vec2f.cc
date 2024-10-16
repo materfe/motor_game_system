@@ -8,7 +8,7 @@
 
 
 //what values it takes -> pair of Vec2f
-struct Vec2OperationFixture : public ::testing::TestWithParam<std::pair<core::vec2<float>, core::vec2<float> > > {
+struct Vec2OperationFixture : public ::testing::TestWithParam<std::pair<core::Vec2<float>, core::Vec2<float> > > {
 };
 
 //test by itself -> add
@@ -18,8 +18,8 @@ TEST_P(Vec2OperationFixture, add) {
     EXPECT_FLOAT_EQ(result.x_, v1.x_ + v2.x_);
     EXPECT_FLOAT_EQ(result.y_, v1.y_ + v2.y_);
 
-    const auto test = core::vec2<float>(8.0f, 7.6f);
-    const auto test_other = core::vec2<float>(0.0f, 90.0f);
+    const auto test = core::Vec2<float>(8.0f, 7.6f);
+    const auto test_other = core::Vec2<float>(0.0f, 90.0f);
     const auto result_2 = test + test_other;
 
     EXPECT_FLOAT_EQ(result_2.x_, 8.0f + 0.0f);
@@ -47,15 +47,15 @@ TEST_P(Vec2OperationFixture, perpendicular) {
     auto [v1, v2] = GetParam();
     const auto p1 = v1.Perpendicular();
     const auto p2 = v2.Perpendicular();
-    EXPECT_FLOAT_EQ(core::vec2<float>::Dot(v1, p1), 0);
-    EXPECT_FLOAT_EQ(core::vec2<float>::Dot(v2, p2), 0);
+    EXPECT_FLOAT_EQ(core::Vec2<float>::Dot(v1, p1), 0);
+    EXPECT_FLOAT_EQ(core::Vec2<float>::Dot(v2, p2), 0);
 }
 
 //test by itself -> dot_product
 TEST_P(Vec2OperationFixture, dot_product) {
     auto [v1, v2] = GetParam();
 
-    const auto result = core::vec2<float>::Dot(v1, v2);
+    const auto result = core::Vec2<float>::Dot(v1, v2);
 
     EXPECT_FLOAT_EQ(result, v1.x_ * v2.x_ + v1.y_ * v2.y_);
 }
@@ -128,8 +128,8 @@ TEST_P(Vec2OperationFixture, magnitude_and_sqrMagnitude) {
     const auto p1 = v1.Magnitude();
     const auto p2 = v2.SqrMagnitude();
 
-    const auto dot1 = core::vec2<float>::Dot(v1, v1);
-    const auto dot2 = core::vec2<float>::Dot(v2, v2);
+    const auto dot1 = core::Vec2<float>::Dot(v1, v1);
+    const auto dot2 = core::Vec2<float>::Dot(v2, v2);
 
     EXPECT_FLOAT_EQ(p1, std::sqrt(dot1));
     EXPECT_FLOAT_EQ(p2, dot2);
@@ -143,20 +143,20 @@ TEST_P(Vec2OperationFixture, magnitude_and_sqrMagnitude) {
 
 //instantiate tes by itself and their specific values
 INSTANTIATE_TEST_SUITE_P(tests, Vec2OperationFixture, testing::Values(
-                             std::pair{ core::vec2<float>{1.3f,3.5f}, core::vec2<float>{2.0f,4.8f} },
-                             std::pair{ core::vec2<float>{1.5f,3.72f}, core::vec2<float>{0.0f,0.0f} }));
+                             std::pair{core::Vec2<float>{1.3f, 3.5f}, core::Vec2<float>{2.0f, 4.8f} },
+                             std::pair{core::Vec2<float>{1.5f, 3.72f}, core::Vec2<float>{0.0f, 0.0f} }));
 
 //test if it crashes when dividing by 0
 TEST(test_vec2f, crash_test_division) {
-    constexpr auto vec_1 = core::vec2<float>{1.3f, 3.5f};
+    constexpr auto vec_1 = core::Vec2<float>{1.3f, 3.5f};
     constexpr float factor = 0.0f;
 
     //if divisor == 0 -> crash
     EXPECT_EXIT(vec_1 / factor, ::testing::ExitedWithCode(3), "");
 
-    constexpr auto vec_2 = core::vec2<float>{0.0f, 5.0f};
-    constexpr auto vec_3 = core::vec2<float>{5.0f, 0.0f};
-    constexpr auto vec_4 = core::vec2<float>{0.0f, 0.0f};
+    constexpr auto vec_2 = core::Vec2<float>{0.0f, 5.0f};
+    constexpr auto vec_3 = core::Vec2<float>{5.0f, 0.0f};
+    constexpr auto vec_4 = core::Vec2<float>{0.0f, 0.0f};
 
     //if vec.x or vec.y == 0 and divide in the other order -> crash
     EXPECT_EXIT(factor / vec_2, ::testing::ExitedWithCode(3), ""); //vec.x == 0 -> crash
@@ -166,13 +166,13 @@ TEST(test_vec2f, crash_test_division) {
 
 //test crash division in normalise()
 TEST(test_vec2f, crash_test_division_when_normalising) {
-    constexpr auto vec_3 = core::vec2<float>{0.0f, 0.0f};
+    constexpr auto vec_3 = core::Vec2<float>{0.0f, 0.0f};
 
     EXPECT_EXIT(const auto n = vec_3.Normalise(), ::testing::ExitedWithCode(3), "");
 }
 
 TEST(test_vec2f, crash_test_operator_) {
-    constexpr auto vec_1 = core::vec2<float>{1.3f, 3.5f};
+    constexpr auto vec_1 = core::Vec2<float>{1.3f, 3.5f};
 
     EXPECT_EXIT(vec_1[3], ::testing::ExitedWithCode(3), "");
     EXPECT_EXIT(vec_1[-1], ::testing::ExitedWithCode(3), "");
@@ -180,7 +180,7 @@ TEST(test_vec2f, crash_test_operator_) {
 
 
 TEST(test_vec2f, test_operator_) {
-    constexpr auto vec_1 = core::vec2<float>{1.3f, 3.5f};
+    constexpr auto vec_1 = core::Vec2<float>{1.3f, 3.5f};
 
     EXPECT_EQ(vec_1[0], 1.3f);
     EXPECT_EQ(vec_1[1], 3.5f);

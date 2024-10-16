@@ -112,7 +112,7 @@ TEST(test_quaternion, inverse_with_float) {
 
 // Test for converting Euler angles to quaternion
 TEST(test_quaternion, euler_to_quaternion_with_float) {
-    constexpr  core::vec3<float> eulerAngles(0.0f, PI / 2.0f, 0.0f); // 90 degrees pitch rotation
+    constexpr  core::Vec3<float> eulerAngles(0.0f, PI / 2.0f, 0.0f); // 90 degrees pitch rotation
 
     // Perform the rotation from Euler angles
     const Quaternion<float> result(5.0, 6.0, 4.0, 7.0);
@@ -133,10 +133,10 @@ TEST(test_quaternion, quaternion_to_euler_with_float) {
     const Quaternion<float> q(0.7071f, 0.0f, 0.7071f, 0.0f);
 
     // Convert quaternion to Euler angles
-    const core::vec3<float> result = q.toEulerAngles();
+    const core::Vec3<float> result = q.toEulerAngles();
 
     // Expected Euler angles: (0, 90 degrees, 0)
-    constexpr core::vec3<float> expected(0.0f, 1.5645912, 0.0f); //the random number is a precise number equal to PI /2
+    constexpr core::Vec3<float> expected(0.0f, 1.5645912, 0.0f); //the random number is a precise number equal to PI /2
 
     EXPECT_FLOAT_EQ(result.x, expected.x);
     EXPECT_FLOAT_EQ(result.y, expected.y);
@@ -147,7 +147,7 @@ TEST(test_quaternion, quaternion_to_euler_with_float) {
 // Test for Vec3 to Quaternion conversion
 TEST(test_quaternion, vec3_to_quaternion_with_float) {
     // Vec3 representing axis-angle (unit axis with angle magnitude)
-    constexpr core::vec3<float> axisAngle(0.0f, 1.0f, 0.0f); // 1 radian rotation around the Y-axis
+    constexpr core::Vec3<float> axisAngle(0.0f, 1.0f, 0.0f); // 1 radian rotation around the Y-axis
 
     // Convert Vec3 to Quaternion
     const Quaternion<float> result = Quaternion<float>::Vec3ToQuaternion(axisAngle);

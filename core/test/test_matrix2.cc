@@ -8,12 +8,12 @@
 
 
 TEST(test_matrix_2, addition_with_int) {
-    const auto value_1 = core::matrix2<int>(15, 0, 24, 2);
-    const auto value_2 = core::matrix2<int>(8, 7, 5, 6);
+    const auto value_1 = core::Matrix2<int>(15, 0, 24, 2);
+    const auto value_2 = core::Matrix2<int>(8, 7, 5, 6);
 
     //result and expectations
     const auto result = value_1 + value_2; //suppose to be : a = 23, b = 7, c = 29, d = 8
-    const auto expected = core::matrix2<int>(23, 7, 24, 7);
+    const auto expected = core::Matrix2<int>(23, 7, 24, 7);
 
     const auto actual = result - expected;
 
@@ -25,12 +25,12 @@ TEST(test_matrix_2, addition_with_int) {
 
 
 TEST(test_matrix_2, addition_with_float) {
-    const auto value_1 = core::matrix2<float>(15.0f, 0.5f, 24.4f, 2.0f);
-    const auto value_2 = core::matrix2<float>(8.0f, 7.4f, 5.6f, 6.8f);
+    const auto value_1 = core::Matrix2<float>(15.0f, 0.5f, 24.4f, 2.0f);
+    const auto value_2 = core::Matrix2<float>(8.0f, 7.4f, 5.6f, 6.8f);
 
     //result + expectations
     const auto result = value_1 + value_2; //suppose to be : a = 23, b = 7.9, c = 30, d = 8.8
-    const auto expected = core::matrix2<float>(21.5, 7.9, 25.0, 7.8f);
+    const auto expected = core::Matrix2<float>(21.5, 7.9, 25.0, 7.8f);
 
     const auto actual = result - expected;
 
@@ -42,8 +42,8 @@ TEST(test_matrix_2, addition_with_float) {
 
 
 TEST(test_matrix_2, sub_with_int) {
-    const auto value_1 = core::matrix2<int>(15, 0, 24, 2);
-    const auto value_2 = core::matrix2<int>(8, 7, 5, 6);
+    const auto value_1 = core::Matrix2<int>(15, 0, 24, 2);
+    const auto value_2 = core::Matrix2<int>(8, 7, 5, 6);
 
     //result and expectations
     const auto result = value_1 - value_2; //suppose to be : a = 7, b = -7, c = 19, d = -4
@@ -56,8 +56,8 @@ TEST(test_matrix_2, sub_with_int) {
 
 
 TEST(test_matrix_2, sub_with_float) {
-    const auto value_1 = core::matrix2<float>(15.0f, 0.5f, 24.4f, 2.0f);
-    const auto value_2 = core::matrix2<float>(8.0f, 7.4f, 5.6f, 6.8f);
+    const auto value_1 = core::Matrix2<float>(15.0f, 0.5f, 24.4f, 2.0f);
+    const auto value_2 = core::Matrix2<float>(8.0f, 7.4f, 5.6f, 6.8f);
 
     //result + expectations
     const auto result = value_1 - value_2; //suppose to be : a = 7, b = -6.9, c = 18.8, d = -4.8
@@ -70,7 +70,7 @@ TEST(test_matrix_2, sub_with_float) {
 
 
 TEST(test_matrix_2, gets) {
-    const auto value_1 = core::matrix2<int>(15, 0, 24, 2);
+    const auto value_1 = core::Matrix2<int>(15, 0, 24, 2);
 
     EXPECT_EQ(value_1.GetFirstColumn().x_, 15);
     EXPECT_EQ(value_1.GetFirstColumn().y_, 0);
@@ -80,8 +80,8 @@ TEST(test_matrix_2, gets) {
 
 
 TEST(test_matrix_2, mult_with_int) {
-    const auto value_1 = core::matrix2<int>(15, 0, 24, 2);
-    const auto value_2 = core::matrix2<int>(8, 7, 5, 6);
+    const auto value_1 = core::Matrix2<int>(15, 0, 24, 2);
+    const auto value_2 = core::Matrix2<int>(8, 7, 5, 6);
 
     //result + expectations
     const auto result = value_1 * value_2; //suppose to be : a = 288, b = 14, c = 219, d = 12
@@ -95,8 +95,8 @@ TEST(test_matrix_2, mult_with_int) {
 
 
 TEST(test_matrix_2, mult_with_float) {
-    const auto value_1 = core::matrix2<float>(15.0f, 0.0f, 24.6f, 2.4f);
-    const auto value_2 = core::matrix2<float>(8.9f, 7.0f, 5.0f, 6.5f);
+    const auto value_1 = core::Matrix2<float>(15.0f, 0.0f, 24.6f, 2.4f);
+    const auto value_2 = core::Matrix2<float>(8.9f, 7.0f, 5.0f, 6.5f);
 
     //result + expectations
     const auto result = value_1 * value_2; //suppose to be : a = 305.7, b = 16.8, c = 234.9, d = 15.6
@@ -110,7 +110,7 @@ TEST(test_matrix_2, mult_with_float) {
 
 
 TEST(test_matrix_2, mult_with_int_scalar) {
-    const auto value_1 = core::matrix2<int>(15, 0, 24, 2);
+    const auto value_1 = core::Matrix2<int>(15, 0, 24, 2);
     constexpr int value_2 = 5;
 
     //result + expectations
@@ -125,7 +125,7 @@ TEST(test_matrix_2, mult_with_int_scalar) {
 
 
 TEST(test_matrix_2, mult_with_float_scalar) {
-    const auto value_1 = core::matrix2<float>(15.0f, 0.0f, 24.6f, 2.4f);
+    const auto value_1 = core::Matrix2<float>(15.0f, 0.0f, 24.6f, 2.4f);
     constexpr float value_2 = 6.2f;
 
     //result + expectations
@@ -140,7 +140,7 @@ TEST(test_matrix_2, mult_with_float_scalar) {
 
 
 TEST(test_matrix_2, determinant) {
-    const auto value_1 = core::matrix2<float>(15.0f, 0.0f, 24.6f, 2.4f);
+    const auto value_1 = core::Matrix2<float>(15.0f, 0.0f, 24.6f, 2.4f);
 
     //result + expectations
     const auto result_1 = value_1.Determinant(); //suppose to be 36
@@ -148,7 +148,7 @@ TEST(test_matrix_2, determinant) {
 
     EXPECT_FLOAT_EQ(result_1, 36.0f);
 
-    const auto value_2 = core::matrix2<int>(15, 0, 24, 2);
+    const auto value_2 = core::Matrix2<int>(15, 0, 24, 2);
 
     //result + expectations
     const auto result_2 = value_2.Determinant(); //suppose to be 30
@@ -159,7 +159,7 @@ TEST(test_matrix_2, determinant) {
 
 
 TEST(test_matrix_2, inverse) {
-    const auto value_1 = core::matrix2<int>(15, 0, 24, 2);
+    const auto value_1 = core::Matrix2<int>(15, 0, 24, 2);
 
     const auto result = value_1.Inverse();
 
@@ -171,7 +171,7 @@ TEST(test_matrix_2, inverse) {
 
 
 TEST(test_matrix_2, identity) {
-    const auto value_1 = core::matrix2<int>::Identity();
+    const auto value_1 = core::Matrix2<int>::Identity();
 
     EXPECT_EQ(value_1.GetFirstColumn().x_, 1);
     EXPECT_EQ(value_1.GetFirstColumn().y_, 0);
@@ -183,8 +183,8 @@ TEST(test_matrix_2, identity) {
 TEST(test_matrix_2, constructor_and_initialiser_list) {
     constexpr int x = 12, y = 13, z = 14, w = 15;
 
-    const auto v = core::matrix2<int>{4, 5, 6, 7};
-    const auto m = core::matrix2<int>{core::vec2<int>(1, 2), core::vec2<int>(2, 3)};
+    const auto v = core::Matrix2<int>{4, 5, 6, 7};
+    const auto m = core::Matrix2<int>{core::Vec2<int>(1, 2), core::Vec2<int>(2, 3)};
 
     //for v
     EXPECT_EQ(v.GetFirstColumn().x_, 4);
@@ -202,7 +202,7 @@ TEST(test_matrix_2, constructor_and_initialiser_list) {
 TEST(test_matrix_2, operator_) {
     constexpr int x = 12, y = 13, z = 14, w = 15;
 
-    const auto v = core::matrix2<int>{4, 5, 6, 7};
+    const auto v = core::Matrix2<int>{4, 5, 6, 7};
 
     EXPECT_EQ(v(0, 0), 4);
     EXPECT_EQ(v(0, 1), 5);
@@ -214,7 +214,7 @@ TEST(test_matrix_2, operator_) {
 TEST(test_matrix_2, operator_crash) {
     constexpr int x = 12, y = 13, z = 14, w = 15;
 
-    const auto v = core::matrix2<int>{4, 5, 6, 7};
+    const auto v = core::Matrix2<int>{4, 5, 6, 7};
 
     EXPECT_EXIT(v(4, 0), ::testing::ExitedWithCode(3), "");
     EXPECT_EXIT(v(-1, 0), ::testing::ExitedWithCode(3), "");

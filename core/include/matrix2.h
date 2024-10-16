@@ -9,61 +9,61 @@
 #include "vec2.h"
 namespace core {
     template <typename T>
-    struct matrix2 {
+    struct Matrix2 {
     private:
         // Two column array
-        std::array<vec2<T>, 2> columns_;
+        std::array<Vec2<T>, 2> columns_;
 
     public:
         // Constructor with initialization
-        matrix2(T a, T b, T c, T d) {
-            columns_[0] = vec2<T>(a, b);
-            columns_[1] = vec2<T>(c, d);
+        Matrix2(T a, T b, T c, T d) {
+            columns_[0] = Vec2<T>(a, b);
+            columns_[1] = Vec2<T>(c, d);
         }
-        matrix2(const vec2<T>& col1, const vec2<T>& col2) {
+        Matrix2(const Vec2<T>& col1, const Vec2<T>& col2) {
             columns_[0] = col1;
             columns_[1] = col2;
         }
-        explicit matrix2(const std::array<vec2<T>, 2>& cols) {
+        explicit Matrix2(const std::array<Vec2<T>, 2>& cols) {
             columns_ = cols;
         }
-        matrix2(std::initializer_list<vec2<T>>& init) {
+        Matrix2(std::initializer_list<Vec2<T>>& init) {
             columns_[0] = init[0];
             columns_[1] = init[1];
         }
 
         //return a selected colum
-        [[nodiscard]] constexpr vec2<T> GetFirstColumn() const {
+        [[nodiscard]] constexpr Vec2<T> GetFirstColumn() const {
             return columns_[0];
         }
-        [[nodiscard]] constexpr vec2<T> GetSecondColumn() const {
+        [[nodiscard]] constexpr Vec2<T> GetSecondColumn() const {
             return columns_[1];
         }
 
         //identity
-        [[nodiscard]] static constexpr matrix2<T> Identity() {
-            return matrix2<T>(1, 0, 0, 1);
+        [[nodiscard]] static constexpr Matrix2<T> Identity() {
+            return Matrix2<T>(1, 0, 0, 1);
         }
 
         // Matrix addition
-        constexpr matrix2<T> operator+(const matrix2<T>& other) const {
-            return matrix2<T>(columns_[0] + other.columns_[0], columns_[1] + other.columns_[1]);
+        constexpr Matrix2<T> operator+(const Matrix2<T>& other) const {
+            return Matrix2<T>(columns_[0] + other.columns_[0], columns_[1] + other.columns_[1]);
         }
 
         // Matrix subtraction
-        constexpr matrix2<T> operator-(const matrix2<T>& other) const {
-            return matrix2<T>(columns_[0] - other.columns_[0], columns_[1] - other.columns_[1]);
+        constexpr Matrix2<T> operator-(const Matrix2<T>& other) const {
+            return Matrix2<T>(columns_[0] - other.columns_[0], columns_[1] - other.columns_[1]);
         }
 
         // Matrix multiplication: C = A * B
-        constexpr matrix2<T> operator*(const matrix2<T>& other) const {
+        constexpr Matrix2<T> operator*(const Matrix2<T>& other) const {
             //returned matrix
-            matrix2<T> result = Identity();
+            Matrix2<T> result = Identity();
 
             // Iterate over each column of the result
             for (int j = 0; j < 2; ++j) {
                 // Each column in the result is a linear combination of the columns of A
-                result.columns_[j] = vec2<T>(
+                result.columns_[j] = Vec2<T>(
                     columns_[0].x_ * other.columns_[j].x_ + columns_[1].x_ * other.columns_[j].y_, // First row
                     columns_[0].y_ * other.columns_[j].x_ + columns_[1].y_ * other.columns_[j].y_ // Second row
                 );
@@ -73,8 +73,8 @@ namespace core {
         }
 
         // Scalar multiplication
-        constexpr matrix2<T> operator*(T scalar) const {
-            return matrix2<T>(columns_[0] * scalar, columns_[1] * scalar);
+        constexpr Matrix2<T> operator*(T scalar) const {
+            return Matrix2<T>(columns_[0] * scalar, columns_[1] * scalar);
         }
 
         //i stands for the column number and j for the element number
@@ -93,12 +93,12 @@ namespace core {
 
         //inverse
         //place an optionel instead of the std::terminate()
-        matrix2<T> Inverse() const {
+        Matrix2<T> Inverse() const {
             T det = Determinant();
             if (det == 0) {
                 std::terminate();
             }
-            matrix2<T> cofactor(
+            Matrix2<T> cofactor(
                 columns_[1].y_, -columns_[0].y_,
                 -columns_[1].x_, columns_[0].x_
             );
@@ -106,8 +106,8 @@ namespace core {
         }
     };
     template <typename T>
-    constexpr matrix2<T> operator*(T scalar, matrix2<T>& other) {
-        return matrix2<T>(scalar * other.columns_[0], scalar * other.columns_[1]);
+    constexpr Matrix2<T> operator*(T scalar, Matrix2<T>& other) {
+        return Matrix2<T>(scalar * other.columns_[0], scalar * other.columns_[1]);
     }
 }
 

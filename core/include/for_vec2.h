@@ -16,10 +16,10 @@ struct FourVec2 {
   std::array<T, 4> y{};
 
   constexpr FourVec2() = default;
-  constexpr FourVec2(std::initializer_list<vec2<T>> &other) {
+  constexpr FourVec2(std::initializer_list<Vec2<T>> &other) {
     if (other.size() <= 4) {
       for (const auto &_ : other) {
-        x[_] = _.x_;
+        x = _.x_;
         y = _.y_;
       }
     }

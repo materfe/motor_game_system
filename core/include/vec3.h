@@ -14,33 +14,33 @@ namespace core
 	 * \brief Vec3f is a struct that allows basic math operations in 3D space
 	 */
 	template <typename T>
-	struct vec3
+	struct Vec3
 	{
 		T x = 0, y = 0, z = 0;
 
 		//set zero() to set vec to zero
-		static constexpr vec3 Zero() { return vec3{}; }
+		static constexpr Vec3 Zero() { return Vec3{}; }
 
 		// Addition operator
-		constexpr vec3 operator+(vec3 other) const
+		constexpr Vec3 operator+(Vec3 other) const
 		{
 			return { x + other.x, y + other.y, z + other.z };
 		}
 
 		// Subtraction operator
-		constexpr vec3 operator-(vec3 other) const
+		constexpr Vec3 operator-(Vec3 other) const
 		{
 			return { x - other.x, y - other.y, z - other.z };
 		}
 
 		// Negation operator
-		constexpr vec3 operator-() const
+		constexpr Vec3 operator-() const
 		{
 			return { -x, -y, -z };
 		}
 
 		// Multiply by scalar
-		constexpr vec3 operator*(T scalar) const
+		constexpr Vec3 operator*(T scalar) const
 		{
 			return { x * scalar, y * scalar, z * scalar };
 		}
@@ -60,7 +60,7 @@ namespace core
 
 
 		// Divide by scalar
-		constexpr vec3 operator/(T scalar) const
+		constexpr Vec3 operator/(T scalar) const
 		{
 			const int scalar_int = static_cast<int>(scalar);
 			if (scalar_int == 0)
@@ -74,13 +74,13 @@ namespace core
 		}
 
 		// Dot product (produit scalaire)
-		static constexpr T Dot(vec3 v1, vec3 v2)
+		static constexpr T Dot(Vec3 v1, Vec3 v2)
 		{
 			return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 		}
 
 		// Cross product
-		static constexpr vec3 Cross(vec3 v1, vec3 v2)
+		static constexpr Vec3 Cross(Vec3 v1, Vec3 v2)
 		{
 			return {
 				v1.y * v2.z - v1.z * v2.y,
@@ -90,13 +90,13 @@ namespace core
 		}
 
 		// Lerp (linear interpolation)
-		[[nodiscard]] static constexpr vec3 Lerp(vec3 a, vec3 b, float t)
+		[[nodiscard]] static constexpr Vec3 Lerp(Vec3 a, Vec3 b, float t)
 		{
 			return { a.x + (b.x - a.x) * t, a.y + (b.y - a.y) * t, a.z + (b.z - a.z) * t };
 		}
 
 		// Normalize the vector
-		[[nodiscard]] vec3 Normalise() const
+		[[nodiscard]] Vec3 Normalise() const
 		{
 			const T magnitude = Magnitude();
 			if(magnitude == 0 ) {
@@ -125,13 +125,13 @@ namespace core
 	}; //struct Vec3f
 
 	template <typename T>
-	constexpr vec3<T> operator*(const float t, const vec3<T>& vec)
+	constexpr Vec3<T> operator*(const float t, const Vec3<T>& vec)
 	{
 		return { t * vec.x, t * vec.y, t * vec.z };
 	}
 
 	template <typename T>
-	constexpr vec3<T> operator/(const float t, const vec3<T>& vec)
+	constexpr Vec3<T> operator/(const float t, const Vec3<T>& vec)
 	{
 		if (vec.x == 0 || vec.y == 0 || vec.z == 0) {
 			std::terminate();

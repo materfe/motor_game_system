@@ -7,7 +7,7 @@
 
 
 //what values it takes -> pair of Vec2f
-struct Vec3fOperationFixture : public ::testing::TestWithParam<std::pair<core::vec3<float>, core::vec3<float>>>
+struct Vec3fOperationFixture : public ::testing::TestWithParam<std::pair<core::Vec3<float>, core::Vec3<float>>>
 {};
 
 //test by itself -> add
@@ -93,7 +93,7 @@ TEST_P(Vec3fOperationFixture, divide)
 TEST_P(Vec3fOperationFixture, dot_product) {
 	auto [v1, v2] = GetParam();
 
-	const auto result = core::vec3<float>::Dot(v1, v2);
+	const auto result = core::Vec3<float>::Dot(v1, v2);
 
 	EXPECT_FLOAT_EQ(result, v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
 }
@@ -102,7 +102,7 @@ TEST_P(Vec3fOperationFixture, dot_product) {
 TEST_P(Vec3fOperationFixture, cross_product) {
 	auto [v1, v2] = GetParam();
 
-	const auto result = core::vec3<float>::Cross(v1, v2);
+	const auto result = core::Vec3<float>::Cross(v1, v2);
 
 	EXPECT_FLOAT_EQ(result.x, v1.y * v2.z - v1.z * v2.y);
 	EXPECT_FLOAT_EQ(result.y, v1.z * v2.x - v1.x * v2.z);
@@ -163,21 +163,21 @@ TEST_P(Vec3fOperationFixture, magnitude_and_sqrMagnitude)
 
 //instantiate tes by itself and their specific values
 INSTANTIATE_TEST_SUITE_P(Tests, Vec3fOperationFixture, testing::Values(
-	std::pair{ core::vec3{1.3f,3.5f, 4.0f}, core::vec3{2.0f,4.8f, 8.0f} },
-	std::pair{ core::vec3{1.5f,3.72f, 6.4f}, core::vec3{0.0f,0.0f, 0.0f} }));
+	std::pair{core::Vec3{1.3f, 3.5f, 4.0f}, core::Vec3{2.0f, 4.8f, 8.0f} },
+	std::pair{core::Vec3{1.5f, 3.72f, 6.4f}, core::Vec3{0.0f, 0.0f, 0.0f} }));
 
 //test -> test if crashes on certain operations (division by 0)
 TEST(test_vec3f, crash_test_division) {
-	constexpr auto vec_1 = core::vec3{1.3f,3.5f, 5.0f};
+	constexpr auto vec_1 = core::Vec3{1.3f, 3.5f, 5.0f};
 	constexpr float factor = 0.0f;
 
 	//if divisor == 0 -> crash
 	EXPECT_EXIT(vec_1 / factor, ::testing::ExitedWithCode(3), "");
 
-	constexpr auto vec_2 = core::vec3{0.0f, 5.0f, 3.8f};
-	constexpr auto vec_3 = core::vec3{5.0f, 0.0f, 4.6f};
-	constexpr auto vec_4 = core::vec3{5.0f, 8.0f, 0.0f};
-	constexpr auto vec_5 = core::vec3{0.0f, 0.0f, 0.0f};
+	constexpr auto vec_2 = core::Vec3{0.0f, 5.0f, 3.8f};
+	constexpr auto vec_3 = core::Vec3{5.0f, 0.0f, 4.6f};
+	constexpr auto vec_4 = core::Vec3{5.0f, 8.0f, 0.0f};
+	constexpr auto vec_5 = core::Vec3{0.0f, 0.0f, 0.0f};
 
 	//if vec.x or vec.y == 0 and divide in the other order -> crash
 	EXPECT_EXIT(factor / vec_2, ::testing::ExitedWithCode(3), ""); //if vec.x == 0 -> crash
@@ -188,13 +188,13 @@ TEST(test_vec3f, crash_test_division) {
 
 //test crash division in normalise()
 TEST(test_vec3f, crash_test_division_when_normalising) {
-	constexpr auto vec_3 = core::vec3{0.0f, 0.0f, 0.0f};
+	constexpr auto vec_3 = core::Vec3{0.0f, 0.0f, 0.0f};
 
 	EXPECT_EXIT(const auto truc = vec_3.Normalise(), ::testing::ExitedWithCode(3), "");
 }
 
 TEST(test_vec3f, crash_test_operator_) {
-	constexpr auto vec_1 = core::vec3<float>{1.3f, 3.5f, 4.0f};
+	constexpr auto vec_1 = core::Vec3<float>{1.3f, 3.5f, 4.0f};
 
 	EXPECT_EXIT(vec_1[3], ::testing::ExitedWithCode(3), "");
 	EXPECT_EXIT(vec_1[-1], ::testing::ExitedWithCode(3), "");
@@ -202,7 +202,7 @@ TEST(test_vec3f, crash_test_operator_) {
 
 
 TEST(test_vec3f, test_operator_) {
-	constexpr auto vec_1 = core::vec3<float>{1.3f, 3.5f, 4.0f};
+	constexpr auto vec_1 = core::Vec3<float>{1.3f, 3.5f, 4.0f};
 
 	EXPECT_EQ(vec_1[0], 1.3f);
 	EXPECT_EQ(vec_1[1], 3.5f);

@@ -71,12 +71,12 @@ struct Quaternion {
     }
 
     // Method to rotate using Euler angles provided as Vec3
-    Quaternion<T> RotateFromEuler(const core::vec3<T>& eulerAngles) const {
+    Quaternion<T> RotateFromEuler(const core::Vec3<T>& eulerAngles) const {
         return Rotate(eulerAngles.z, eulerAngles.y, eulerAngles.x);
     }
 
     // Convert a Vec3 (axis-angle) into a quaternion (assuming Vec3 represents axis and angle magnitude as radians)
-    static Quaternion Vec3ToQuaternion(const core::vec3<T>& v) {
+    static Quaternion Vec3ToQuaternion(const core::Vec3<T>& v) {
         T angle = static_cast<float>(v.Magnitude());
         if (common::AproximateZeroForFloats(angle)) {
             return Quaternion(1, 0, 0, 0);
@@ -94,8 +94,8 @@ struct Quaternion {
     }
 
     // Convert quaternion to Euler angles in radians, returned as Vec3 (roll, pitch, yaw)
-    core::vec3<T> toEulerAngles() const {
-        core::vec3<T> eulerAngles;
+    core::Vec3<T> toEulerAngles() const {
+        core::Vec3<T> eulerAngles;
 
         // Roll (x-axis rotation)
         const T sinr_cosp = 2 * (w * x + y * z);

@@ -14,37 +14,37 @@ namespace core
 	 * \brief Vec4f is a struct that allows operations in 4D space (lol what is 4D)
 	 */
 	template <typename T>
-	struct vec4
+	struct Vec4
 	{
 		T x = 0, y = 0, z = 0, w = 0;
 
 		template<typename Other_T>
 
 		//set zero() to set vec to zero
-		static constexpr vec4 Zero() { return vec4{}; }
+		static constexpr Vec4 Zero() { return Vec4{}; }
 
 		// Addition operator
-		constexpr vec4 operator+(vec4 other) const
+		constexpr Vec4 operator+(Vec4 other) const
 		{
 			return { x + other.x, y + other.y, z + other.z, w + other.w };
 		}
 
 		// Subtraction operator
-		constexpr vec4 operator-(vec4 other) const
+		constexpr Vec4 operator-(Vec4 other) const
 		{
 			return { x - other.x, y - other.y, z - other.z, w - other.w };
 		}
 
 		// Negation operator
-		constexpr vec4 operator-() const
+		constexpr Vec4 operator-() const
 		{
 			return { -x, -y, -z, -w };
 		}
 
 		// Multiply by scalar
-		constexpr vec4 operator*(T scalar) const
+		constexpr Vec4 operator*(T scalar) const
 		{
-			return vec4( x * scalar, y * scalar, z * scalar, w * scalar);
+			return Vec4(x * scalar, y * scalar, z * scalar, w * scalar);
 		}
 
 		constexpr T operator[](const int index) const {
@@ -65,7 +65,7 @@ namespace core
 
 
 		// Divide by scalar
-		constexpr vec4 operator/(const T scalar) const
+		constexpr Vec4 operator/(const T scalar) const
 		{
 			const int scalar_int = static_cast<int>(scalar);
 			if (scalar_int == 0)
@@ -79,19 +79,19 @@ namespace core
 		}
 
 		// Dot product (produit scalaire)
-		static constexpr T Dot(vec4 v1, vec4 v2)
+		static constexpr T Dot(Vec4 v1, Vec4 v2)
 		{
 			return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w;
 		}
 
 		// Lerp (linear interpolation)
-		[[nodiscard]] static constexpr vec4 Lerp(vec4 a, vec4 b, float t)
+		[[nodiscard]] static constexpr Vec4 Lerp(Vec4 a, Vec4 b, float t)
 		{
 			return { a.x + (b.x - a.x) * t, a.y + (b.y - a.y) * t, a.z + (b.z - a.z) * t, a.w + (b.w - a.w) * t };
 		}
 
 		// Normalize the vector
-		[[nodiscard]] vec4 Normalise() const
+		[[nodiscard]] Vec4 Normalise() const
 		{
 			const T magnitude = Magnitude();
 			if(magnitude == 0) {
@@ -121,13 +121,13 @@ namespace core
 	}; //struct Vec3f
 
 	template <typename T>
-	constexpr vec4<T> operator*(const T t, const vec4<T>& vec)
+	constexpr Vec4<T> operator*(const T t, const Vec4<T>& vec)
 	{
 		return { t * vec.x, t * vec.y, t * vec.z, t * vec.w };
 	}
 
 	template <typename T>
-	constexpr vec4<T> operator/(const T t, const vec4<T>& vec)
+	constexpr Vec4<T> operator/(const T t, const Vec4<T>& vec)
 	{
 		if (vec.x == 0 || vec.y == 0 || vec.z == 0 || vec.w == 0) {
 			std::terminate();
