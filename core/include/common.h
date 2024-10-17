@@ -17,6 +17,10 @@ namespace common {
 
 //will compare your value - your target to epsilon -> if lower -> return true
 inline bool AproximateZeroForFloats(const float value) {
+#ifdef TRACY_ENABLE
+  ZoneScoped;
+#endif
+
   if (abs(value - 0.0f) < EPSILON) {
     return true;
   }
@@ -41,13 +45,22 @@ inline float ToRadians(const float &degrees_value) {
   return degrees_value * PI / 180;
 }
 
-inline int GenerateANumber(const int limit) {
+inline int GenerateAnIntNumber(const int limit) {
 #ifdef TRACY_ENABLE
     ZoneScoped;
 #endif
   std::uniform_int_distribution<int> uniform_dist(0, limit);
   return uniform_dist(e1);
 }
+
+inline float GenerateAFloatNumber(const float limit) {
+#ifdef TRACY_ENABLE
+  ZoneScoped;
+#endif
+  std::uniform_real_distribution<float> dist(0, limit);
+  return dist(e1);
+}
+
 
 }
 

@@ -41,11 +41,10 @@ void Planet::Update(const float delta_time) {
 }
 
 void Planet::SetVariablesToZeroAndColor() {
-  angle_ = 0.0f;
-  x_ = 0.0f;
-  y_ = 0.0f;
-  color_[0] = common::GenerateANumber(255);
-  color_[1] = common::GenerateANumber(255);
-  color_[2] = common::GenerateANumber(255);
+  angle_ = common::GenerateAFloatNumber(common::ToRadians(360.0f));
+  color_[0] = common::GenerateAnIntNumber(255);
+  color_[1] = common::GenerateAnIntNumber(255);
+  color_[2] = common::GenerateAnIntNumber(255);
+  color_[3] = 255;
 }
 

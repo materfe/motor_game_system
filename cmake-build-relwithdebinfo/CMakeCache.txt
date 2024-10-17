@@ -17,10 +17,6 @@
 //Path to a program.
 CMAKE_AR:FILEPATH=C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.41.34120/bin/Hostx64/x64/lib.exe
 
-//For backwards compatibility, what version of CMake commands and
-// syntax should this version of CMake try to support.
-CMAKE_BACKWARDS_COMPATIBILITY:STRING=2.4
-
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
 CMAKE_BUILD_TYPE:STRING=RelWithDebInfo
@@ -207,28 +203,16 @@ CMAKE_TOOLCHAIN_FILE:UNINITIALIZED=C:/vcpkg/vcpkg/scripts/buildsystems/vcpkg.cma
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Enable Tracy Profiling
-ENABLE_PROFILING:BOOL=OFF
-
-//Single output directory for building all executables.
-EXECUTABLE_OUTPUT_PATH:PATH=
+ENABLE_PROFILING:BOOL=ON
 
 //The directory containing a CMake configuration file for GTest.
 GTest_DIR:PATH=C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/vcpkg_installed/x64-windows/share/gtest
 
-//Single output directory for building all libraries.
-LIBRARY_OUTPUT_PATH:PATH=
-
-//Value Computed by CMake
-Project_BINARY_DIR:STATIC=C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo
-
-//Value Computed by CMake
-Project_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-Project_SOURCE_DIR:STATIC=C:/Users/Mat/special_repo/game_motor_system/motor_game_system
-
 //The directory containing a CMake configuration file for SDL2.
-SDL2_DIR:PATH=C:/vcpkg/vcpkg/installed/x64-windows/share/sdl2
+SDL2_DIR:PATH=C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/vcpkg_installed/x64-windows/share/sdl2
+
+//The directory containing a CMake configuration file for Tracy.
+Tracy_DIR:PATH=C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/vcpkg_installed/x64-windows/share/Tracy
 
 //Automatically copy dependencies into the output directory for
 // executables.
@@ -310,14 +294,8 @@ game_motor_engine_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 game_motor_engine_SOURCE_DIR:STATIC=C:/Users/Mat/special_repo/game_motor_system/motor_game_system
 
-//The directory containing a CMake configuration file for glad.
-glad_DIR:PATH=glad_DIR-NOTFOUND
-
-//The directory containing a CMake configuration file for hello-imgui.
-hello-imgui_DIR:PATH=C:/vcpkg/vcpkg/installed/x64-windows/share/hello-imgui
-
 //The directory containing a CMake configuration file for imgui.
-imgui_DIR:PATH=C:/vcpkg/vcpkg/installed/x64-windows/share/imgui
+imgui_DIR:PATH=C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/vcpkg_installed/x64-windows/share/imgui
 
 
 ########################
@@ -392,6 +370,12 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
+//Test CMAKE_HAVE_LIBC_PTHREAD
+CMAKE_HAVE_LIBC_PTHREAD:INTERNAL=
+//Have library pthreads
+CMAKE_HAVE_PTHREADS_CREATE:INTERNAL=
+//Have library pthread
+CMAKE_HAVE_PTHREAD_CREATE:INTERNAL=
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=C:/Users/Mat/special_repo/game_motor_system/motor_game_system
@@ -458,6 +442,8 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 CMAKE_TOOLCHAIN_FILE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding Threads
+FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //ADVANCED property for variable: VCPKG_VERBOSE
 VCPKG_VERBOSE-ADVANCED:INTERNAL=1
 //Making sure VCPKG_MANIFEST_MODE doesn't change

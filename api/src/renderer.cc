@@ -20,39 +20,6 @@ void Renderer::DrawRectangle(const Rectangle &rect) const {
     const SDL_Rect sdl_rect = { rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight() };
     SDL_RenderFillRect(renderer_, &sdl_rect);
 }
-void Renderer::DrawCircle(const Circle &circle) const {
-    int offset_x = 0;
-    int offset_y = circle.getRadius();
-    int d = 1 - circle.getRadius();
-
-    auto draw_pixel = [this](const int x, const int y) {
-        SDL_RenderDrawPoint(renderer_, x, y);
-    };
-
-    auto draw_circle_points = [draw_pixel, circle](int dx, int dy) {
-        draw_pixel(circle.getX() - dx, circle.getY() + dy);
-        draw_pixel(circle.getX() + dx, circle.getY() - dy);
-        draw_pixel(circle.getX() - dx, circle.getY() - dy);
-        draw_pixel(circle.getX() + dx, circle.getY() + dy);
-        draw_pixel(circle.getX() + dy, circle.getY() + dx);
-        draw_pixel(circle.getX() - dy, circle.getY() + dx);
-        draw_pixel(circle.getX() + dy, circle.getY() - dx);
-        draw_pixel(circle.getX() - dy, circle.getY() - dx);
-    };
-
-    draw_circle_points(offset_x, offset_y);
-
-    while (offset_x < offset_y) {
-        if (d < 0) {
-            d += 2 * offset_x + 3;
-        } else {
-            d += 2 * (offset_x - offset_y) + 5;
-            --offset_y;
-        }
-        ++offset_x;
-        draw_circle_points(offset_x, offset_y);
-    }
-}
 void Renderer::DrawCornersOfPlanet(const Planet &planet) const {
     int offset_x = 0;
     int offset_y = static_cast<int>(planet.getRadius());
@@ -90,6 +57,55 @@ void Renderer::DrawCornersOfPlanet(const Planet &planet) const {
         draw_circle_points(offset_x, offset_y);
     }
 }
+void Renderer::DrawFullPlanets(const Planet& other_planet) const {
+#ifdef TRACY_ENABLE
+  ZoneScoped;
+#endif
+
+  const int num_segments = 5;
+  const int num_vertices = num_segments + 2; // center + segments + last point to close the circle
+  const int num_indices = num_segments * 3; // each segment forms a triangle
+
+  std::array<SDL_Vertex, num_vertices> vertices{};
+  std::array<int, num_indices> indices{};
+
+  float angle_step = 2.0f * PI / num_segments;
+
+  const SDL_Color color = {static_cast<Uint8>(other_planet.getColor()[0]), static_cast<Uint8>(other_planet.getColor()[1]),
+                           static_cast<Uint8>(other_planet.getColor()[2]), static_cast<Uint8>(other_planet.getColor()[3])};
+
+  vertices[0] = { {static_cast<float>(other_planet.getX()), static_cast<float>(other_planet.getY())},
+                  {color}, {0, 0} };
+
+  // Generate circle vertices
+  for (int i = 0; i <= num_segments; ++i)
+  {
+    float angle = static_cast<float>(i) * angle_step;
+    const auto x = static_cast<float>(other_planet.getX() + (other_planet.getRadius() * 0.25) * cosf(angle));
+    const auto y = static_cast<float>(other_planet.getY() + (other_planet.getRadius() * 0.25) * sinf(angle));
+    vertices[i]= { {x, y}, {color}, {0, 0} };
+  }
+
+  // Generate indices
+  for (int i = 1; i <= num_segments; ++i)
+  {
+    indices[i * 3 + 0] = 0;     // center vertex
+    indices[i * 3 + 1] = i + 1; // current vertex
+    indices[i * 3 + 2] = i + 2; // next vertex (looping back at the end)
+  }
+
+  indices[(num_segments - 1) * 3 + 2] = 1;
+
+  // Use SDL_RenderGeometry to draw the circle
+  SDL_SetRenderDrawColor(renderer_, 255, 255, 255, 255);
+  if (SDL_RenderGeometry(renderer_, nullptr,
+                         vertices.data(), static_cast<int>(vertices.size()),
+                         indices.data(), static_cast<int>(indices.size())))
+  {
+    SDL_Log("%s\n", SDL_GetError());
+  }
+}
+
 
 //sf::clear
 void Renderer::ClearScreen() const
@@ -97,57 +113,3 @@ void Renderer::ClearScreen() const
     SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
     SDL_RenderClear(renderer_);
 }
-
-
-
-
-
-// Function to put a pixel on the screen (helper function for modularity)
-void Renderer::RenderDraw(const int x, const int y) const {
-  SDL_RenderDrawPoint(renderer_, x, y);
-}
-
-// Function to draw a circle using the midpoint circle algorithm
-void Renderer::TestDrawCircle(const int center_x, const int center_y, const int radius) const {
-  int x = 0;
-  int y = radius;
-  int d = 1 - radius;  // Decision variable
-
-  // Symmetry of the circle - drawing in all octants
-  while (x <= y) {
-    // Drawing the 8 symmetric points
-    RenderDraw(center_x + x, center_y + y); // Octant 1
-    RenderDraw(center_x - x, center_y + y); // Octant 2
-    RenderDraw(center_x + x, center_y - y); // Octant 8
-    RenderDraw(center_x - x, center_y - y); // Octant 7
-    RenderDraw(center_x + y, center_y + x); // Octant 4
-    RenderDraw(center_x - y, center_y + x); // Octant 3
-    RenderDraw(center_x + y, center_y - x); // Octant 5
-    RenderDraw(center_x - y, center_y - x); // Octant 6
-
-    if (d < 0) {
-      d += 2 * x + 3;
-    } else {
-      d += 2 * (x - y) + 5;
-      y--;
-    }
-    x++;
-  }
-}
-
-// Function to fill the circle by drawing horizontal lines between the points
-void Renderer::FillCircle(const int center_x, const int center_y, const int radius) const {
-  for (int y = -radius; y <= radius; y++) {
-	  const int dx = static_cast<int>(std::sqrt(radius * radius - y * y));
-    for (int x = -dx; x <= dx; x++) {
-      RenderDraw(center_x + x, center_y + y);
-    }
-  }
-}
-
-// Main draw function, optimized to handle both drawing and filling the circle
-void Renderer::DrawFullPlanet(const int center_x, const int center_y, const int radius) const{
-  TestDrawCircle(center_x, center_y, radius);    // DrawFullPlanet the outline
-  FillCircle(center_x, center_y, radius);    // Fill the circle
-}
-

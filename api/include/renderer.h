@@ -15,9 +15,6 @@ class Renderer {
  private :
   SDL_Renderer *renderer_;
 
-  void RenderDraw(int x, int y) const;
-  void TestDrawCircle(int center_x, int center_y, int radius) const;
-  void FillCircle(int center_x, int center_y, int radius) const;
  public:
 
   explicit Renderer(const Window &window);
@@ -27,10 +24,9 @@ class Renderer {
   }
 
   //drawing methods
-  void DrawCircle(const Circle &circle) const;
   void DrawRectangle(const Rectangle &rect) const;
   void DrawCornersOfPlanet(const Planet &planet) const;
-  void DrawFullPlanet(int center_x, int center_y, int radius) const;
+  void DrawFullPlanets(const Planet& other_planet) const;
 
   void ClearScreen() const;
 

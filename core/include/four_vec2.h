@@ -36,21 +36,21 @@ struct FourVec2 {
   }
 
   FourVec2<T> operator+(const FourVec2<T>& other) const;
-  FourVec2<T> operator-(FourVec2<T> other) const;
-  FourVec2<T> operator*(const T other) const;
-  FourVec2<T> operator/(const T other) const;
+  FourVec2<T> operator-(const FourVec2<T>& other) const;
+  FourVec2<T> operator*(T other) const;
+  FourVec2<T> operator/(T other) const;
 
-  T DotProduct(const FourVec2<float> &other) const;
-  FourVec2<T> Normalise() const;
-
-  [[nodiscard]] inline float Magnitude() const
-  {
-    float sum_of_squares = DotProduct(*this);
-    return static_cast<float >(std::sqrt(static_cast<double>(sum_of_squares)));
-  }
+  [[nodiscard]] std::array<float, 4> DotProduct(const FourVec2<float> &other) const;
+  [[nodiscard]] FourVec2<T> Normalise() const;
+  [[nodiscard]] std::array<T, 4> Magnitude() const;
+  [[nodiscard]] std::array<T, 4> SqrtMagnitude() const;
 
   [[nodiscard]] std::array<T, 4> GetX() const {return x;}
   [[nodiscard]] std::array<T, 4> GetY() const {return y;}
 };
+template<typename T>
+FourVec2<T> FourVec2<T>::operator*(T other) const {
+  return FourVec2<T>();
+}
 }
 #endif //GAME_MOTOR_ENGINE_CORE_INCLUDE_FOURVEC2_H_

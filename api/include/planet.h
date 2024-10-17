@@ -16,15 +16,21 @@ class Planet {
   float orbit_radius_;              // Radius of the orbit (distance from center point)
   float angular_velocity_;          // Speed of the orbit (radians per second [currently per frame])
   float angle_;                     // Current angle of rotation (in radians)
-  std::array<int, 3> color_;
+  std::array<int, 4> color_;
 
  public:
   Planet(const float centerX, const float centerY, const float radius, const float orbitRadius,
-         const float angularVelocity): center_x_(centerX), center_y_(centerY), radius_(radius),
-        orbit_radius_(orbitRadius), angular_velocity_(angularVelocity) {
+         const float angularVelocity) : center_x_(centerX), center_y_(centerY), radius_(radius),
+                                        orbit_radius_(orbitRadius), angular_velocity_(angularVelocity) {
+    x_ = 0.0f;
+    y_ = 0.0f;
+    angle_ = 0.0f;
+    color_ = std::array<int, 4> {};
     SetVariablesToZeroAndColor();
     Begin();
   }
+  Planet() = default;
+
   ~Planet() { End(); };
   // Initialize circle values (start at the correct position on the orbit)
   void Begin();
@@ -43,7 +49,7 @@ class Planet {
   [[nodiscard]] float getX() const { return x_; }
   [[nodiscard]] float getY() const { return y_; }
   [[nodiscard]] float getRadius() const { return radius_; }
-  [[nodiscard]] std::array<int, 3> getColor() const { return color_; }
+  [[nodiscard]] std::array<int, 4> getColor() const { return color_; }
 };
 
 #endif //PLANET_H
