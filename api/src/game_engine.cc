@@ -22,11 +22,16 @@ void GameEngine::SetVariablesToNothing() {
 void GameEngine::SetArrayForMaxElements() {
   for (int i = 0; i < max_array_size; i++) {
     const auto random_number_radius = common::GenerateAFloatNumber(50.0f);
-    const auto random_number_orbit_radius = common::GenerateAFloatNumber(200.0f);
+    const auto random_number_position_x = common::GenerateAFloatNumber(800.0f);
+    const auto random_number_position_y = common::GenerateAFloatNumber(800.0f);
+    const auto random_number_mass = common::GenerateAFloatNumber(2e20f);
+    const auto random_number_velocity_x = common::GenerateAFloatNumber(200.0f);
+    const auto random_number_velocity_y = common::GenerateAFloatNumber(200.0f);
     const auto speed_orientation = static_cast<float>(std::pow(-1, i));
 
-    planets_[i] = Planet(600.0f, 400.0f, random_number_radius,
-                         random_number_orbit_radius, 800.0f * speed_orientation);
+    planets_[i] = Planet(random_number_radius, core::Vec2<float> (random_number_position_x, random_number_position_y),
+        core::Vec2<float> (random_number_velocity_x, random_number_velocity_y),
+            random_number_mass);
   }
 }
 
@@ -78,6 +83,10 @@ void GameEngine::Begin() {
 void GameEngine::Update() {
   SDL_Event event;
 
+  const auto sun_mass = 80000000000000000.0f;
+  const auto sun_position = core::Vec2<float> (400.0f, 400.0f);
+  const auto sun = Planet(10.0f, core::Vec2<float>(400.0f, 400.0f),
+         core::Vec2<float>(0.0f, 0.0f), 5.0f);
   while (running_) {
 
     current_time_ = SDL_GetTicks();
@@ -92,16 +101,11 @@ void GameEngine::Update() {
       }
     }
 
-#ifdef TRACY_ENABLE
-    TracyCZoneN(const update, "planets_update", true)
-#endif
+
     // Update the circle's orbit position
     for (auto &_ : planets_) {
-      _.Update(delta_time_sec); // Update circle's position based on its angular velocity
+      _.Update(delta_time_sec, sun_mass, sun_position); // Update circle's position based on its angular velocity
     }
-#ifdef TRACY_ENABLE
-    TracyCZoneEnd(update)
-#endif
 
 #ifdef TRACY_ENABLE
     TracyCZoneN(const clear, "set_draw+clear", true)
@@ -123,9 +127,12 @@ void GameEngine::Update() {
                               static_cast<Uint8>(_.getColor()[1]),
                               static_cast<Uint8>(_.getColor()[2]),
                               255);
-      //renderer_->DrawCornersOfPlanet(_);
-      renderer_->DrawFullPlanets(_);
+      renderer_->DrawCornersOfPlanet(_);
+      //renderer_->DrawFullPlanets(_);
     }
+
+    //planet around what it rotates
+    renderer_->DrawFullPlanets(sun);
 #ifdef TRACY_ENABLE
     TracyCZoneEnd(draw)
 #endif

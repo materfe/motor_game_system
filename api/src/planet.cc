@@ -10,38 +10,43 @@
 #include <tracy/TracyC.h>
 #endif
 
-void Planet::Begin() {
-  x_ = center_x_ + orbit_radius_ * std::cos(angle_);
-  y_ = center_y_ + orbit_radius_ * std::sin(angle_);
+//functions used in Update() -> calculate gravity and velocity to move planet
+void Planet::ApplyGravitationalForce(const float sun_mass, const core::Vec2<float> &sun_position) {
+  const float direction_for_x = sun_position.x_ - position_.x_;
+  const float direction_for_y = (sun_position.y_ - position_.y_);
+
+  const float actual_distance = std::sqrt(direction_for_x * direction_for_x + direction_for_y * direction_for_y);
+  const double gravitational_force = (G * mass_ * sun_mass) / (std::pow(actual_distance, 2));
+
+  // Normalizing the direction of the gravitational_force
+  double force_x = gravitational_force * (direction_for_x / actual_distance);
+  double force_y = gravitational_force * (direction_for_y / actual_distance);
+
+  // Update acceleration using F = m * a, so a = F / m
+  acceleration_.x_ = static_cast<float>(force_x) / mass_;
+  acceleration_.y_ = static_cast<float>(force_y) / mass_;
+}
+void Planet::SumTheForcesAndMoveThePlanet(const float delta_time) {
+  // Update velocity: v = v + a * dt
+  angular_velocity_.x_ += acceleration_.x_ * delta_time;
+  angular_velocity_.y_ += acceleration_.y_ * delta_time;
+
+  // Update position: p = p + v * dt
+  position_.x_ += angular_velocity_.x_ * delta_time;
+  position_.y_ += angular_velocity_.y_ * delta_time;
 }
 
-
-void Planet::Update(const float delta_time) {
+void Planet::Update(const float delta_time, const float sun_mass, const core::Vec2<float>& sun_position) {
 
 #ifdef TRACY_ENABLE
     ZoneScoped;
 #endif
 
-	//early exit
-  if (common::AproximateZeroForFloats(orbit_radius_)) {
-    return;
-  }
-
-  // Update the angle over time using angular velocity
-  angle_ += common::ToMeters(angular_velocity_) * delta_time;
-
-  // Keep angle in radians
-  if (angle_ > 2 * PI) {
-    common::ToRadians(angle_);
-  }
-
-  // Calculate the new position based on the updated angle
-  x_ = center_x_ + orbit_radius_ * std::cos(angle_);
-  y_ = center_y_ + orbit_radius_ * std::sin(angle_);
+  ApplyGravitationalForce(sun_mass, sun_position);
+  SumTheForcesAndMoveThePlanet(delta_time);
 }
 
-void Planet::SetVariablesToZeroAndColor() {
-  angle_ = common::GenerateAFloatNumber(common::ToRadians(360.0f));
+void Planet::SetRandomColor() {
   color_[0] = common::GenerateAnIntNumber(255);
   color_[1] = common::GenerateAnIntNumber(255);
   color_[2] = common::GenerateAnIntNumber(255);

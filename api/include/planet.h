@@ -6,48 +6,59 @@
 #define PLANET_H
 
 #include "common.h"
+#include "vec2.h"
 #include <array>
+
+static constexpr float G = 6.67430e-11f;
 
 class Planet {
  private:
-  float x_, y_;                     // Current position of the circle
-  float center_x_, center_y_;       // Center of the orbit
+  core::Vec2<float> position_;                // Current position of the circle
+  core::Vec2<float> angular_velocity_;        // Speed of the orbit (radians per second [currently per frame])
+  core::Vec2<float> acceleration_;            //acceleration of the planet
   float radius_;                    // Circle's radius
-  float orbit_radius_;              // Radius of the orbit (distance from center point)
-  float angular_velocity_;          // Speed of the orbit (radians per second [currently per frame])
-  float angle_;                     // Current angle of rotation (in radians)
-  std::array<int, 4> color_;
+  float mass_;                      //mass in kilogram
+  std::array<int, 4> color_{};
 
  public:
-  Planet(const float centerX, const float centerY, const float radius, const float orbitRadius,
-         const float angularVelocity) : center_x_(centerX), center_y_(centerY), radius_(radius),
-                                        orbit_radius_(orbitRadius), angular_velocity_(angularVelocity) {
-    x_ = 0.0f;
-    y_ = 0.0f;
-    angle_ = 0.0f;
-    color_ = std::array<int, 4> {};
-    SetVariablesToZeroAndColor();
-    Begin();
+  Planet(const float radius, const core::Vec2<float> position, const core::Vec2<float> angularVelocity,
+         const float mass) : radius_(radius), position_(position), angular_velocity_(angularVelocity),
+                             mass_(mass) {
+
+    acceleration_ = core::Vec2<float>(0.0f, 0.0f);
+
+    SetRandomColor();
   }
-  Planet() = default;
+
+  Planet() {
+    position_ = core::Vec2<float>(0.0f, 0.0f);
+    acceleration_ = core::Vec2<float>(0.0f, 0.0f);
+    radius_ = 0.0f;
+    angular_velocity_.x_ = 0.0f;
+    angular_velocity_.y_ = 0.0f;
+    color_ = std::array<int, 4>{0, 0, 0, 0};
+    mass_ = 0.0f;
+  }
+
+  void ApplyGravitationalForce(float sun_mass, const core::Vec2<float> &sun_position);
+
+  // Update the position and velocity of the planet
+  void SumTheForcesAndMoveThePlanet(float delta_time);
 
   ~Planet() { End(); };
-  // Initialize circle values (start at the correct position on the orbit)
-  void Begin();
 
   //set and colors
-  void SetVariablesToZeroAndColor();
+  void SetRandomColor();
 
   // Update the circle's position (move in circular orbit)
-  void Update(float delta_time);
+  void Update(float delta_time, float sun_mass, const core::Vec2<float> &sun_position);
 
   // Handle any cleanup (optional, no specific cleanup here)
-  void End() const {
-  }
+  void End() const {}
 
   // Get
-  [[nodiscard]] float getX() const { return x_; }
-  [[nodiscard]] float getY() const { return y_; }
+  [[nodiscard]] float getX() const { return position_.x_; }
+  [[nodiscard]] float getY() const { return position_.y_; }
   [[nodiscard]] float getRadius() const { return radius_; }
   [[nodiscard]] std::array<int, 4> getColor() const { return color_; }
 };
