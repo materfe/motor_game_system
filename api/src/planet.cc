@@ -12,6 +12,9 @@
 
 //functions used in Update() -> calculate gravity and velocity to move planet
 void Planet::ApplyGravitationalForce(const float sun_mass, const core::Vec2<float> &sun_position) {
+#ifdef TRACY_ENABLE
+  ZoneScoped;
+#endif
   const float direction_for_x = sun_position.x_ - position_.x_;
   const float direction_for_y = (sun_position.y_ - position_.y_);
 
@@ -27,6 +30,9 @@ void Planet::ApplyGravitationalForce(const float sun_mass, const core::Vec2<floa
   acceleration_.y_ = static_cast<float>(force_y) / mass_;
 }
 void Planet::SumTheForcesAndMoveThePlanet(const float delta_time) {
+#ifdef TRACY_ENABLE
+  ZoneScoped;
+#endif
   // Update velocity: v = v + a * dt
   angular_velocity_.x_ += acceleration_.x_ * delta_time;
   angular_velocity_.y_ += acceleration_.y_ * delta_time;

@@ -29,8 +29,8 @@ void GameEngine::SetArrayForMaxElements() {
     const auto random_number_velocity_y = common::GenerateAFloatNumber(200.0f);
     const auto speed_orientation = static_cast<float>(std::pow(-1, i));
 
-    planets_[i] = Planet(random_number_radius, core::Vec2<float> (random_number_position_x, random_number_position_y),
-        core::Vec2<float> (random_number_velocity_x, random_number_velocity_y),
+    planets_[i] = Planet(random_number_radius, core::Vec2<float> (0.0f, 100.0f),
+        core::Vec2<float> (random_number_velocity_x , random_number_velocity_y ),
             random_number_mass);
   }
 }
