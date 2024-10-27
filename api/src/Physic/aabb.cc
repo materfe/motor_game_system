@@ -78,3 +78,5 @@ bool AABB::IsCollidingWithPolygon(Polygon &polygon) const {
   // No separating axis found, AABB and Polygon are colliding
   return true;
 }
+
+

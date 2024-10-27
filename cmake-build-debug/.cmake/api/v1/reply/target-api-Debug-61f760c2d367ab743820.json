@@ -122,7 +122,9 @@
 				7,
 				8,
 				9,
-				10
+				10,
+				11,
+				12
 			]
 		}
 	],
@@ -157,15 +159,15 @@
 				7,
 				8,
 				9,
-				10
+				10,
+				11,
+				12
 			]
 		},
 		{
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
-				11,
-				12,
 				13,
 				14,
 				15,
@@ -174,7 +176,11 @@
 				18,
 				19,
 				20,
-				21
+				21,
+				22,
+				23,
+				24,
+				25
 			]
 		}
 	],
@@ -195,6 +201,12 @@
 		{
 			"backtrace" : 2,
 			"compileGroupIndex" : 0,
+			"path" : "api/src/Physic/contact_listener.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
 			"path" : "api/src/Physic/math_for_circles.cc",
 			"sourceGroupIndex" : 0
 		},
@@ -208,6 +220,12 @@
 			"backtrace" : 2,
 			"compileGroupIndex" : 0,
 			"path" : "api/src/Physic/shape.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "api/src/Physic/trigger.cc",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -258,6 +276,11 @@
 		},
 		{
 			"backtrace" : 2,
+			"path" : "api/include/Physic/contact_listener.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
 			"path" : "api/include/Physic/math_for_circles.h",
 			"sourceGroupIndex" : 1
 		},
@@ -269,6 +292,11 @@
 		{
 			"backtrace" : 2,
 			"path" : "api/include/Physic/shape.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "api/include/Physic/trigger.h",
 			"sourceGroupIndex" : 1
 		},
 		{
