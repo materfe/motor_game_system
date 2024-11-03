@@ -8,15 +8,14 @@
 #endif
 
 
-inline std::random_device r;
-inline std::default_random_engine e1(r());
+
 
 namespace common {
 #define EPSILON 2.2204460492503131e-016f
 #define PI 3.14159265358979323846f
 
 //will compare your value - your target to epsilon -> if lower -> return true
-inline bool AproximateZeroForFloats(const float value) {
+bool AproximateZeroForFloats(const float value) {
 #ifdef TRACY_ENABLE
   ZoneScoped;
 #endif
@@ -28,40 +27,45 @@ inline bool AproximateZeroForFloats(const float value) {
 }
 
 //give a pixel size, and it will become a meter (100 pixels = 1m)
-inline float ToMeters(const float &value) {
+constexpr float ToMeters(const float &value) {
   return value / 100.0f;
 }
 //give a meter size, and it will return a pixel size using (100 pixels = 1m)
-inline float ToPixels(const float &value) {
+constexpr float ToPixels(const float &value) {
   return value * 100.0f;
 }
 
 //input a radian value and it returns a degree value
-inline float ToDegree(const float &rad_value) {
+constexpr float ToDegree(const float &rad_value) {
   return rad_value * 180 / PI;
 }
 //input a degree value and it returns a radian
-inline float ToRadians(const float &degrees_value) {
+constexpr float ToRadians(const float &degrees_value) {
   return degrees_value * PI / 180;
 }
 
-inline int GenerateAnIntNumber(const int limit) {
-#ifdef TRACY_ENABLE
-    ZoneScoped;
-#endif
-  std::uniform_int_distribution<int> uniform_dist(0, limit);
-  return uniform_dist(e1);
-}
-
-inline float GenerateAFloatNumber(const float limit) {
+template<typename T>
+T GenerateRandomNumber(T min_number, T max_number)
+{
 #ifdef TRACY_ENABLE
   ZoneScoped;
 #endif
-  std::uniform_real_distribution<float> dist(0, limit);
-  return dist(e1);
+  static_assert(std::is_integral_v<T> || std::is_floating_point_v<T>, "function requires a number"); //compiler error if not number
+
+  static std::random_device r;
+  static std::default_random_engine e1(r()); //static -> one instance
+
+  if constexpr (std::is_integral_v<T>)
+  {
+    std::uniform_int_distribution<T> uniform_dist(min_number, max_number);
+    return uniform_dist(e1);
+  }
+  else if constexpr (std::is_floating_point_v<T>)
+  {
+    std::uniform_real_distribution<T> dist(min_number, max_number);
+    return dist(e1);
+  }
 }
-
-
 }
 
 #endif

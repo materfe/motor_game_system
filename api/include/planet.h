@@ -16,8 +16,8 @@ class Planet {
   core::Vec2<float> position_;                // Current position of the circle
   core::Vec2<float> angular_velocity_;        // Speed of the orbit (radians per second [currently per frame])
   core::Vec2<float> acceleration_;            //acceleration of the planet
-  float radius_;                    // Circle's radius
-  float mass_;                      //mass in kilogram
+  float radius_;                              // DrawableCircle's radius
+  float mass_;                                //mass in kilogram
   std::array<int, 4> color_{};
 
  public:

@@ -16,26 +16,25 @@
 constexpr static int max_array_size = 1000;
 
 
-class GameEngine {
+class GameEngine final {
  private:
-  int window_height_;
-  int window_width_;
-  bool running_;
+  int window_height_ = -1;
+  int window_width_ = -1; //TODO those are in window class
+  bool running_ = false;
 
-  const char *window_title_;
-  std::array<Planet, max_array_size> planets_;
+  const char *window_title_ = nullptr;
+  std::array<Planet, max_array_size> planets_{};
 
-  Uint32 last_time_;
-  Uint32 current_time_;
-  Uint32 delta_time_;
+  Uint32 last_time_ = 0;
+  Uint32 current_time_ = 0;
+  Uint32 delta_time_ = 0;
 
-  Window *window_;
-  Renderer *renderer_;
+  Window *window_ = nullptr;
+  Renderer *renderer_ = nullptr;
 
  public:
   // Initialize the game engine
   void Begin();
-  void SetVariablesToNothing();
   void SetArrayForMaxElements();
 
   GameEngine(const char *title, int width, int height);

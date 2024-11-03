@@ -340,52 +340,79 @@ build core\rebuild_cache: phony core\CMakeFiles\rebuild_cache.util
 
 build cmake_object_order_depends_target_api: phony || cmake_object_order_depends_target_core
 
-build api\CMakeFiles\api.dir\src\Physic\aabb.cc.obj: CXX_COMPILER__api_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\src\Physic\aabb.cc || cmake_object_order_depends_target_api
+build api\CMakeFiles\api.dir\samples\planet\planet_sample.cc.obj: CXX_COMPILER__api_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\samples\planet\planet_sample.cc || cmake_object_order_depends_target_api
   DEFINES = -DTRACY_ENABLE -DTRACY_ENABLE=1
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
   INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include\SDL2 -external:W0
   OBJECT_DIR = api\CMakeFiles\api.dir
-  OBJECT_FILE_DIR = api\CMakeFiles\api.dir\src\Physic
+  OBJECT_FILE_DIR = api\CMakeFiles\api.dir\samples\planet
   TARGET_COMPILE_PDB = api\CMakeFiles\api.dir\api.pdb
   TARGET_PDB = api\api.pdb
 
-build api\CMakeFiles\api.dir\src\Physic\circle.cc.obj: CXX_COMPILER__api_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\src\Physic\circle.cc || cmake_object_order_depends_target_api
+build api\CMakeFiles\api.dir\samples\trigger\trigger_sample.cc.obj: CXX_COMPILER__api_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\samples\trigger\trigger_sample.cc || cmake_object_order_depends_target_api
   DEFINES = -DTRACY_ENABLE -DTRACY_ENABLE=1
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
   INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include\SDL2 -external:W0
   OBJECT_DIR = api\CMakeFiles\api.dir
-  OBJECT_FILE_DIR = api\CMakeFiles\api.dir\src\Physic
+  OBJECT_FILE_DIR = api\CMakeFiles\api.dir\samples\trigger
+  TARGET_COMPILE_PDB = api\CMakeFiles\api.dir\api.pdb
+  TARGET_PDB = api\api.pdb
+
+build api\CMakeFiles\api.dir\src\Done\aabb.cc.obj: CXX_COMPILER__api_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\src\Done\aabb.cc || cmake_object_order_depends_target_api
+  DEFINES = -DTRACY_ENABLE -DTRACY_ENABLE=1
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include\SDL2 -external:W0
+  OBJECT_DIR = api\CMakeFiles\api.dir
+  OBJECT_FILE_DIR = api\CMakeFiles\api.dir\src\Done
+  TARGET_COMPILE_PDB = api\CMakeFiles\api.dir\api.pdb
+  TARGET_PDB = api\api.pdb
+
+build api\CMakeFiles\api.dir\src\Done\physical_circle.cc.obj: CXX_COMPILER__api_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\src\Done\physical_circle.cc || cmake_object_order_depends_target_api
+  DEFINES = -DTRACY_ENABLE -DTRACY_ENABLE=1
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include\SDL2 -external:W0
+  OBJECT_DIR = api\CMakeFiles\api.dir
+  OBJECT_FILE_DIR = api\CMakeFiles\api.dir\src\Done
+  TARGET_COMPILE_PDB = api\CMakeFiles\api.dir\api.pdb
+  TARGET_PDB = api\api.pdb
+
+build api\CMakeFiles\api.dir\src\Done\physical_polygon.cc.obj: CXX_COMPILER__api_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\src\Done\physical_polygon.cc || cmake_object_order_depends_target_api
+  DEFINES = -DTRACY_ENABLE -DTRACY_ENABLE=1
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include\SDL2 -external:W0
+  OBJECT_DIR = api\CMakeFiles\api.dir
+  OBJECT_FILE_DIR = api\CMakeFiles\api.dir\src\Done
+  TARGET_COMPILE_PDB = api\CMakeFiles\api.dir\api.pdb
+  TARGET_PDB = api\api.pdb
+
+build api\CMakeFiles\api.dir\src\Graphic\drawable_circle.cc.obj: CXX_COMPILER__api_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\src\Graphic\drawable_circle.cc || cmake_object_order_depends_target_api
+  DEFINES = -DTRACY_ENABLE -DTRACY_ENABLE=1
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include\SDL2 -external:W0
+  OBJECT_DIR = api\CMakeFiles\api.dir
+  OBJECT_FILE_DIR = api\CMakeFiles\api.dir\src\Graphic
+  TARGET_COMPILE_PDB = api\CMakeFiles\api.dir\api.pdb
+  TARGET_PDB = api\api.pdb
+
+build api\CMakeFiles\api.dir\src\Graphic\drawable_polygon.cc.obj: CXX_COMPILER__api_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\src\Graphic\drawable_polygon.cc || cmake_object_order_depends_target_api
+  DEFINES = -DTRACY_ENABLE -DTRACY_ENABLE=1
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include\SDL2 -external:W0
+  OBJECT_DIR = api\CMakeFiles\api.dir
+  OBJECT_FILE_DIR = api\CMakeFiles\api.dir\src\Graphic
+  TARGET_COMPILE_PDB = api\CMakeFiles\api.dir\api.pdb
+  TARGET_PDB = api\api.pdb
+
+build api\CMakeFiles\api.dir\src\Graphic\drawable_shape.cc.obj: CXX_COMPILER__api_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\src\Graphic\drawable_shape.cc || cmake_object_order_depends_target_api
+  DEFINES = -DTRACY_ENABLE -DTRACY_ENABLE=1
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include\SDL2 -external:W0
+  OBJECT_DIR = api\CMakeFiles\api.dir
+  OBJECT_FILE_DIR = api\CMakeFiles\api.dir\src\Graphic
   TARGET_COMPILE_PDB = api\CMakeFiles\api.dir\api.pdb
   TARGET_PDB = api\api.pdb
 
 build api\CMakeFiles\api.dir\src\Physic\contact_listener.cc.obj: CXX_COMPILER__api_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\src\Physic\contact_listener.cc || cmake_object_order_depends_target_api
-  DEFINES = -DTRACY_ENABLE -DTRACY_ENABLE=1
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
-  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include\SDL2 -external:W0
-  OBJECT_DIR = api\CMakeFiles\api.dir
-  OBJECT_FILE_DIR = api\CMakeFiles\api.dir\src\Physic
-  TARGET_COMPILE_PDB = api\CMakeFiles\api.dir\api.pdb
-  TARGET_PDB = api\api.pdb
-
-build api\CMakeFiles\api.dir\src\Physic\math_for_circles.cc.obj: CXX_COMPILER__api_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\src\Physic\math_for_circles.cc || cmake_object_order_depends_target_api
-  DEFINES = -DTRACY_ENABLE -DTRACY_ENABLE=1
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
-  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include\SDL2 -external:W0
-  OBJECT_DIR = api\CMakeFiles\api.dir
-  OBJECT_FILE_DIR = api\CMakeFiles\api.dir\src\Physic
-  TARGET_COMPILE_PDB = api\CMakeFiles\api.dir\api.pdb
-  TARGET_PDB = api\api.pdb
-
-build api\CMakeFiles\api.dir\src\Physic\polygon.cc.obj: CXX_COMPILER__api_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\src\Physic\polygon.cc || cmake_object_order_depends_target_api
-  DEFINES = -DTRACY_ENABLE -DTRACY_ENABLE=1
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
-  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include\SDL2 -external:W0
-  OBJECT_DIR = api\CMakeFiles\api.dir
-  OBJECT_FILE_DIR = api\CMakeFiles\api.dir\src\Physic
-  TARGET_COMPILE_PDB = api\CMakeFiles\api.dir\api.pdb
-  TARGET_PDB = api\api.pdb
-
-build api\CMakeFiles\api.dir\src\Physic\shape.cc.obj: CXX_COMPILER__api_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\src\Physic\shape.cc || cmake_object_order_depends_target_api
   DEFINES = -DTRACY_ENABLE -DTRACY_ENABLE=1
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
   INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include\SDL2 -external:W0
@@ -465,7 +492,7 @@ build api\CMakeFiles\api.dir\src\windows.cc.obj: CXX_COMPILER__api_unscanned_Rel
 #############################################
 # Link the static library api\api.lib
 
-build api\api.lib: CXX_STATIC_LIBRARY_LINKER__api_RelWithDebInfo api\CMakeFiles\api.dir\src\Physic\aabb.cc.obj api\CMakeFiles\api.dir\src\Physic\circle.cc.obj api\CMakeFiles\api.dir\src\Physic\contact_listener.cc.obj api\CMakeFiles\api.dir\src\Physic\math_for_circles.cc.obj api\CMakeFiles\api.dir\src\Physic\polygon.cc.obj api\CMakeFiles\api.dir\src\Physic\shape.cc.obj api\CMakeFiles\api.dir\src\Physic\trigger.cc.obj api\CMakeFiles\api.dir\src\empty.cc.obj api\CMakeFiles\api.dir\src\game_engine.cc.obj api\CMakeFiles\api.dir\src\planet.cc.obj api\CMakeFiles\api.dir\src\rectangle.cc.obj api\CMakeFiles\api.dir\src\renderer.cc.obj api\CMakeFiles\api.dir\src\windows.cc.obj || core\core.lib
+build api\api.lib: CXX_STATIC_LIBRARY_LINKER__api_RelWithDebInfo api\CMakeFiles\api.dir\samples\planet\planet_sample.cc.obj api\CMakeFiles\api.dir\samples\trigger\trigger_sample.cc.obj api\CMakeFiles\api.dir\src\Done\aabb.cc.obj api\CMakeFiles\api.dir\src\Done\physical_circle.cc.obj api\CMakeFiles\api.dir\src\Done\physical_polygon.cc.obj api\CMakeFiles\api.dir\src\Graphic\drawable_circle.cc.obj api\CMakeFiles\api.dir\src\Graphic\drawable_polygon.cc.obj api\CMakeFiles\api.dir\src\Graphic\drawable_shape.cc.obj api\CMakeFiles\api.dir\src\Physic\contact_listener.cc.obj api\CMakeFiles\api.dir\src\Physic\trigger.cc.obj api\CMakeFiles\api.dir\src\empty.cc.obj api\CMakeFiles\api.dir\src\game_engine.cc.obj api\CMakeFiles\api.dir\src\planet.cc.obj api\CMakeFiles\api.dir\src\rectangle.cc.obj api\CMakeFiles\api.dir\src\renderer.cc.obj api\CMakeFiles\api.dir\src\windows.cc.obj || core\core.lib
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = api\CMakeFiles\api.dir
@@ -484,16 +511,7 @@ build api\api.lib: CXX_STATIC_LIBRARY_LINKER__api_RelWithDebInfo api\CMakeFiles\
 
 build cmake_object_order_depends_target_api_test: phony || cmake_object_order_depends_target_api cmake_object_order_depends_target_core
 
-build api\CMakeFiles\api_test.dir\test\test_math_circle.cc.obj: CXX_COMPILER__api_test_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\test\test_math_circle.cc || cmake_object_order_depends_target_api_test
-  DEFINES = -DGTEST_LINKED_AS_SHARED_LIBRARY=1 -DTRACY_ENABLE -DTRACY_ENABLE=1
-  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
-  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include\SDL2 -external:W0
-  OBJECT_DIR = api\CMakeFiles\api_test.dir
-  OBJECT_FILE_DIR = api\CMakeFiles\api_test.dir\test
-  TARGET_COMPILE_PDB = api\CMakeFiles\api_test.dir\
-  TARGET_PDB = api\api_test.pdb
-
-build api\CMakeFiles\api_test.dir\test\test_aabb.cc.obj: CXX_COMPILER__api_test_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\test\test_aabb.cc || cmake_object_order_depends_target_api_test
+build api\CMakeFiles\api_test.dir\test\test_collision_trigger.cc.obj: CXX_COMPILER__api_test_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\test\test_collision_trigger.cc || cmake_object_order_depends_target_api_test
   DEFINES = -DGTEST_LINKED_AS_SHARED_LIBRARY=1 -DTRACY_ENABLE -DTRACY_ENABLE=1
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
   INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include\SDL2 -external:W0
@@ -510,7 +528,7 @@ build api\CMakeFiles\api_test.dir\test\test_aabb.cc.obj: CXX_COMPILER__api_test_
 #############################################
 # Link the executable api\api_test.exe
 
-build api\api_test.exe: CXX_EXECUTABLE_LINKER__api_test_RelWithDebInfo api\CMakeFiles\api_test.dir\test\test_math_circle.cc.obj api\CMakeFiles\api_test.dir\test\test_aabb.cc.obj | api\api.lib core\core.lib vcpkg_installed\x64-windows\lib\manual-link\gtest_main.lib vcpkg_installed\x64-windows\lib\TracyClient.lib vcpkg_installed\x64-windows\lib\manual-link\SDL2main.lib vcpkg_installed\x64-windows\lib\SDL2.lib vcpkg_installed\x64-windows\lib\gtest.lib || api\api.lib core\core.lib
+build api\api_test.exe: CXX_EXECUTABLE_LINKER__api_test_RelWithDebInfo api\CMakeFiles\api_test.dir\test\test_collision_trigger.cc.obj | api\api.lib core\core.lib vcpkg_installed\x64-windows\lib\manual-link\gtest_main.lib vcpkg_installed\x64-windows\lib\TracyClient.lib vcpkg_installed\x64-windows\lib\manual-link\SDL2main.lib vcpkg_installed\x64-windows\lib\SDL2.lib vcpkg_installed\x64-windows\lib\gtest.lib || api\api.lib core\core.lib
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = api\api.lib  core\core.lib  vcpkg_installed\x64-windows\lib\manual-link\gtest_main.lib  vcpkg_installed\x64-windows\lib\TracyClient.lib  vcpkg_installed\x64-windows\lib\manual-link\SDL2main.lib  shell32.lib  vcpkg_installed\x64-windows\lib\SDL2.lib  vcpkg_installed\x64-windows\lib\gtest.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

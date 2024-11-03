@@ -53,9 +53,9 @@ void Planet::Update(const float delta_time, const float sun_mass, const core::Ve
 }
 
 void Planet::SetRandomColor() {
-  color_[0] = common::GenerateAnIntNumber(255);
-  color_[1] = common::GenerateAnIntNumber(255);
-  color_[2] = common::GenerateAnIntNumber(255);
-  color_[3] = 255;
+  for(auto& c : color_)
+  {
+    c = common::GenerateRandomNumber(0, 255);
+  }
 }
 

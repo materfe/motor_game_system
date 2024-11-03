@@ -1,12 +1,11 @@
-file(GLOB_RECURSE SRC_FILES src/*.cc)
-file(GLOB_RECURSE HEADER_FILES include/*.h)
+file(GLOB_RECURSE SRC_FILES src/*.cc samples/*.cc)
+file(GLOB_RECURSE HEADER_FILES include/*.h samples/*.h)
 
 add_library(api ${SRC_FILES} ${HEADER_FILES})
 target_include_directories(api PUBLIC include/)
 
 add_executable(api_test
-        test/test_math_circle.cc
-        test/test_aabb.cc)
+        test/test_collision_trigger.cc)
 
 
 target_link_libraries(api PRIVATE core)

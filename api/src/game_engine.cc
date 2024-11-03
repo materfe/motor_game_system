@@ -10,23 +10,18 @@
 #include <tracy/TracyC.h>
 #endif
 
-void GameEngine::SetVariablesToNothing() {
-  delta_time_ = 0.0f;
-  last_time_ = 0.0f;
-  current_time_ = 0.0f;
-  window_ = nullptr;
-  renderer_ = nullptr;
-  running_ = true;
-}
-
 void GameEngine::SetArrayForMaxElements() {
+#ifdef TRACY_ENABLE
+  ZoneScoped;
+#endif
+
   for (int i = 0; i < max_array_size; i++) {
-    const auto random_number_radius = common::GenerateAFloatNumber(50.0f);
-    const auto random_number_position_x = common::GenerateAFloatNumber(800.0f);
-    const auto random_number_position_y = common::GenerateAFloatNumber(800.0f);
-    const auto random_number_mass = common::GenerateAFloatNumber(2e20f);
-    const auto random_number_velocity_x = common::GenerateAFloatNumber(200.0f);
-    const auto random_number_velocity_y = common::GenerateAFloatNumber(200.0f);
+    const auto random_number_radius = common::GenerateRandomNumber(0.0f, 50.0f);
+    const auto random_number_position_x = common::GenerateRandomNumber(0.0f, 800.0f);
+    const auto random_number_position_y = common::GenerateRandomNumber(0.0f, 800.0f);
+    const auto random_number_mass = common::GenerateRandomNumber(0.0f, 2e20f);
+    const auto random_number_velocity_x = common::GenerateRandomNumber(0.0f, 200.0f);
+    const auto random_number_velocity_y = common::GenerateRandomNumber(0.0f, 200.0f);
     const auto speed_orientation = static_cast<float>(std::pow(-1, i));
 
     planets_[i] = Planet(random_number_radius, core::Vec2<float> (0.0f, 100.0f),
@@ -41,7 +36,6 @@ GameEngine::GameEngine(const char *title, const int width, const int height)
 #ifdef TRACY_ENABLE
   TracyCZoneN(const constructor, "contr", true)
 #endif
-  SetVariablesToNothing();
   Begin();
   SetArrayForMaxElements();
 

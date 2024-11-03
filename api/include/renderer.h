@@ -7,7 +7,7 @@
 
 #include <SDL2/SDL.h>
 #include "window.h"
-#include "Physic/circle.h"
+#include "Graphic/drawable_circle.h"
 #include "planet.h"
 #include "rectangle.h"
 

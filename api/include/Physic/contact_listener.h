@@ -22,7 +22,7 @@ class ContactListener {
 
  public:
   // Method to update contacts between two AABBs
-  void updateContact(const AABB &aabb1, const AABB &aabb2, Trigger &trigger);
+  //void updateContact(const AABB &aabb1, const AABB &aabb2, Trigger &trigger);
 };
 
 #endif //GAME_MOTOR_ENGINE_API_SRC_PHYSIC_CONTACT_LISTENER_H_
