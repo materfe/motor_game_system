@@ -9,6 +9,7 @@ C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-debug/
 C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-debug/core/CMakeFiles/rebuild_cache.dir
 C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-debug/api/CMakeFiles/api.dir
 C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-debug/api/CMakeFiles/api_test.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-debug/api/CMakeFiles/trigger_sample.dir
 C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-debug/api/CMakeFiles/test.dir
 C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-debug/api/CMakeFiles/edit_cache.dir
 C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-debug/api/CMakeFiles/rebuild_cache.dir

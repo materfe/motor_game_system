@@ -7,9 +7,9 @@
 
 #include <SDL2/SDL.h>
 #include "window.h"
-#include "Graphic/drawable_circle.h"
 #include "planet.h"
 #include "rectangle.h"
+#include "Physic/physical_circle.h"
 
 class Renderer {
  private :
@@ -26,6 +26,7 @@ class Renderer {
   //drawing methods
   void DrawRectangle(const Rectangle &rect) const;
   void DrawCornersOfPlanet(const Planet &planet) const;
+  void DrawCornersOfCircle(const PhysicalCircle &circle) const;
   void DrawFullPlanets(const Planet& other_planet) const;
 
   void ClearScreen() const;

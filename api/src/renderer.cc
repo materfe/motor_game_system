@@ -99,6 +99,42 @@ void Renderer::DrawFullPlanets(const Planet &other_planet) const {
     SDL_Log("%s\n", SDL_GetError());
   }
 }
+void Renderer::DrawCornersOfCircle(const PhysicalCircle &circle) const {
+  int offset_x = 0;
+  int offset_y = static_cast<int>(circle.GetRadius());
+  int d = 1 - static_cast<int>(circle.GetRadius());
+
+  auto draw_pixel = [this](const int x, const int y) {
+    SDL_RenderDrawPoint(renderer_, x, y);
+  };
+
+  const auto x_in_int = static_cast<int>(circle.GetPosition().x_);
+  const auto y_in_int = static_cast<int>(circle.GetPosition().y_);
+
+  auto draw_circle_points = [draw_pixel, x_in_int, y_in_int](const int dx, const int dy) {
+    draw_pixel(x_in_int - dx, y_in_int + dy);
+    draw_pixel(x_in_int + dx, y_in_int - dy);
+    draw_pixel(x_in_int - dx, y_in_int - dy);
+    draw_pixel(x_in_int + dx, y_in_int + dy);
+    draw_pixel(x_in_int + dy, y_in_int + dx);
+    draw_pixel(x_in_int - dy, y_in_int + dx);
+    draw_pixel(x_in_int + dy, y_in_int - dx);
+    draw_pixel(x_in_int - dy, y_in_int - dx);
+  };
+
+  draw_circle_points(offset_x, offset_y);
+
+  while (offset_x < offset_y) {
+    if (d < 0) {
+      d += 2 * offset_x + 3;
+    } else {
+      d += 2 * (offset_x - offset_y) + 5;
+      --offset_y;
+    }
+    ++offset_x;
+    draw_circle_points(offset_x, offset_y);
+  }
+}
 
 //sf::clear
 void Renderer::ClearScreen() const {

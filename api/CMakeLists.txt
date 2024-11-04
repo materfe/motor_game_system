@@ -7,9 +7,12 @@ target_include_directories(api PUBLIC include/)
 add_executable(api_test
         test/test_collision_trigger.cc)
 
+add_executable(trigger_sample samples/trigger/trigger_sample.cc)
 
 target_link_libraries(api PRIVATE core)
 target_link_libraries(api_test PRIVATE api)
+target_link_libraries(trigger_sample PRIVATE api)
+target_link_libraries(trigger_sample PRIVATE core)
 
 if(ENABLE_PROFILING)
     target_link_libraries(api PUBLIC Tracy::TracyClient)

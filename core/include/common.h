@@ -15,7 +15,7 @@ namespace common {
 #define PI 3.14159265358979323846f
 
 //will compare your value - your target to epsilon -> if lower -> return true
-bool AproximateZeroForFloats(const float value) {
+static bool AproximateZeroForFloats(const float value) {
 #ifdef TRACY_ENABLE
   ZoneScoped;
 #endif
