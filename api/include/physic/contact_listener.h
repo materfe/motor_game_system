@@ -23,6 +23,11 @@ class ContactListener {
  public:
   // Method to update contacts between two AABBs
   void updateContact(PhysicalCircle &circle_1, PhysicalCircle &circle_2);
+
+
+  //GET
+  [[nodiscard]] std::unordered_set<std::pair<const PhysicalCircle *, const PhysicalCircle *>, CirclesPairHash> GetSet() const
+  {return colliding_pairs_;};
 };
 
 #endif //GAME_MOTOR_ENGINE_API_SRC_PHYSIC_CONTACT_LISTENER_H_

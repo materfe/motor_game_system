@@ -5,7 +5,8 @@ add_library(api ${SRC_FILES} ${HEADER_FILES})
 target_include_directories(api PUBLIC include/)
 
 add_executable(api_test
-        test/test_collision_trigger.cc)
+        test/test_collision_trigger.cc
+        test/test_contact_listener.cc)
 
 add_executable(trigger_sample samples/trigger/trigger_sample.cc)
 

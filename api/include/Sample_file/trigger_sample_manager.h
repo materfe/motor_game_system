@@ -12,6 +12,7 @@
 #include "Physic/aabb.h"
 #include "Physic/physical_circle.h"
 #include "Physic/contact_listener.h"
+#include "Physic/quadtree.h"
 #include <chrono>
 #include <array>
 
@@ -35,6 +36,8 @@ class SampleEngine final {
   Window *window_ = nullptr;
   Renderer *renderer_ = nullptr;
   ContactListener listener_;
+  AABB world_bounds_;
+  Quadtree quad_tree_;
 
  public:
   // Initialize the game engine

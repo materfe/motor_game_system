@@ -16,7 +16,7 @@ void SampleEngine::SetArrayForMaxElements() {
 #endif
 
   for (int i = 0; i < max_array_size; i++) {
-    const auto random_number_radius = common::GenerateRandomNumber(0.0f, 50.0f);
+    const auto random_number_radius = common::GenerateRandomNumber(5.0f, 50.0f);
     const auto random_number_position_x = common::GenerateRandomNumber(0.0f, 800.0f);
     const auto random_number_position_y = common::GenerateRandomNumber(0.0f, 800.0f);
     const auto random_number_mass = common::GenerateRandomNumber(0.0f, 2e20f);
@@ -25,14 +25,16 @@ void SampleEngine::SetArrayForMaxElements() {
     //const auto speed_orientation = static_cast<float>(std::pow(-1, i));
 
     circles_[i] = PhysicalCircle(core::Vec2<float>(random_number_position_x, random_number_position_y),
-        core::Vec2<float>(random_number_velocity_x, random_number_velocity_y),
-            random_number_mass, random_number_radius);
+                                 core::Vec2<float>(random_number_velocity_x, random_number_velocity_y),
+                                 random_number_mass, random_number_radius);
   }
 }
 
 //warning because variables implemented in SetVariable other than in constructor
 SampleEngine::SampleEngine(const char *title, const int width, const int height)
-    : window_height_(height), window_width_(width), window_title_(title) {
+    : window_height_(height), window_width_(width), window_title_(title),
+    world_bounds_(0, 0, window_width_, window_height_),
+    quad_tree_(0, world_bounds_) {
 #ifdef TRACY_ENABLE
   TracyCZoneN(const constructor, "contr", true)
 #endif
@@ -91,6 +93,25 @@ void SampleEngine::Update() {
       }
     }
 
+
+//    // Insert circles into the quadtree
+//    for (auto& circle : circles_) {
+//      quad_tree_.Insert(&circle);
+//    }
+//
+//    // Check for collisions
+//    for (auto& circle : circles_) {
+//      std::vector<PhysicalCircle*> potentialCollisions;
+//      quad_tree_.Retrieve(potentialCollisions, &circle);
+//
+//      for (auto* otherCircle : potentialCollisions) {
+//        if (&circle != otherCircle && Physic::AreTwoCirclesColliding(circle, *otherCircle)) {
+//          listener_.updateContact(circle, *otherCircle);
+//        }
+//      }
+//    }
+
+
 #ifdef TRACY_ENABLE
     TracyCZoneN(const update, "update", true)
 #endif
@@ -98,12 +119,14 @@ void SampleEngine::Update() {
     for (auto &_ : circles_) {
       _.Update(delta_time_sec, window_width_, window_height_);
     }
+
     // Update the collider
     for (std::size_t i = 0; i < circles_.size(); i++) {
-      for(std::size_t j = 0; j < circles_.size(); j++)
-      {
-        std::size_t index = (j + 1) % circles_.size();
-        listener_.updateContact(circles_[i], circles_[index]);
+      for (std::size_t j = 0; j < circles_.size(); j++) {
+        if (j != i - 1) {
+          std::size_t index = (j + 1) % circles_.size();
+          listener_.updateContact(circles_[i], circles_[index]);
+        }
       }
     }
 #ifdef TRACY_ENABLE
@@ -126,12 +149,10 @@ void SampleEngine::Update() {
     TracyCZoneN(const draw, "draw", true)
 #endif
     for (auto &_ : circles_) {
-      if(_.GetCollider().GetIsTriggerActivated())
-      {
+      if (_.GetCollider().GetIsTriggerActivated()) {
         renderer_->SetDrawColor(255, 0, 0, 255);
         renderer_->DrawCornersOfCircle(_);
-      } else
-      {
+      } else {
         renderer_->SetDrawColor(255, 255, 0, 255);
         renderer_->DrawCornersOfCircle(_);
       }
@@ -154,7 +175,6 @@ void SampleEngine::Update() {
 #endif
   }
 }
-
 
 void SampleEngine::End() {
   std::cout << "nooooo\n";
