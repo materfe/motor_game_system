@@ -1,0 +1,2 @@
+#pragma code_page(65001)
+1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/api/CMakeFiles/planet_sample.dir/embed.manifest"

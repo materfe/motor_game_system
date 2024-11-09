@@ -48,9 +48,5 @@ struct FourVec2 {
   [[nodiscard]] std::array<T, 4> GetX() const {return x;}
   [[nodiscard]] std::array<T, 4> GetY() const {return y;}
 };
-template<typename T>
-FourVec2<T> FourVec2<T>::operator*(T other) const {
-  return FourVec2<T>();
-}
 }
 #endif //GAME_MOTOR_ENGINE_CORE_INCLUDE_FOURVEC2_H_

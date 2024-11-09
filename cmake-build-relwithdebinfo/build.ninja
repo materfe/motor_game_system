@@ -403,7 +403,7 @@ build api\CMakeFiles\api.dir\src\Physic\quadtree.cc.obj: CXX_COMPILER__api_unsca
   TARGET_COMPILE_PDB = api\CMakeFiles\api.dir\api.pdb
   TARGET_PDB = api\api.pdb
 
-build api\CMakeFiles\api.dir\src\Sample_file\game_engine.cc.obj: CXX_COMPILER__api_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\src\Sample_file\game_engine.cc || cmake_object_order_depends_target_api
+build api\CMakeFiles\api.dir\src\Sample_file\planet_sample_manager.cc.obj: CXX_COMPILER__api_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\src\Sample_file\planet_sample_manager.cc || cmake_object_order_depends_target_api
   DEFINES = -DTRACY_ENABLE -DTRACY_ENABLE=1
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
   INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include\SDL2 -external:W0
@@ -474,7 +474,7 @@ build api\CMakeFiles\api.dir\src\windows.cc.obj: CXX_COMPILER__api_unscanned_Rel
 #############################################
 # Link the static library api\api.lib
 
-build api\api.lib: CXX_STATIC_LIBRARY_LINKER__api_RelWithDebInfo api\CMakeFiles\api.dir\samples\planet\planet_sample.cc.obj api\CMakeFiles\api.dir\samples\trigger\trigger_sample.cc.obj api\CMakeFiles\api.dir\src\Physic\aabb.cc.obj api\CMakeFiles\api.dir\src\Physic\contact_listener.cc.obj api\CMakeFiles\api.dir\src\Physic\physical_circle.cc.obj api\CMakeFiles\api.dir\src\Physic\physical_polygon.cc.obj api\CMakeFiles\api.dir\src\Physic\quadtree.cc.obj api\CMakeFiles\api.dir\src\Sample_file\game_engine.cc.obj api\CMakeFiles\api.dir\src\Sample_file\trigger_sample_manager.cc.obj api\CMakeFiles\api.dir\src\empty.cc.obj api\CMakeFiles\api.dir\src\planet.cc.obj api\CMakeFiles\api.dir\src\rectangle.cc.obj api\CMakeFiles\api.dir\src\renderer.cc.obj api\CMakeFiles\api.dir\src\windows.cc.obj || core\core.lib
+build api\api.lib: CXX_STATIC_LIBRARY_LINKER__api_RelWithDebInfo api\CMakeFiles\api.dir\samples\planet\planet_sample.cc.obj api\CMakeFiles\api.dir\samples\trigger\trigger_sample.cc.obj api\CMakeFiles\api.dir\src\Physic\aabb.cc.obj api\CMakeFiles\api.dir\src\Physic\contact_listener.cc.obj api\CMakeFiles\api.dir\src\Physic\physical_circle.cc.obj api\CMakeFiles\api.dir\src\Physic\physical_polygon.cc.obj api\CMakeFiles\api.dir\src\Physic\quadtree.cc.obj api\CMakeFiles\api.dir\src\Sample_file\planet_sample_manager.cc.obj api\CMakeFiles\api.dir\src\Sample_file\trigger_sample_manager.cc.obj api\CMakeFiles\api.dir\src\empty.cc.obj api\CMakeFiles\api.dir\src\planet.cc.obj api\CMakeFiles\api.dir\src\rectangle.cc.obj api\CMakeFiles\api.dir\src\renderer.cc.obj api\CMakeFiles\api.dir\src\windows.cc.obj || core\core.lib
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = api\CMakeFiles\api.dir
@@ -569,6 +569,44 @@ build api\trigger_sample.exe: CXX_EXECUTABLE_LINKER__trigger_sample_RelWithDebIn
   TARGET_IMPLIB = api\trigger_sample.lib
   TARGET_PDB = api\trigger_sample.pdb
 
+# =============================================================================
+# Object build statements for EXECUTABLE target planet_sample
+
+
+#############################################
+# Order-only phony target for planet_sample
+
+build cmake_object_order_depends_target_planet_sample: phony || cmake_object_order_depends_target_api cmake_object_order_depends_target_core
+
+build api\CMakeFiles\planet_sample.dir\samples\planet\planet_sample.cc.obj: CXX_COMPILER__planet_sample_unscanned_RelWithDebInfo C$:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\samples\planet\planet_sample.cc || cmake_object_order_depends_target_planet_sample
+  DEFINES = -DTRACY_ENABLE -DTRACY_ENABLE=1
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -std:c++20 -MD
+  INCLUDES = -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\api\include -IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\core\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include -external:IC:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\vcpkg_installed\x64-windows\include\SDL2 -external:W0
+  OBJECT_DIR = api\CMakeFiles\planet_sample.dir
+  OBJECT_FILE_DIR = api\CMakeFiles\planet_sample.dir\samples\planet
+  TARGET_COMPILE_PDB = api\CMakeFiles\planet_sample.dir\
+  TARGET_PDB = api\planet_sample.pdb
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target planet_sample
+
+
+#############################################
+# Link the executable api\planet_sample.exe
+
+build api\planet_sample.exe: CXX_EXECUTABLE_LINKER__planet_sample_RelWithDebInfo api\CMakeFiles\planet_sample.dir\samples\planet\planet_sample.cc.obj | api\api.lib core\core.lib vcpkg_installed\x64-windows\lib\TracyClient.lib vcpkg_installed\x64-windows\lib\manual-link\SDL2main.lib vcpkg_installed\x64-windows\lib\SDL2.lib || api\api.lib core\core.lib
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD
+  LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
+  LINK_LIBRARIES = api\api.lib  core\core.lib  vcpkg_installed\x64-windows\lib\TracyClient.lib  vcpkg_installed\x64-windows\lib\manual-link\SDL2main.lib  shell32.lib  vcpkg_installed\x64-windows\lib\SDL2.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  OBJECT_DIR = api\CMakeFiles\planet_sample.dir
+  POST_BUILD = C:\Windows\system32\cmd.exe /C "cd /D C:\Users\Mat\special_repo\game_motor_system\motor_game_system\cmake-build-relwithdebinfo\api && C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/vcpkg/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/api/planet_sample.exe -installedDir C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/vcpkg_installed/x64-windows/bin -OutVariable out"
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = api\CMakeFiles\planet_sample.dir\
+  TARGET_FILE = api\planet_sample.exe
+  TARGET_IMPLIB = api\planet_sample.lib
+  TARGET_PDB = api\planet_sample.pdb
+
 
 #############################################
 # Utility command for test
@@ -625,6 +663,10 @@ build core_test.exe: phony core\core_test.exe
 
 build main: phony main.exe
 
+build planet_sample: phony api\planet_sample.exe
+
+build planet_sample.exe: phony api\planet_sample.exe
+
 build trigger_sample: phony api\trigger_sample.exe
 
 build trigger_sample.exe: phony api\trigger_sample.exe
@@ -644,7 +686,7 @@ build all: phony main.exe core\all api\all
 #############################################
 # Folder: C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/api
 
-build api\all: phony api\api.lib api\api_test.exe api\trigger_sample.exe
+build api\all: phony api\api.lib api\api_test.exe api\trigger_sample.exe api\planet_sample.exe
 
 # =============================================================================
 

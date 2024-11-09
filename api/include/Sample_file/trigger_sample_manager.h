@@ -37,7 +37,6 @@ class SampleEngine final {
   Renderer *renderer_ = nullptr;
   ContactListener listener_;
   AABB world_bounds_;
-  Quadtree quad_tree_;
 
  public:
   // Initialize the game engine
@@ -55,6 +54,8 @@ class SampleEngine final {
 
   // Cleanup and end the game
   void End();
+  void BroadPhase(const float delta_time_sec);
+  void NarrowPhase();
 };
 
 
