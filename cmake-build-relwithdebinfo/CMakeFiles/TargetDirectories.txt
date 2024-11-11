@@ -11,6 +11,7 @@ C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwit
 C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/api/CMakeFiles/api_test.dir
 C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/api/CMakeFiles/trigger_sample.dir
 C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/api/CMakeFiles/planet_sample.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/api/CMakeFiles/collision_sample.dir
 C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/api/CMakeFiles/test.dir
 C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/api/CMakeFiles/edit_cache.dir
 C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo/api/CMakeFiles/rebuild_cache.dir

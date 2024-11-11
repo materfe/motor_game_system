@@ -10,6 +10,7 @@ add_executable(api_test
 
 add_executable(trigger_sample samples/trigger/trigger_sample.cc)
 add_executable(planet_sample samples/planet/planet_sample.cc)
+add_executable(collision_sample samples/collision/collision_sample.cc)
 
 target_link_libraries(api PRIVATE core)
 target_link_libraries(api_test PRIVATE api)
@@ -17,6 +18,8 @@ target_link_libraries(trigger_sample PRIVATE api)
 target_link_libraries(trigger_sample PRIVATE core)
 target_link_libraries(planet_sample PRIVATE api)
 target_link_libraries(planet_sample PRIVATE core)
+target_link_libraries(collision_sample PRIVATE api)
+target_link_libraries(collision_sample PRIVATE core)
 
 if(ENABLE_PROFILING)
     target_link_libraries(api PUBLIC Tracy::TracyClient)

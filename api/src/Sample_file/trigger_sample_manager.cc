@@ -2,15 +2,16 @@
 // Created by Mat on 04.11.2024.
 //
 
-#include "Sample_file/trigger_sample_manager.h"
 #include <iostream>
+#include "Sample_file/trigger_sample_manager.h"
+#include "physic/delta_for_collisions.h"
 
 #ifdef TRACY_ENABLE
 #include "tracy/Tracy.hpp"
 #include "tracy/TracyC.h"
 #endif
 
-void SampleEngine::SetArrayForMaxElements() {
+void TriggerCollisionEngine::SetArrayForMaxElements() {
 #ifdef TRACY_ENABLE
   ZoneScoped;
 #endif
@@ -31,9 +32,8 @@ void SampleEngine::SetArrayForMaxElements() {
 }
 
 //warning because variables implemented in SetVariable other than in constructor
-SampleEngine::SampleEngine(const char *title, const int width, const int height)
-    : window_height_(height), window_width_(width), window_title_(title),
-    world_bounds_(0, 0, window_width_, window_height_) {
+TriggerCollisionEngine::TriggerCollisionEngine(const char *title, const int width, const int height)
+    : window_height_(height), window_width_(width), window_title_(title){
 #ifdef TRACY_ENABLE
   TracyCZoneN(const constructor, "contr", true)
 #endif
@@ -46,7 +46,7 @@ SampleEngine::SampleEngine(const char *title, const int width, const int height)
 
 }
 
-void SampleEngine::Begin() {
+void TriggerCollisionEngine::Begin() {
 #ifdef TRACY_ENABLE
   ZoneScoped;
 #endif
@@ -75,7 +75,7 @@ void SampleEngine::Begin() {
   last_time_ = SDL_GetTicks();
 }
 
-void SampleEngine::Update() {
+void TriggerCollisionEngine::Update() {
   SDL_Event event;
 
   while (running_) {
@@ -117,7 +117,7 @@ void SampleEngine::Update() {
 #endif
   }
 }
-void SampleEngine::NarrowPhase() {
+void TriggerCollisionEngine::NarrowPhase() {
 #ifdef TRACY_ENABLE
   ZoneScoped;
 #endif
@@ -132,7 +132,7 @@ void SampleEngine::NarrowPhase() {
   }
 }
 
-void SampleEngine::BroadPhase(const float delta_time_sec) {// Update the circle's position
+void TriggerCollisionEngine::BroadPhase(const float delta_time_sec) {// Update the circle's position
 #ifdef TRACY_ENABLE
   ZoneScoped;
 #endif
@@ -147,13 +147,16 @@ void SampleEngine::BroadPhase(const float delta_time_sec) {// Update the circle'
       if (j != i - 1) {
         size_t index = (j + 1) % circles_.size();
         listener_.updateContact(circles_[i], circles_[index]);
+//        if(Physic::AreTwoCirclesColliding(circles_[i], circles_[index]))
+//        {
+//          Physic::ResolveCollision(circles_[i], circles_[index]);
+//        }
       }
     }
   }
 }
 
-void SampleEngine::End() {
-  std::cout << "nooooo\n";
+void TriggerCollisionEngine::End() {
   running_ = false;
   SDL_Quit();
 }

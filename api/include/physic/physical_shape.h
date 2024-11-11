@@ -24,6 +24,11 @@ class PhysicalShape
 
   //GET
   [[nodiscard]] core::Vec2<float> GetPosition() const {return position_;}
+  [[nodiscard]] core::Vec2<float>& GetVelocity() {return velocity_;}
+  [[nodiscard]] float GetMass() const {return mass_;}
+
+  //SET
+  void SetVelocity(const float x, const float y){velocity_.x_ = x, velocity_.y_ = y;}
 };
 
 

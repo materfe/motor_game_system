@@ -2,7 +2,7 @@
 // Created by Mat on 24.10.2024.
 //
 
-#include "Physic/aabb.h"
+#include "physic/aabb.h"
 
 void AABB::UpdatePos(const float min_x, const float max_x, const float min_y, const float max_y) {
   min_x_bound_ = min_x;

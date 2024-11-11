@@ -13,7 +13,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
 #ifdef TRACY_ENABLE
   TracyCZoneN(game_engine_setup, "game_engine_setup", true)
 #endif
-  SampleEngine Engine("Trigger Simulation", 1200, 800);
+  TriggerCollisionEngine Engine("Trigger Simulation", 1200, 800);
 #ifdef TRACY_ENABLE
   TracyCZoneEnd(game_engine_setup)
 #endif

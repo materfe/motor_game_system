@@ -4,10 +4,10 @@
 
 
 #include <gtest/gtest.h>
-#include "Physic/aabb.h"
-#include "Physic/physical_polygon.h"
-#include "Physic/physical_circle.h"
-#include "Physic/intersection_manager.h"
+#include "physic/aabb.h"
+#include "physic/physical_polygon.h"
+#include "physic/physical_circle.h"
+#include "physic/intersection_manager.h"
 #include <vector>
 
 TEST(trigger_collision_test_suite, two_aabb_colliding) {

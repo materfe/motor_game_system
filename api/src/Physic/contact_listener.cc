@@ -2,7 +2,7 @@
 // Created by Mat on 27.10.2024.
 //
 
-#include "Physic/contact_listener.h"
+#include "physic/contact_listener.h"
 
 void ContactListener::updateContact(PhysicalCircle &circle_1, PhysicalCircle &circle_2) {
   auto circle_pair = std::make_pair(&circle_1, &circle_2);

@@ -14,7 +14,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
 #ifdef TRACY_ENABLE
   TracyCZoneN(game_engine_setup, "game_engine_setup", true)
 #endif
-  GameEngine gameEngine("Orbit Simulation", 1200, 800);
+  PlanetSampleEngine gameEngine("Orbit Simulation", 1200, 800);
 #ifdef TRACY_ENABLE
   TracyCZoneEnd(game_engine_setup)
 #endif

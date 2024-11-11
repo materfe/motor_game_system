@@ -16,7 +16,7 @@
 constexpr static int max_array_size = 100;
 
 
-class GameEngine final {
+class PlanetSampleEngine final {
  private:
   int window_height_ = -1;
   int window_width_ = -1; //TODO those are in window class
@@ -37,9 +37,9 @@ class GameEngine final {
   void Begin();
   void SetArrayForMaxElements();
 
-  GameEngine(const char *title, int width, int height);
+  PlanetSampleEngine(const char *title, int width, int height);
 
-  ~GameEngine() {
+  ~PlanetSampleEngine() {
     End();
   }
 

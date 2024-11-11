@@ -11,8 +11,7 @@
 #include "window.h"
 #include "Physic/aabb.h"
 #include "Physic/physical_circle.h"
-#include "Physic/contact_listener.h"
-#include "Physic/quadtree.h"
+#include "physic/contact_listener.h"
 #include <chrono>
 #include <array>
 
@@ -20,7 +19,7 @@
 constexpr static int max_array_size = 10;
 
 
-class SampleEngine final {
+class TriggerCollisionEngine final {
  private:
   int window_height_ = -1;
   int window_width_ = -1; //TODO those are in window class
@@ -36,16 +35,15 @@ class SampleEngine final {
   Window *window_ = nullptr;
   Renderer *renderer_ = nullptr;
   ContactListener listener_;
-  AABB world_bounds_;
 
  public:
   // Initialize the game engine
   void Begin();
   void SetArrayForMaxElements();
 
-  SampleEngine(const char *title, int width, int height);
+  TriggerCollisionEngine(const char *title, int width, int height);
 
-  ~SampleEngine() {
+  ~TriggerCollisionEngine() {
     End();
   }
 

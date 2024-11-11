@@ -19,7 +19,7 @@ class PhysicalPolygon final : public PhysicalShape {
 
 
   //GET
-  [[nodiscard]] std::vector<core::Vec2<float>> GetVertices() const {return vertices_;}
+  [[nodiscard]] const std::vector<core::Vec2<float>> & GetVertices() const {return vertices_;}
   [[nodiscard]] AABB GetAABB() const;
 };
 

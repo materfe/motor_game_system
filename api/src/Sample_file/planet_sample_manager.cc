@@ -10,7 +10,7 @@
 #include "tracy/TracyC.h"
 #endif
 
-void GameEngine::SetArrayForMaxElements() {
+void PlanetSampleEngine::SetArrayForMaxElements() {
 #ifdef TRACY_ENABLE
   ZoneScoped;
 #endif
@@ -31,7 +31,7 @@ void GameEngine::SetArrayForMaxElements() {
 }
 
 //warning because variables implemented in SetVariable other than in constructor
-GameEngine::GameEngine(const char *title, const int width, const int height)
+PlanetSampleEngine::PlanetSampleEngine(const char *title, const int width, const int height)
     : window_height_(height), window_width_(width), window_title_(title), planets_() {
 #ifdef TRACY_ENABLE
   TracyCZoneN(const constructor, "contr", true)
@@ -45,7 +45,7 @@ GameEngine::GameEngine(const char *title, const int width, const int height)
 
 }
 
-void GameEngine::Begin() {
+void PlanetSampleEngine::Begin() {
 #ifdef TRACY_ENABLE
   ZoneScoped;
 #endif
@@ -74,7 +74,7 @@ void GameEngine::Begin() {
   last_time_ = SDL_GetTicks();
 }
 
-void GameEngine::Update() {
+void PlanetSampleEngine::Update() {
   SDL_Event event;
 
   const auto sun_mass = 80000000000000000.0f;
@@ -144,7 +144,7 @@ void GameEngine::Update() {
 #endif
   }
 }
-void GameEngine::End() {
+void PlanetSampleEngine::End() {
   running_ = false;
   SDL_Quit();
 }
