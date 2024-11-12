@@ -10,23 +10,26 @@
 #include <utility>
 
 // Helper structure for hashing a pair of AABB pointers
-struct CirclesPairHash {
-  std::size_t operator()(const std::pair<const PhysicalCircle *, const PhysicalCircle *> &pair) const {
-    return std::hash<const PhysicalCircle *>()(pair.first) ^ std::hash<const PhysicalCircle *>()(pair.second);
+struct PairHash {
+  std::size_t operator()(const std::pair<const AABB *, const AABB *> &pair) const {
+    return std::hash<const AABB *>()(pair.first) ^ std::hash<const AABB *>()(pair.second);
   }
 };
 
 class ContactListener {
  private:
-  std::unordered_set<std::pair<const PhysicalCircle *, const PhysicalCircle *>, CirclesPairHash> colliding_pairs_;
+  std::unordered_set<std::pair<const AABB *, const AABB *>, PairHash> colliding_pairs_;
 
  public:
   // Method to update contacts between two AABBs
   void updateContact(PhysicalCircle &circle_1, PhysicalCircle &circle_2);
+  void updateContact(PhysicalPolygon &poly_1, PhysicalPolygon &poly_2);
+  void updateContact(PhysicalCircle &circle, PhysicalPolygon &poly);
+  void updateContact(PhysicalPolygon &poly, PhysicalCircle &circle);
 
 
   //GET
-  [[nodiscard]] std::unordered_set<std::pair<const PhysicalCircle *, const PhysicalCircle *>, CirclesPairHash> GetSet() const
+  [[nodiscard]] std::unordered_set<std::pair<const AABB *, const AABB *>, PairHash> GetSet() const
   {return colliding_pairs_;};
 };
 

@@ -20,7 +20,7 @@ void CollisionSampleEngine::SetArrayForMaxElements() {
     const auto random_number_radius = common::GenerateRandomNumber(5.0f, 50.0f);
     const auto random_number_position_x = common::GenerateRandomNumber(0.0f, 800.0f);
     const auto random_number_position_y = common::GenerateRandomNumber(0.0f, 800.0f);
-    const auto random_number_mass = common::GenerateRandomNumber(0.0f, 2e20f);
+    //const auto random_number_mass = common::GenerateRandomNumber(0.0f, 2e20f);
     const auto random_number_velocity_x = common::GenerateRandomNumber(0.0f, 200.0f);
     const auto random_number_velocity_y = common::GenerateRandomNumber(0.0f, 200.0f);
     //const auto speed_orientation = static_cast<float>(std::pow(-1, i));
@@ -146,7 +146,6 @@ void CollisionSampleEngine::BroadPhase(const float delta_time_sec) {// Update th
     for (size_t j = 0; j < circles_.size(); j++) {
       if (j != i - 1) {
         size_t index = (j + 1) % circles_.size();
-        listener_.updateContact(circles_[i], circles_[index]);
         if(Physic::AreTwoCirclesColliding(circles_[i], circles_[index]))
         {
           Physic::ResolveCollision(circles_[i], circles_[index]);

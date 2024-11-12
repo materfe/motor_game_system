@@ -9,8 +9,8 @@
 #include "SDL2/SDL.h"
 #include "renderer.h"
 #include "window.h"
-#include "Physic/aabb.h"
-#include "Physic/physical_circle.h"
+#include "physic/aabb.h"
+#include "physic/physical_circle.h"
 #include "physic/contact_listener.h"
 #include <chrono>
 #include <array>
@@ -27,6 +27,7 @@ class TriggerCollisionEngine final {
 
   const char *window_title_ = nullptr;
   std::array<PhysicalCircle, max_array_size> circles_{};
+  std::array<PhysicalPolygon, max_array_size> polygons_{};
 
   Uint32 last_time_ = 0;
   Uint32 current_time_ = 0;
@@ -54,6 +55,9 @@ class TriggerCollisionEngine final {
   void End();
   void BroadPhase(const float delta_time_sec);
   void NarrowPhase();
+  void UpdateContactCircleCircle();
+  void UpdateContactPolyPoly();
+  void UpdateContactPolyCircle();
 };
 
 

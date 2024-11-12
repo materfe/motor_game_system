@@ -4,12 +4,22 @@
 
 #include <iostream>
 #include "Sample_file/trigger_sample_manager.h"
-#include "physic/delta_for_collisions.h"
 
 #ifdef TRACY_ENABLE
 #include "tracy/Tracy.hpp"
 #include "tracy/TracyC.h"
 #endif
+
+static const void SetVertices(std::vector<core::Vec2<float>> &vertices) {
+  vertices = {core::Vec2<float>(common::GenerateRandomNumber(0.0f, 50.0f),
+                                common::GenerateRandomNumber(0.0f, 80.0f)),
+              core::Vec2<float>(common::GenerateRandomNumber(0.0f, 50.0f),
+                                common::GenerateRandomNumber(0.0f, 80.0f)),
+              core::Vec2<float>(common::GenerateRandomNumber(0.0f, 50.0f),
+                                common::GenerateRandomNumber(0.0f, 80.0f)),
+              core::Vec2<float>(common::GenerateRandomNumber(0.0f, 50.0f),
+                                common::GenerateRandomNumber(0.0f, 80.0f))};
+}
 
 void TriggerCollisionEngine::SetArrayForMaxElements() {
 #ifdef TRACY_ENABLE
@@ -28,12 +38,17 @@ void TriggerCollisionEngine::SetArrayForMaxElements() {
     circles_[i] = PhysicalCircle(core::Vec2<float>(random_number_position_x, random_number_position_y),
                                  core::Vec2<float>(random_number_velocity_x, random_number_velocity_y),
                                  random_number_mass, random_number_radius);
+    std::vector<core::Vec2<float>> vertices{};
+    SetVertices(vertices);
+    polygons_[i] =
+        PhysicalPolygon(core::Vec2<float>(random_number_velocity_x, random_number_velocity_y), random_number_mass,
+                        vertices);
   }
 }
 
 //warning because variables implemented in SetVariable other than in constructor
 TriggerCollisionEngine::TriggerCollisionEngine(const char *title, const int width, const int height)
-    : window_height_(height), window_width_(width), window_title_(title){
+    : window_height_(height), window_width_(width), window_title_(title) {
 #ifdef TRACY_ENABLE
   TracyCZoneN(const constructor, "contr", true)
 #endif
@@ -94,14 +109,11 @@ void TriggerCollisionEngine::Update() {
 
     BroadPhase(delta_time_sec);
 
-
-
     renderer_->SetDrawColor(0, 0, 0, 255); //black color
     renderer_->ClearScreen();
 
     // DrawFullPlanet the orbiting circle
     NarrowPhase();
-
 
 #ifdef TRACY_ENABLE
     TracyCZoneN(const present, "present", true)
@@ -121,6 +133,7 @@ void TriggerCollisionEngine::NarrowPhase() {
 #ifdef TRACY_ENABLE
   ZoneScoped;
 #endif
+
   for (auto &_ : circles_) {
     if (_.GetCollider().GetIsTriggerActivated()) {
       renderer_->SetDrawColor(255, 0, 0, 255);
@@ -128,6 +141,15 @@ void TriggerCollisionEngine::NarrowPhase() {
     } else {
       renderer_->SetDrawColor(255, 255, 0, 255);
       renderer_->DrawCornersOfCircle(_);
+    }
+  }
+  for (auto &_ : polygons_) {
+    if (_.GetCollider().GetIsTriggerActivated()) {
+      renderer_->SetDrawColor(255, 0, 0, 255);
+      renderer_->DrawPolygon(_);
+    } else {
+      renderer_->SetDrawColor(255, 255, 0, 255);
+      renderer_->DrawPolygon(_);
     }
   }
 }
@@ -140,17 +162,41 @@ void TriggerCollisionEngine::BroadPhase(const float delta_time_sec) {// Update t
   for (auto &_ : circles_) {
     _.Update(delta_time_sec, window_width_, window_height_);
   }
+  for (auto &_ : polygons_) {
+    _.Update(delta_time_sec, window_width_, window_height_);
+  }
 
   // Update the collider
+  UpdateContactCircleCircle();
+  UpdateContactPolyPoly();
+  UpdateContactPolyCircle();
+}
+
+void TriggerCollisionEngine::UpdateContactPolyCircle() {
+  for (size_t i = 0; i < circles_.size(); i++) {
+    for (size_t j = 0; j < polygons_.size(); j++) {
+      listener_.updateContact(circles_[i], polygons_[j]);
+    }
+  }
+}
+
+void TriggerCollisionEngine::UpdateContactPolyPoly() {
+  for (size_t i = 0; i < polygons_.size(); i++) {
+    for (size_t j = 0; j < polygons_.size(); j++) {
+      if (j != i - 1) {
+        size_t index = (j + 1) % polygons_.size();
+        listener_.updateContact(polygons_[i], polygons_[index]);
+      }
+    }
+  }
+}
+
+void TriggerCollisionEngine::UpdateContactCircleCircle() {
   for (size_t i = 0; i < circles_.size(); i++) {
     for (size_t j = 0; j < circles_.size(); j++) {
       if (j != i - 1) {
         size_t index = (j + 1) % circles_.size();
         listener_.updateContact(circles_[i], circles_[index]);
-//        if(Physic::AreTwoCirclesColliding(circles_[i], circles_[index]))
-//        {
-//          Physic::ResolveCollision(circles_[i], circles_[index]);
-//        }
       }
     }
   }

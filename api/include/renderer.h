@@ -9,7 +9,8 @@
 #include "window.h"
 #include "planet.h"
 #include "rectangle.h"
-#include "Physic/physical_circle.h"
+#include "physic/physical_circle.h"
+#include "physic/physical_polygon.h"
 
 class Renderer {
  private :
@@ -37,6 +38,27 @@ class Renderer {
                     const Uint8 g,
                     const Uint8 b,
                     const Uint8 a) const { SDL_SetRenderDrawColor(renderer_, r, g, b, a); }
+
+
+
+
+  void DrawPolygon(const PhysicalPolygon& polygon) const {
+    const auto& vertices = polygon.GetVertices();
+    const size_t vertexCount = vertices.size();
+
+    // Ensure we have enough vertices to form a polygon
+    if (vertexCount < 3) return;
+
+    // Draw each edge from one vertex to the next
+    for (size_t i = 0; i < vertexCount; ++i) {
+      const auto& start = vertices[i];
+      const auto& end = vertices[(i + 1) % vertexCount]; // Wrap around to the first vertex
+
+      SDL_RenderDrawLine(renderer_,
+                         static_cast<int>(start.x_), static_cast<int>(start.y_),
+                         static_cast<int>(end.x_), static_cast<int>(end.y_));
+    }
+  }
 };
 
 #endif //RENDERER_H

@@ -8,8 +8,8 @@
 #include "SDL2/SDL.h"
 #include "renderer.h"
 #include "window.h"
-#include "Physic/aabb.h"
-#include "Physic/physical_circle.h"
+#include "physic/aabb.h"
+#include "physic/physical_circle.h"
 #include "physic/contact_listener.h"
 #include <chrono>
 #include <array>
