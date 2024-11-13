@@ -29,19 +29,7 @@ class Renderer {
   void DrawCornersOfPlanet(const Planet &planet) const;
   void DrawCornersOfCircle(const PhysicalCircle &circle) const;
   void DrawFullPlanets(const Planet& other_planet) const;
-
-  void ClearScreen() const;
-
-  void Present() const { SDL_RenderPresent(renderer_); }
-
-  void SetDrawColor(const Uint8 r,
-                    const Uint8 g,
-                    const Uint8 b,
-                    const Uint8 a) const { SDL_SetRenderDrawColor(renderer_, r, g, b, a); }
-
-
-
-
+  void DrawFullCircle(const PhysicalCircle &circle, const std::array<uint16_t,3> &color) const;
   void DrawPolygon(const PhysicalPolygon& polygon) const {
     const auto& vertices = polygon.GetVertices();
     const size_t vertexCount = vertices.size();
@@ -59,6 +47,17 @@ class Renderer {
                          static_cast<int>(end.x_), static_cast<int>(end.y_));
     }
   }
+
+  void ClearScreen() const;
+  void Present() const { SDL_RenderPresent(renderer_); }
+
+
+
+  //SET
+  void SetDrawColor(const Uint8 r,
+                    const Uint8 g,
+                    const Uint8 b,
+                    const Uint8 a) const { SDL_SetRenderDrawColor(renderer_, r, g, b, a); }
 };
 
 #endif //RENDERER_H

@@ -135,7 +135,47 @@ void Renderer::DrawCornersOfCircle(const PhysicalCircle &circle) const {
     draw_circle_points(offset_x, offset_y);
   }
 }
+void Renderer::DrawFullCircle(const PhysicalCircle &circle, const std::array<uint16_t,3> &color) const {
+#ifdef TRACY_ENABLE
+  ZoneScoped;
+#endif
+  std::vector<SDL_Vertex> vertices;
+  std::vector<int> indices;
 
+  const int num_segments = 100;
+  float angle_step = 2.0f * PI / num_segments;
+
+  const auto color_1 = SDL_Color(0, 0, 0, 255);
+  const auto color_2 = SDL_Color(color[0], color[1], color[2], 255);
+
+  vertices.push_back(SDL_Vertex({circle.GetPosition().x_, circle.GetPosition().y_}, color_1, {0, 0}));
+
+  // Generate circle vertices
+  for (int i = 0; i <= num_segments; ++i)
+  {
+    float angle = static_cast<float>(i) * angle_step;
+    auto x = static_cast<float>(circle.GetPosition().x_ + (circle.GetRadius()) * std::cosf(angle));
+    auto y = static_cast<float>(circle.GetPosition().y_ + (circle.GetRadius()) * std::sinf(angle));
+    vertices.push_back(SDL_Vertex({x, y}, color_2, {0, 0}));
+  }
+
+  // Generate indices
+  for (int i = 1; i <= num_segments; ++i)
+  {
+    indices.push_back(0); // center vertex
+    indices.push_back(i);
+    indices.push_back(i + 1);
+  }
+
+  // Use SDL_RenderGeometry to draw the circle
+  SDL_SetRenderDrawColor(renderer_, 255, 255, 255, 255);
+  if (SDL_RenderGeometry(renderer_, nullptr,
+                         vertices.data(), static_cast<int>(vertices.size()),
+                         indices.data(), static_cast<int>(indices.size())))
+  {
+    SDL_Log("%s\n", SDL_GetError());
+  }
+}
 //sf::clear
 void Renderer::ClearScreen() const {
   SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);

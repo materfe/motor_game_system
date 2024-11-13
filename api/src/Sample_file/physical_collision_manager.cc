@@ -11,23 +11,51 @@
 #include "tracy/TracyC.h"
 #endif
 
+// Initialize variables for tracking FPS
+static int frameCount = 0;
+static double fps = 0.0;
+static auto startTime = std::chrono::high_resolution_clock::now();
+
+
+// Call this function in your main loop to update and display FPS
+static void calculateFPS() {
+  // Increment the frame counter
+  frameCount++;
+
+  // Get the current time
+  auto currentTime = std::chrono::high_resolution_clock::now();
+
+  // Calculate the duration (in seconds) since the last FPS calculation
+  std::chrono::duration<double> elapsedTime = currentTime - startTime;
+
+  // If a second has passed, update the FPS and reset counters
+  if (elapsedTime.count() >= 1.0) {
+    fps = frameCount / elapsedTime.count();  // Calculate FPS
+    frameCount = 0;                          // Reset frame counter
+    startTime = currentTime;                 // Reset start time
+
+    // Display the FPS (or store it as needed)
+    std::cout << "FPS: " << fps << std::endl;
+  }
+}
+
 void CollisionSampleEngine::SetArrayForMaxElements() {
 #ifdef TRACY_ENABLE
   ZoneScoped;
 #endif
 
   for (int i = 0; i < max_array_size; i++) {
-    const auto random_number_radius = common::GenerateRandomNumber(5.0f, 50.0f);
-    const auto random_number_position_x = common::GenerateRandomNumber(0.0f, 800.0f);
+    //const auto random_number_radius = common::GenerateRandomNumber(5.0f, 50.0f);
+    const auto random_number_position_x = common::GenerateRandomNumber(0.0f, 1150.0f);
     const auto random_number_position_y = common::GenerateRandomNumber(0.0f, 800.0f);
     //const auto random_number_mass = common::GenerateRandomNumber(0.0f, 2e20f);
     const auto random_number_velocity_x = common::GenerateRandomNumber(0.0f, 200.0f);
     const auto random_number_velocity_y = common::GenerateRandomNumber(0.0f, 200.0f);
-    //const auto speed_orientation = static_cast<float>(std::pow(-1, i));
+    const auto speed_orientation = static_cast<float>(std::pow(-1, i));
 
     circles_[i] = PhysicalCircle(core::Vec2<float>(random_number_position_x, random_number_position_y),
-                                 core::Vec2<float>(random_number_velocity_x, random_number_velocity_y),
-                                 1e10f, random_number_radius);
+                                 core::Vec2<float>(random_number_velocity_x * speed_orientation, random_number_velocity_y),
+                                 1e10f, 5.0f);
   }
 }
 
@@ -78,6 +106,7 @@ void CollisionSampleEngine::Begin() {
 void CollisionSampleEngine::Update() {
   SDL_Event event;
 
+
   while (running_) {
 
     current_time_ = SDL_GetTicks();
@@ -101,6 +130,7 @@ void CollisionSampleEngine::Update() {
 
     // DrawFullPlanet the orbiting circle
     NarrowPhase();
+    calculateFPS();
 
 
 #ifdef TRACY_ENABLE
@@ -121,14 +151,9 @@ void CollisionSampleEngine::NarrowPhase() {
 #ifdef TRACY_ENABLE
   ZoneScoped;
 #endif
+  const auto temporary = std::array<uint16_t, 3>{200, 0, 160};
   for (auto &_ : circles_) {
-    if (_.GetCollider().GetIsTriggerActivated()) {
-      renderer_->SetDrawColor(255, 0, 0, 255);
-      renderer_->DrawCornersOfCircle(_);
-    } else {
-      renderer_->SetDrawColor(255, 255, 0, 255);
-      renderer_->DrawCornersOfCircle(_);
-    }
+    renderer_->DrawFullCircle(_, temporary);
   }
 }
 

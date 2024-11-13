@@ -15,7 +15,7 @@
 #include <array>
 
 
-constexpr static int max_array_size = 100;
+constexpr static int max_array_size = 600;
 
 
 class CollisionSampleEngine final {
