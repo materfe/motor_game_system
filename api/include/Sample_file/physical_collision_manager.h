@@ -15,7 +15,7 @@
 #include <array>
 
 
-constexpr static int max_array_size = 600;
+static constexpr std::size_t kMaxArraySize = 100;
 
 
 class CollisionSampleEngine final {
@@ -25,7 +25,8 @@ class CollisionSampleEngine final {
   bool running_ = true;
 
   const char *window_title_ = nullptr;
-  std::array<PhysicalCircle, max_array_size> circles_{};
+  std::array<PhysicalCircle, kMaxArraySize> circles_{};
+  std::array<AABB, kMaxArraySize> aabbs_{};
 
   Uint32 last_time_ = 0;
   Uint32 current_time_ = 0;

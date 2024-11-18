@@ -15,7 +15,7 @@ void PlanetSampleEngine::SetArrayForMaxElements() {
   ZoneScoped;
 #endif
 
-  for (int i = 0; i < max_array_size; i++) {
+  for (int i = 0; i < kMaxArraySize; i++) {
     const auto random_number_radius = common::GenerateRandomNumber(0.0f, 50.0f);
     //const auto random_number_position_x = common::GenerateRandomNumber(0.0f, 800.0f);
     //const auto random_number_position_y = common::GenerateRandomNumber(0.0f, 800.0f);
@@ -102,7 +102,7 @@ void PlanetSampleEngine::Update() {
     }
 
 #ifdef TRACY_ENABLE
-    TracyCZoneN(const clear, "set_draw+clear", true)
+    TracyCZoneN(const clear, "set_draw+Clear", true)
 #endif
 
     renderer_->SetDrawColor(0, 0, 0, 255); //black color

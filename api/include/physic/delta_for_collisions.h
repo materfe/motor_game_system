@@ -11,8 +11,8 @@
 namespace Physic {
 
 // Project a polygon onto an axis and find the minimum and maximum values
-void ProjectOntoAxis(const PhysicalPolygon& polygon, const core::Vec2<float>& axis, float& min, float& max) {
-  const auto& vertices = polygon.GetVertices();
+void ProjectOntoAxis(const PhysicalPolygon &polygon, const core::Vec2<float> &axis, float &min, float &max) {
+  const auto &vertices = polygon.GetVertices();
 
   // Project the first vertex onto the axis to initialize min and max
   min = max = axis.x_ * vertices[0].x_ + axis.y_ * vertices[0].y_;
@@ -27,50 +27,45 @@ void ProjectOntoAxis(const PhysicalPolygon& polygon, const core::Vec2<float>& ax
 
 
 
-void ResolveCollision(PhysicalCircle &circle1, PhysicalCircle &circle2) {
-  auto position1 = circle1.GetPosition();
-  auto position2 = circle2.GetPosition();
-  auto velocity1 = circle1.GetVelocity();
-  auto velocity2 = circle2.GetVelocity();
+
+void ResolveCollision(PhysicalCircle &circle_1, PhysicalCircle &circle_2) {
+  auto position1 = circle_1.GetPosition();
+  auto position2 = circle_2.GetPosition();
+  auto velocity1 = circle_1.GetVelocity();
+  auto velocity2 = circle_2.GetVelocity();
 
   // Calculate the vector between the circles' centers
   core::Vec2<float> delta = {position2.x_ - position1.x_, position2.y_ - position1.y_};
-  float distance = std::sqrt(delta.x_ * delta.x_ + delta.y_ * delta.y_);
 
   // Normalize the delta vector to get the collision normal
-  core::Vec2<float> normal = {delta.x_ / distance, delta.y_ / distance};
+  core::Vec2<float> normal = delta.Normalise();
 
   // Calculate the relative velocity
   core::Vec2<float> relativeVelocity = {velocity2.x_ - velocity1.x_, velocity2.y_ - velocity1.y_};
   float velocityAlongNormal = relativeVelocity.x_ * normal.x_ + relativeVelocity.y_ * normal.y_;
 
-  // If the circles are moving away from each other, no need to resolve
-  if (velocityAlongNormal > 0) {
-    return;
-  }
-
   // Calculate the restitution coefficient for an elastic collision (1.0 for perfect bounce)
   float restitution = 1.0f;
 
   // Calculate the impulse scalar
-  float mass1 = circle1.GetMass();
-  float mass2 = circle2.GetMass();
+  float mass1 = circle_1.GetMass();
+  float mass2 = circle_2.GetMass();
   float impulseScalar = -(1 + restitution) * velocityAlongNormal / (1 / mass1 + 1 / mass2);
 
   // Apply impulse to each circle
   core::Vec2<float> impulse = {impulseScalar * normal.x_, impulseScalar * normal.y_};
-  circle1.SetVelocity(
+  circle_1.SetVelocity(
       velocity1.x_ - (impulse.x_ / mass1),
       velocity1.y_ - (impulse.y_ / mass1)
   );
-  circle2.SetVelocity(
+  circle_2.SetVelocity(
       velocity2.x_ + (impulse.x_ / mass2),
       velocity2.y_ + (impulse.y_ / mass2)
   );
 }
-void ResolveCollision(PhysicalPolygon& poly1, PhysicalPolygon& poly2) {
-  auto& vertices_1 = poly1.GetVertices();
-  auto& vertices_2 = poly2.GetVertices();
+void ResolveCollision(PhysicalPolygon &poly_1, PhysicalPolygon &poly_2) {
+  auto &vertices_1 = poly_1.GetVertices();
+  auto &vertices_2 = poly_2.GetVertices();
 
   // Calculate the axes for SAT
   std::vector<core::Vec2<float>> axes;
@@ -89,10 +84,10 @@ void ResolveCollision(PhysicalPolygon& poly1, PhysicalPolygon& poly2) {
   float minOverlap = std::numeric_limits<float>::max();
   core::Vec2<float> collisionNormal;
 
-  for (const auto& axis : axes) {
+  for (const auto &axis : axes) {
     float min1, max1, min2, max2;
-    Physic::ProjectOntoAxis(poly1, axis, min1, max1);
-    Physic::ProjectOntoAxis(poly2, axis, min2, max2);
+    Physic::ProjectOntoAxis(poly_1, axis, min1, max1);
+    Physic::ProjectOntoAxis(poly_2, axis, min2, max2);
 
     float overlap = std::min(max1, max2) - std::max(min1, min2);
     if (overlap < 0) {
@@ -109,25 +104,24 @@ void ResolveCollision(PhysicalPolygon& poly1, PhysicalPolygon& poly2) {
   collisionNormal.y_ /= magnitude;
 
   // Calculate the relative velocity and apply the collision response
-  auto velocity1 = poly1.GetVelocity();
-  auto velocity2 = poly2.GetVelocity();
+  auto velocity1 = poly_1.GetVelocity();
+  auto velocity2 = poly_2.GetVelocity();
   core::Vec2<float> relativeVelocity = {velocity2.x_ - velocity1.x_, velocity2.y_ - velocity1.y_};
 
   float velocityAlongNormal = relativeVelocity.x_ * collisionNormal.x_ + relativeVelocity.y_ * collisionNormal.y_;
   if (velocityAlongNormal > 0) return; // Objects moving apart
 
   float restitution = 1.0f;
-  float impulseScalar = -(1 + restitution) * velocityAlongNormal / (1 / poly1.GetMass() + 1 / poly2.GetMass());
+  float impulseScalar = -(1 + restitution) * velocityAlongNormal / (1 / poly_1.GetMass() + 1 / poly_2.GetMass());
 
   core::Vec2<float> impulse = {impulseScalar * collisionNormal.x_, impulseScalar * collisionNormal.y_};
-  poly1.SetVelocity(velocity1.x_ - impulse.x_ / poly1.GetMass(), velocity1.y_ - impulse.y_ / poly1.GetMass());
-  poly2.SetVelocity(velocity2.x_ + impulse.x_ / poly2.GetMass(), velocity2.y_ + impulse.y_ / poly2.GetMass());
+  poly_1.SetVelocity(velocity1.x_ - impulse.x_ / poly_1.GetMass(), velocity1.y_ - impulse.y_ / poly_1.GetMass());
+  poly_2.SetVelocity(velocity2.x_ + impulse.x_ / poly_2.GetMass(), velocity2.y_ + impulse.y_ / poly_2.GetMass());
 }
-//TODO make two aabbs and collision for them
 
-void ResolveCollision(PhysicalCircle& circle, PhysicalPolygon& polygon) {
+void ResolveCollision(PhysicalCircle &circle, PhysicalPolygon &polygon) {
   auto circlePosition = circle.GetPosition();
-  const auto& vertices = polygon.GetVertices();
+  const auto &vertices = polygon.GetVertices();
 
   core::Vec2<float> closestPoint = vertices[0];
   float minDistance = std::numeric_limits<float>::max();
@@ -173,9 +167,79 @@ void ResolveCollision(PhysicalCircle& circle, PhysicalPolygon& polygon) {
   circle.SetVelocity(velocity1.x_ - impulse.x_ / circle.GetMass(), velocity1.y_ - impulse.y_ / circle.GetMass());
   polygon.SetVelocity(velocity2.x_ + impulse.x_ / polygon.GetMass(), velocity2.y_ + impulse.y_ / polygon.GetMass());
 }
-void ResolveCollision(PhysicalPolygon& polygon, PhysicalCircle& circle)
-{
+void ResolveCollision(PhysicalPolygon &polygon, PhysicalCircle &circle) {
   ResolveCollision(circle, polygon);
+}
+
+void ResolveCollision(AABB &aabb1, AABB &aabb2) {
+  auto position1 = aabb1.GetPosition();
+  auto position2 = aabb2.GetPosition();
+  auto velocity1 = aabb1.GetVelocity();
+  auto velocity2 = aabb2.GetVelocity();
+
+  // Calculate the vector between the circles' centers
+  core::Vec2<float> delta = {position2.x_ - position1.x_, position2.y_ - position1.y_};
+
+  // Normalize the delta vector to get the collision normal
+  core::Vec2<float> normal = delta.Normalise();
+
+  // Calculate the relative velocity
+  core::Vec2<float> relativeVelocity = {velocity2.x_ - velocity1.x_, velocity2.y_ - velocity1.y_};
+  float velocityAlongNormal = relativeVelocity.x_ * normal.x_ + relativeVelocity.y_ * normal.y_;
+
+  // Calculate the restitution coefficient for an elastic collision (1.0 for perfect bounce)
+  float restitution = 1.0f;
+
+  // Calculate the impulse scalar
+  float mass1 = aabb1.GetMass();
+  float mass2 = aabb2.GetMass();
+  float impulseScalar = -(1 + restitution) * velocityAlongNormal / (1 / mass1 + 1 / mass2);
+
+  // Apply impulse to each circle
+  core::Vec2<float> impulse = {impulseScalar * normal.x_, impulseScalar * normal.y_};
+  aabb1.SetVelocity(
+      velocity1.x_ - (impulse.x_ / mass1),
+      velocity1.y_ - (impulse.y_ / mass1)
+  );
+  aabb2.SetVelocity(
+      velocity2.x_ + (impulse.x_ / mass2),
+      velocity2.y_ + (impulse.y_ / mass2)
+  );
+}
+void ResolveCollision(AABB &aabb, PhysicalCircle &circle) {
+  auto position1 = aabb.GetPosition();
+  auto position2 = circle.GetPosition();
+  auto velocity1 = aabb.GetVelocity();
+  auto velocity2 = circle.GetVelocity();
+
+  // Calculate the vector between the circles' centers
+  core::Vec2<float> delta = {position2.x_ - position1.x_, position2.y_ - position1.y_};
+
+  // Normalize the delta vector to get the collision normal
+  core::Vec2<float> normal = delta.Normalise();
+
+  // Calculate the relative velocity
+  core::Vec2<float> relativeVelocity = {velocity2.x_ - velocity1.x_, velocity2.y_ - velocity1.y_};
+  float velocityAlongNormal = relativeVelocity.x_ * normal.x_ + relativeVelocity.y_ * normal.y_;
+
+  // Calculate the restitution coefficient for an elastic collision (1.0 for perfect bounce)
+  float restitution = 1.0f;
+
+  // Calculate the impulse scalar
+  float mass1 = aabb.GetMass();
+  float mass2 = circle.GetMass();
+  float impulseScalar = -(1 + restitution) * velocityAlongNormal / (1 / mass1 + 1 / mass2);
+
+  // Apply impulse to each circle
+  core::Vec2<float> impulse = {impulseScalar * normal.x_, impulseScalar * normal.y_};
+  aabb.SetVelocity(
+      velocity1.x_ - (impulse.x_ / mass1),
+      velocity1.y_ - (impulse.y_ / mass1)
+  );
+  circle.SetVelocity(
+      velocity2.x_ + (impulse.x_ / mass2),
+      velocity2.y_ + (impulse.y_ / mass2)
+  );
 }
 }
 

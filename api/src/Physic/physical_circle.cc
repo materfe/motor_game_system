@@ -6,7 +6,6 @@
 #include "Physic/physical_circle.h"
 
 void PhysicalCircle::Update(const float delta_time, const float max_x_bound, const float max_y_bound) {
-
   if(position_.x_ + radius_ >= max_x_bound)
   {
     position_.x_ = max_x_bound - radius_;
@@ -32,7 +31,7 @@ void PhysicalCircle::Update(const float delta_time, const float max_x_bound, con
   position_.x_ += velocity_.x_ * delta_time;
   position_.y_ += velocity_.y_ * delta_time;
 
-  collider_.UpdatePos(position_.x_ - radius_, position_.x_ + radius_,
+  bounds_.UpdatePos(position_.x_ - radius_, position_.x_ + radius_,
                       position_.y_ - radius_, position_.y_ + radius_);
 }
 

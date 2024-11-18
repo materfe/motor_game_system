@@ -30,28 +30,15 @@ class Renderer {
   void DrawCornersOfCircle(const PhysicalCircle &circle) const;
   void DrawFullPlanets(const Planet& other_planet) const;
   void DrawFullCircle(const PhysicalCircle &circle, const std::array<uint16_t,3> &color) const;
-  void DrawPolygon(const PhysicalPolygon& polygon) const {
-    const auto& vertices = polygon.GetVertices();
-    const size_t vertexCount = vertices.size();
-
-    // Ensure we have enough vertices to form a polygon
-    if (vertexCount < 3) return;
-
-    // Draw each edge from one vertex to the next
-    for (size_t i = 0; i < vertexCount; ++i) {
-      const auto& start = vertices[i];
-      const auto& end = vertices[(i + 1) % vertexCount]; // Wrap around to the first vertex
-
-      SDL_RenderDrawLine(renderer_,
-                         static_cast<int>(start.x_), static_cast<int>(start.y_),
-                         static_cast<int>(end.x_), static_cast<int>(end.y_));
-    }
-  }
+  void DrawPolygon(const PhysicalPolygon& polygon, const std::array<uint16_t,3> &color) const;
+  void DrawAABB(const AABB &aabb, const std::array<uint16_t,3> &color);
 
   void ClearScreen() const;
   void Present() const { SDL_RenderPresent(renderer_); }
 
 
+  //GET
+  [[nodiscard]] SDL_Renderer& renderer() const {return *renderer_;}
 
   //SET
   void SetDrawColor(const Uint8 r,

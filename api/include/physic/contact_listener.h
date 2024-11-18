@@ -22,10 +22,10 @@ class ContactListener {
 
  public:
   // Method to update contacts between two AABBs
-  void updateContact(PhysicalCircle &circle_1, PhysicalCircle &circle_2);
-  void updateContact(PhysicalPolygon &poly_1, PhysicalPolygon &poly_2);
-  void updateContact(PhysicalCircle &circle, PhysicalPolygon &poly);
-  void updateContact(PhysicalPolygon &poly, PhysicalCircle &circle);
+  void UpdateContact(PhysicalCircle &circle_1, PhysicalCircle &circle_2);
+  void UpdateContact(PhysicalPolygon &poly_1, PhysicalPolygon &poly_2);
+  void UpdateContact(PhysicalCircle &circle, PhysicalPolygon &poly);
+  void UpdateContact(AABB &aabb_1, AABB &aabb_2);
 
 
   //GET

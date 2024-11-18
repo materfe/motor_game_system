@@ -2,13 +2,43 @@
 // Created by Mat on 04.11.2024.
 //
 
-#include <iostream>
 #include "Sample_file/trigger_sample_manager.h"
+#include <iostream>
+#include <set>
 
 #ifdef TRACY_ENABLE
 #include "tracy/Tracy.hpp"
 #include "tracy/TracyC.h"
 #endif
+
+using Vec2f = core::Vec2<float>;
+
+// Initialize variables for tracking FPS
+static int frameCount = 0;
+static double fps = 0.0;
+static auto startTime = std::chrono::high_resolution_clock::now();
+
+// Call this function in your main loop to update and display FPS
+static void calculateFPS() {
+  // Increment the frame counter
+  frameCount++;
+
+  // Get the current time
+  auto currentTime = std::chrono::high_resolution_clock::now();
+
+  // Calculate the duration (in seconds) since the last FPS calculation
+  std::chrono::duration<double> elapsedTime = currentTime - startTime;
+
+  // If a second has passed, update the FPS and reset counters
+  if (elapsedTime.count() >= 1.0) {
+    fps = frameCount / elapsedTime.count();  // Calculate FPS
+    frameCount = 0;                          // Reset frame counter
+    startTime = currentTime;                 // Reset start time
+
+    // Display the FPS (or store it as needed)
+    std::cout << "FPS: " << fps << std::endl;
+  }
+}
 
 static const void SetVertices(std::vector<core::Vec2<float>> &vertices) {
   vertices = {core::Vec2<float>(common::GenerateRandomNumber(0.0f, 50.0f),
@@ -16,9 +46,17 @@ static const void SetVertices(std::vector<core::Vec2<float>> &vertices) {
               core::Vec2<float>(common::GenerateRandomNumber(0.0f, 50.0f),
                                 common::GenerateRandomNumber(0.0f, 80.0f)),
               core::Vec2<float>(common::GenerateRandomNumber(0.0f, 50.0f),
+                                common::GenerateRandomNumber(0.0f, 90.0f)),
+              core::Vec2<float>(common::GenerateRandomNumber(0.0f, 0.0f),
                                 common::GenerateRandomNumber(0.0f, 80.0f)),
               core::Vec2<float>(common::GenerateRandomNumber(0.0f, 50.0f),
-                                common::GenerateRandomNumber(0.0f, 80.0f))};
+                                common::GenerateRandomNumber(0.0f, 80.0f)),
+              core::Vec2<float>(common::GenerateRandomNumber(0.0f, 50.0f),
+                                common::GenerateRandomNumber(0.0f, 70.0f)),
+              core::Vec2<float>(common::GenerateRandomNumber(0.0f, 50.0f),
+                                common::GenerateRandomNumber(0.0f, 20.0f)),
+              core::Vec2<float>(common::GenerateRandomNumber(0.0f, 50.0f),
+                                common::GenerateRandomNumber(0.0f, 30.0f))};
 }
 
 void TriggerCollisionEngine::SetArrayForMaxElements() {
@@ -26,29 +64,37 @@ void TriggerCollisionEngine::SetArrayForMaxElements() {
   ZoneScoped;
 #endif
 
-  for (int i = 0; i < max_array_size; i++) {
+  for (int i = 0; i < kMaxArraySize; i++) {
     const auto random_number_radius = common::GenerateRandomNumber(5.0f, 50.0f);
-    const auto random_number_position_x = common::GenerateRandomNumber(0.0f, 800.0f);
-    const auto random_number_position_y = common::GenerateRandomNumber(0.0f, 800.0f);
+    const auto random_number_position_x = common::GenerateRandomNumber(0.0f, 20.0f);
+    const auto random_number_position_x_2 = common::GenerateRandomNumber(20.0f, 40.0f);
+    const auto random_number_position_y = common::GenerateRandomNumber(0.0f, 20.0f);
+    const auto random_number_position_y_2 = common::GenerateRandomNumber(20.0f, 40.0f);
     const auto random_number_mass = common::GenerateRandomNumber(0.0f, 2e20f);
-    const auto random_number_velocity_x = common::GenerateRandomNumber(0.0f, 200.0f);
-    const auto random_number_velocity_y = common::GenerateRandomNumber(0.0f, 200.0f);
+    const auto random_number_velocity_x = common::GenerateRandomNumber(-200.0f, 200.0f);
+    const auto random_number_velocity_y = common::GenerateRandomNumber(-200.0f, 200.0f);
     //const auto speed_orientation = static_cast<float>(std::pow(-1, i));
 
-    circles_[i] = PhysicalCircle(core::Vec2<float>(random_number_position_x, random_number_position_y),
-                                 core::Vec2<float>(random_number_velocity_x, random_number_velocity_y),
+    circles_[i] = PhysicalCircle(Vec2f(random_number_position_x, random_number_position_y),
+                                 Vec2f(random_number_velocity_x, random_number_velocity_y),
                                  random_number_mass, random_number_radius);
     std::vector<core::Vec2<float>> vertices{};
     SetVertices(vertices);
     polygons_[i] =
         PhysicalPolygon(core::Vec2<float>(random_number_velocity_x, random_number_velocity_y), random_number_mass,
                         vertices);
+
+    aabbs_[i] = AABB(Vec2f(random_number_position_x, random_number_position_y),
+                     Vec2f(random_number_position_x_2, random_number_position_y_2),
+                     Vec2f(random_number_velocity_x, random_number_velocity_y));
   }
 }
 
 //warning because variables implemented in SetVariable other than in constructor
 TriggerCollisionEngine::TriggerCollisionEngine(const char *title, const int width, const int height)
-    : window_height_(height), window_width_(width), window_title_(title) {
+    : window_height_(height),
+      window_width_(width),
+      window_title_(title) {
 #ifdef TRACY_ENABLE
   TracyCZoneN(const constructor, "contr", true)
 #endif
@@ -112,8 +158,8 @@ void TriggerCollisionEngine::Update() {
     renderer_->SetDrawColor(0, 0, 0, 255); //black color
     renderer_->ClearScreen();
 
-    // DrawFullPlanet the orbiting circle
     NarrowPhase();
+    calculateFPS();
 
 #ifdef TRACY_ENABLE
     TracyCZoneN(const present, "present", true)
@@ -129,27 +175,36 @@ void TriggerCollisionEngine::Update() {
 #endif
   }
 }
+
 void TriggerCollisionEngine::NarrowPhase() {
 #ifdef TRACY_ENABLE
   ZoneScoped;
 #endif
 
+  //quadtree_->Draw(&renderer_->renderer());
+  std::array<uint16_t, 3> red_color{255, 0, 0};
+  std::array<uint16_t, 3> normal_color{255, 255, 0};
   for (auto &_ : circles_) {
-    if (_.GetCollider().GetIsTriggerActivated()) {
-      renderer_->SetDrawColor(255, 0, 0, 255);
-      renderer_->DrawCornersOfCircle(_);
+    if (_.bounds().collider().is_trigger()) {
+      renderer_->DrawFullCircle(_, red_color);
     } else {
-      renderer_->SetDrawColor(255, 255, 0, 255);
-      renderer_->DrawCornersOfCircle(_);
+      renderer_->DrawFullCircle(_, normal_color);
     }
   }
+
   for (auto &_ : polygons_) {
-    if (_.GetCollider().GetIsTriggerActivated()) {
-      renderer_->SetDrawColor(255, 0, 0, 255);
-      renderer_->DrawPolygon(_);
+    if (_.bounds().collider().is_trigger()) {
+      renderer_->DrawPolygon(_, red_color);
     } else {
-      renderer_->SetDrawColor(255, 255, 0, 255);
-      renderer_->DrawPolygon(_);
+      renderer_->DrawPolygon(_, normal_color);
+    }
+  }
+
+  for (auto &_ : aabbs_) {
+    if (_.collider().is_trigger()) {
+      renderer_->DrawAABB(_, red_color);
+    } else {
+      renderer_->DrawAABB(_, normal_color);
     }
   }
 }
@@ -158,46 +213,64 @@ void TriggerCollisionEngine::BroadPhase(const float delta_time_sec) {// Update t
 #ifdef TRACY_ENABLE
   ZoneScoped;
 #endif
-
   for (auto &_ : circles_) {
     _.Update(delta_time_sec, window_width_, window_height_);
   }
   for (auto &_ : polygons_) {
     _.Update(delta_time_sec, window_width_, window_height_);
   }
+  for (auto &_ : aabbs_) {
+    _.Update(delta_time_sec, window_width_, window_height_);
+  }
+
 
   // Update the collider
-  UpdateContactCircleCircle();
   UpdateContactPolyPoly();
   UpdateContactPolyCircle();
+  UpdateContactAABBAABB();
+  UpdateContactCircleCircle();
 }
 
 void TriggerCollisionEngine::UpdateContactPolyCircle() {
-  for (size_t i = 0; i < circles_.size(); i++) {
-    for (size_t j = 0; j < polygons_.size(); j++) {
-      listener_.updateContact(circles_[i], polygons_[j]);
+#ifdef TRACY_ENABLE
+  ZoneScoped;
+#endif
+  for (std::size_t i = 0; i < circles_.size(); i++) {
+    for (std::size_t j = 0; j < polygons_.size(); j++) {
+      listener_.UpdateContact(circles_[i], polygons_[j]);
     }
   }
 }
 
 void TriggerCollisionEngine::UpdateContactPolyPoly() {
-  for (size_t i = 0; i < polygons_.size(); i++) {
-    for (size_t j = 0; j < polygons_.size(); j++) {
-      if (j != i - 1) {
-        size_t index = (j + 1) % polygons_.size();
-        listener_.updateContact(polygons_[i], polygons_[index]);
-      }
+#ifdef TRACY_ENABLE
+  ZoneScoped;
+#endif
+  for (std::size_t i = 0; i < polygons_.size(); i++) {
+    for (std::size_t j = i + 1; j < polygons_.size(); j++) {  // j starts from i + 1 for unique pairs
+      listener_.UpdateContact(polygons_[i], polygons_[j]);
     }
   }
 }
 
 void TriggerCollisionEngine::UpdateContactCircleCircle() {
-  for (size_t i = 0; i < circles_.size(); i++) {
-    for (size_t j = 0; j < circles_.size(); j++) {
-      if (j != i - 1) {
-        size_t index = (j + 1) % circles_.size();
-        listener_.updateContact(circles_[i], circles_[index]);
-      }
+#ifdef TRACY_ENABLE
+  ZoneScoped;
+#endif
+  for (std::size_t i = 0; i < circles_.size(); i++) {
+    for (std::size_t j = i + 1; j < circles_.size(); j++) {
+      listener_.UpdateContact(circles_[i], circles_[j]);
+    }
+  }
+}
+
+void TriggerCollisionEngine::UpdateContactAABBAABB() {
+#ifdef TRACY_ENABLE
+  ZoneScoped;
+#endif
+  for (std::size_t i = 0; i < aabbs_.size(); i++) {
+    for (std::size_t j = i + 1; j < aabbs_.size(); j++) {
+      listener_.UpdateContact(aabbs_[i], aabbs_[j]);
     }
   }
 }

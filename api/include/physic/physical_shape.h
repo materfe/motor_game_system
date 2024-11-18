@@ -10,16 +10,18 @@
 class PhysicalShape
 {
  protected:
-  core::Vec2<float> position_;        //position
+  core::Vec2<float> position_{0.0f, 0.0f};        //position
   core::Vec2<float> velocity_ {0.0f, 0.0f};        //velocity in meter per sec
   core::Vec2<float> acceleration_ {0.0f, 0.0f};    //acceleration in meter per second**2
-  float mass_;                        //mass in kg
+  float mass_ = 0.0f;                        //mass in kg
 
 
  public:
   PhysicalShape(core::Vec2<float> position, float mass) : position_(position), mass_(mass){};
   PhysicalShape(core::Vec2<float> position, core::Vec2<float> velocity, float mass) : position_(position),
   velocity_(velocity), mass_(mass){};
+  PhysicalShape() = default;
+  PhysicalShape(core::Vec2<float> velocity) : velocity_(velocity){}
 
 
   //GET

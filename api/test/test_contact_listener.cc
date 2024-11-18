@@ -22,11 +22,11 @@ TEST(contact_listener_test_suite, two_circles_colliding) {
   auto result = listener.GetSet();
   EXPECT_EQ(result.size(), 0);
 
-  listener.updateContact(circle_1, circle_2);
+  listener.UpdateContact(circle_1, circle_2);
   result = listener.GetSet();
   EXPECT_EQ(result.size(), 1);
 
-  listener.updateContact(circle_1, circle_3);
+  listener.UpdateContact(circle_1, circle_3);
   result = listener.GetSet();
   EXPECT_EQ(result.size(), 1);
 }

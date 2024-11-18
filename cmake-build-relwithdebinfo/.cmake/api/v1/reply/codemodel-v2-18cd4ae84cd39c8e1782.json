@@ -1,0 +1,158 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-RelWithDebInfo-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.17"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "core",
+					"jsonFile" : "directory-core-RelWithDebInfo-e3757ce4a321da3133c4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.17"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "core",
+					"targetIndexes" : 
+					[
+						3,
+						4
+					]
+				},
+				{
+					"build" : "api",
+					"jsonFile" : "directory-api-RelWithDebInfo-5ab110d9fc402529b4bb.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.17"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "api",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						6,
+						7
+					]
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "game_motor_engine",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "api::@10fae538ba4e8521554e",
+					"jsonFile" : "target-api-RelWithDebInfo-effebf623398664c731a.json",
+					"name" : "api",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "api_test::@10fae538ba4e8521554e",
+					"jsonFile" : "target-api_test-RelWithDebInfo-9621b4b7370c3f890367.json",
+					"name" : "api_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "collision_sample::@10fae538ba4e8521554e",
+					"jsonFile" : "target-collision_sample-RelWithDebInfo-a3cbbb4f9504c31ca9e8.json",
+					"name" : "collision_sample",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "core::@57760688d1f824db5d9c",
+					"jsonFile" : "target-core-RelWithDebInfo-37b8e3a48bc29a221ed2.json",
+					"name" : "core",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "core_test::@57760688d1f824db5d9c",
+					"jsonFile" : "target-core_test-RelWithDebInfo-13b1c60509176e703d28.json",
+					"name" : "core_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "main::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-main-RelWithDebInfo-cb0f257572bc45861169.json",
+					"name" : "main",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "planet_sample::@10fae538ba4e8521554e",
+					"jsonFile" : "target-planet_sample-RelWithDebInfo-f018ba8a8cc2255fa55e.json",
+					"name" : "planet_sample",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "trigger_sample::@10fae538ba4e8521554e",
+					"jsonFile" : "target-trigger_sample-RelWithDebInfo-2aa60aac5b3b79c69a33.json",
+					"name" : "trigger_sample",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo",
+		"source" : "C:/Users/Mat/special_repo/game_motor_system/motor_game_system"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

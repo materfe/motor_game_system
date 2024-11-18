@@ -1,5 +1,6 @@
 #ifndef common_h
 #define common_h
+#include "vec2.h"
 #include <cstdlib>
 #include <random>
 #ifdef TRACY_ENABLE
@@ -65,6 +66,10 @@ T GenerateRandomNumber(T min_number, T max_number)
     std::uniform_real_distribution<T> dist(min_number, max_number);
     return dist(e1);
   }
+}
+
+static constexpr float CrossProduct(const core::Vec2<float>& O, const core::Vec2<float>& A, const core::Vec2<float>& B) {
+  return (A.x_ - O.x_) * (B.y_ - O.y_) - (A.y_ - O.y_) * (B.x_ - O.x_);
 }
 }
 

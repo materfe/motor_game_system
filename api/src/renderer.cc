@@ -16,11 +16,12 @@ Renderer::Renderer(const Window &window) {
   }
 }
 
-//drawing methods
+//drawing method : Rectangle
 void Renderer::DrawRectangle(const Rectangle &rect) const {
   const SDL_Rect sdl_rect = {rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight()};
   SDL_RenderFillRect(renderer_, &sdl_rect);
 }
+//drawing method : Planets
 void Renderer::DrawCornersOfPlanet(const Planet &planet) const {
   int offset_x = 0;
   int offset_y = static_cast<int>(planet.getRadius());
@@ -99,6 +100,7 @@ void Renderer::DrawFullPlanets(const Planet &other_planet) const {
     SDL_Log("%s\n", SDL_GetError());
   }
 }
+//drawing method : Circle
 void Renderer::DrawCornersOfCircle(const PhysicalCircle &circle) const {
   int offset_x = 0;
   int offset_y = static_cast<int>(circle.GetRadius());
@@ -176,7 +178,42 @@ void Renderer::DrawFullCircle(const PhysicalCircle &circle, const std::array<uin
     SDL_Log("%s\n", SDL_GetError());
   }
 }
-//sf::clear
+//drawing method : Polygon
+void Renderer::DrawPolygon(const PhysicalPolygon &polygon, const std::array<uint16_t,3> &color) const {
+
+  SetDrawColor(color[0], color[1], color[2], 255);
+
+  const auto& vertices = polygon.GetVertices();
+  const size_t vertexCount = vertices.size();
+
+  // Ensure we have enough vertices to form a polygon
+  if (vertexCount < 3) return;
+
+  // Draw each edge from one vertex to the next
+  for (size_t i = 0; i < vertexCount; ++i) {
+    const auto& start = vertices[i];
+    const auto& end = vertices[(i + 1) % vertexCount]; // Wrap around to the first vertex
+
+    SDL_RenderDrawLine(renderer_,
+                       static_cast<int>(start.x_), static_cast<int>(start.y_),
+                       static_cast<int>(end.x_), static_cast<int>(end.y_));
+  }
+}
+//drawing method : AABB
+void Renderer::DrawAABB(const AABB &aabb, const std::array<uint16_t, 3> &color) {
+  // Set the draw color
+  SetDrawColor(color[0], color[1], color[2], 255);
+
+  // Create a rectangle from the AABB
+  SDL_Rect rect = {static_cast<int>(aabb.GetMinX()), static_cast<int>(aabb.GetMinY()),
+                   static_cast<int>(aabb.width()), static_cast<int>(aabb.height())};
+
+  // Draw the rectangle outline
+  SDL_RenderDrawRect(renderer_, &rect);
+  SDL_RenderFillRect(renderer_, &rect);
+}
+
+//sf::Clear
 void Renderer::ClearScreen() const {
   SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
   SDL_RenderClear(renderer_);

@@ -12,11 +12,14 @@
 #include "physic/aabb.h"
 #include "physic/physical_circle.h"
 #include "physic/contact_listener.h"
+#include "physic/quadtree.h"
 #include <chrono>
 #include <array>
+#include <unordered_map>
 
 
-constexpr static int max_array_size = 10;
+static constexpr size_t kMaxArraySize = 10;
+
 
 
 class TriggerCollisionEngine final {
@@ -26,8 +29,9 @@ class TriggerCollisionEngine final {
   bool running_ = true;
 
   const char *window_title_ = nullptr;
-  std::array<PhysicalCircle, max_array_size> circles_{};
-  std::array<PhysicalPolygon, max_array_size> polygons_{};
+  std::array<PhysicalCircle, kMaxArraySize> circles_{};
+  std::array<PhysicalPolygon, kMaxArraySize> polygons_{};
+  std::array<AABB, kMaxArraySize> aabbs_{};
 
   Uint32 last_time_ = 0;
   Uint32 current_time_ = 0;
@@ -36,6 +40,7 @@ class TriggerCollisionEngine final {
   Window *window_ = nullptr;
   Renderer *renderer_ = nullptr;
   ContactListener listener_;
+
 
  public:
   // Initialize the game engine
@@ -58,6 +63,7 @@ class TriggerCollisionEngine final {
   void UpdateContactCircleCircle();
   void UpdateContactPolyPoly();
   void UpdateContactPolyCircle();
+  void UpdateContactAABBAABB();
 };
 
 

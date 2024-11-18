@@ -11,57 +11,39 @@
 #include "tracy/TracyC.h"
 #endif
 
-// Initialize variables for tracking FPS
-static int frameCount = 0;
-static double fps = 0.0;
-static auto startTime = std::chrono::high_resolution_clock::now();
-
-
-// Call this function in your main loop to update and display FPS
-static void calculateFPS() {
-  // Increment the frame counter
-  frameCount++;
-
-  // Get the current time
-  auto currentTime = std::chrono::high_resolution_clock::now();
-
-  // Calculate the duration (in seconds) since the last FPS calculation
-  std::chrono::duration<double> elapsedTime = currentTime - startTime;
-
-  // If a second has passed, update the FPS and reset counters
-  if (elapsedTime.count() >= 1.0) {
-    fps = frameCount / elapsedTime.count();  // Calculate FPS
-    frameCount = 0;                          // Reset frame counter
-    startTime = currentTime;                 // Reset start time
-
-    // Display the FPS (or store it as needed)
-    std::cout << "FPS: " << fps << std::endl;
-  }
-}
+using Vec2f = core::Vec2<float>;
 
 void CollisionSampleEngine::SetArrayForMaxElements() {
 #ifdef TRACY_ENABLE
   ZoneScoped;
 #endif
 
-  for (int i = 0; i < max_array_size; i++) {
-    //const auto random_number_radius = common::GenerateRandomNumber(5.0f, 50.0f);
-    const auto random_number_position_x = common::GenerateRandomNumber(0.0f, 1150.0f);
-    const auto random_number_position_y = common::GenerateRandomNumber(0.0f, 800.0f);
-    //const auto random_number_mass = common::GenerateRandomNumber(0.0f, 2e20f);
-    const auto random_number_velocity_x = common::GenerateRandomNumber(0.0f, 200.0f);
-    const auto random_number_velocity_y = common::GenerateRandomNumber(0.0f, 200.0f);
-    const auto speed_orientation = static_cast<float>(std::pow(-1, i));
+  for (int i = 0; i < kMaxArraySize; i++) {
+    //const auto random_number_radius = common::GenerateRandomNumber(0.0f, 5.0f);
+    const auto random_number_position_x = common::GenerateRandomNumber(100.0f, 500.0f);
+    const auto random_number_position_y = common::GenerateRandomNumber(100.0f, 500.0f);
+    const auto random_number_mass = common::GenerateRandomNumber(1.0f, 200.0f);
+    const auto random_number_velocity_x = common::GenerateRandomNumber(-200.0f, 200.0f);
+    const auto random_number_velocity_y = common::GenerateRandomNumber(-200.0f, 200.0f);
 
-    circles_[i] = PhysicalCircle(core::Vec2<float>(random_number_position_x, random_number_position_y),
-                                 core::Vec2<float>(random_number_velocity_x * speed_orientation, random_number_velocity_y),
-                                 1e10f, 5.0f);
+    const auto random_number_min_aabb_bound_x = common::GenerateRandomNumber(1.0f, 2.0f);
+    const auto random_number_min_aabb_bound_y = common::GenerateRandomNumber(1.0f, 2.0f);
+    const auto random_number_max_aabb_bound_x = common::GenerateRandomNumber(10.0f, 15.0f);
+    const auto random_number_max_aabb_bound_y = common::GenerateRandomNumber(10.0f, 15.0f);
+
+    circles_[i] = PhysicalCircle(Vec2f(random_number_position_x, random_number_position_y),
+                                 Vec2f(random_number_velocity_x, random_number_velocity_y),
+                                 random_number_mass, 5.0f);
+
+    aabbs_[i] = AABB(Vec2f(random_number_min_aabb_bound_x, random_number_min_aabb_bound_y),
+                     Vec2f(random_number_max_aabb_bound_x, random_number_max_aabb_bound_y),
+                     Vec2f(random_number_velocity_x, random_number_velocity_y), random_number_mass);
   }
 }
 
 //warning because variables implemented in SetVariable other than in constructor
 CollisionSampleEngine::CollisionSampleEngine(const char *title, const int width, const int height)
-    : window_height_(height), window_width_(width), window_title_(title){
+    : window_height_(height), window_width_(width), window_title_(title) {
 #ifdef TRACY_ENABLE
   TracyCZoneN(const constructor, "contr", true)
 #endif
@@ -106,7 +88,6 @@ void CollisionSampleEngine::Begin() {
 void CollisionSampleEngine::Update() {
   SDL_Event event;
 
-
   while (running_) {
 
     current_time_ = SDL_GetTicks();
@@ -123,15 +104,11 @@ void CollisionSampleEngine::Update() {
 
     BroadPhase(delta_time_sec);
 
-
-
     renderer_->SetDrawColor(0, 0, 0, 255); //black color
     renderer_->ClearScreen();
 
     // DrawFullPlanet the orbiting circle
     NarrowPhase();
-    calculateFPS();
-
 
 #ifdef TRACY_ENABLE
     TracyCZoneN(const present, "present", true)
@@ -151,9 +128,13 @@ void CollisionSampleEngine::NarrowPhase() {
 #ifdef TRACY_ENABLE
   ZoneScoped;
 #endif
-  const auto temporary = std::array<uint16_t, 3>{200, 0, 160};
+  const auto circle_color = std::array<uint16_t, 3>{200, 0, 160};
+  const auto aabb_color = std::array<uint16_t, 3>{0, 255, 255};
   for (auto &_ : circles_) {
-    renderer_->DrawFullCircle(_, temporary);
+    renderer_->DrawFullCircle(_, circle_color);
+  }
+  for (auto &_ : aabbs_) {
+    renderer_->DrawAABB(_, aabb_color);
   }
 }
 
@@ -165,23 +146,37 @@ void CollisionSampleEngine::BroadPhase(const float delta_time_sec) {// Update th
   for (auto &_ : circles_) {
     _.Update(delta_time_sec, window_width_, window_height_);
   }
+  for (auto &_ : aabbs_) {
+    _.Update(delta_time_sec / 2.0f, window_width_, window_height_);
+  }
 
   // Update the collider
   for (size_t i = 0; i < circles_.size(); i++) {
+    for (size_t j = i + 1; j < circles_.size(); j++) {
+      if (Physic::AreTwoCirclesColliding(circles_[i], circles_[j])) {
+        Physic::ResolveCollision(circles_[i], circles_[j]);
+      }
+    }
+  }
+
+  for (size_t i = 0; i < aabbs_.size(); i++) {
+    for (size_t j = i + 1; j < aabbs_.size(); j++) {
+      if (Physic::AreTwoAabbsColliding(aabbs_[i], aabbs_[j])) {
+        Physic::ResolveCollision(aabbs_[i], aabbs_[j]);
+      }
+    }
+  }
+
+  for (size_t i = 0; i < aabbs_.size(); i++) {
     for (size_t j = 0; j < circles_.size(); j++) {
-      if (j != i - 1) {
-        size_t index = (j + 1) % circles_.size();
-        if(Physic::AreTwoCirclesColliding(circles_[i], circles_[index]))
-        {
-          Physic::ResolveCollision(circles_[i], circles_[index]);
-        }
+      if (Physic::IsOneCircleCollidingWithOneAabb(circles_[i], aabbs_[j])) {
+        Physic::ResolveCollision(aabbs_[j], circles_[i]);
       }
     }
   }
 }
 
-void CollisionSampleEngine::End()
-{
+void CollisionSampleEngine::End() {
   running_ = false;
   SDL_Quit();
 }

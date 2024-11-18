@@ -17,8 +17,9 @@ namespace Physic {
   return point.x_ * axis.x_ + point.y_ * axis.y_;
 }
 // Project all points of a polygon onto a given axis
-[[nodiscard]] static const core::Vec2<float> ProjectPolygonOntoAxis(const PhysicalPolygon &polygon, const core::Vec2<float> &axis) {
-  const auto& vertices = polygon.GetVertices();
+[[nodiscard]] static const core::Vec2<float> ProjectPolygonOntoAxis(const PhysicalPolygon &polygon,
+                                                                    const core::Vec2<float> &axis) {
+  const auto &vertices = polygon.GetVertices();
   float min = ProjectPoint(vertices[0], axis);
   float max = min;
 
@@ -34,8 +35,8 @@ namespace Physic {
 [[nodiscard]] static const bool DoProjectionsOverlap(const core::Vec2<float> &proj1, const core::Vec2<float> &proj2) {
   return !(proj1.y_ < proj2.x_ || proj2.y_ < proj1.x_); // true if projections overlap
 }
-[[nodiscard]] static const bool OverlapOnAxis(const AABB& aabb, const core::Vec2<float> &axis,
-                                           const std::vector<core::Vec2<float>> &vertices) {
+[[nodiscard]] static const bool OverlapOnAxis(const AABB &aabb, const core::Vec2<float> &axis,
+                                              const std::vector<core::Vec2<float>> &vertices) {
   std::array<core::Vec2<float>, 4> aabbCorners = {
       core::Vec2<float>(aabb.GetMinX(), aabb.GetMinY()),
       core::Vec2<float>(aabb.GetMaxX(), aabb.GetMinY()),
@@ -62,7 +63,6 @@ namespace Physic {
   return !(aabbMax < polyMin || polyMax < aabbMin);
 }
 
-
 // collision circle - circle
 [[nodiscard]] static const bool AreTwoCirclesColliding(const PhysicalCircle &circle_1, const PhysicalCircle &circle_2) {
   // Calculate the squared distance between the two centers
@@ -75,7 +75,8 @@ namespace Physic {
   return distanceSquared <= radiSum * radiSum;
 }
 // collision polygon - polygon
-[[nodiscard]] static const bool AreTwoPolygonsColliding(const PhysicalPolygon &polygon1, const PhysicalPolygon &polygon2) {
+[[nodiscard]] static const bool AreTwoPolygonsColliding(const PhysicalPolygon &polygon1,
+                                                        const PhysicalPolygon &polygon2) {
   const auto &vertices1 = polygon1.GetVertices();
   const auto &vertices2 = polygon2.GetVertices();
 
@@ -112,24 +113,35 @@ namespace Physic {
   return true;
 }
 // collision aabb - aabb
-[[nodiscard]] static const bool AreTwoAabbsColliding(const AABB& aabb_1, const AABB& aabb_2)
-{
-  if (aabb_1.GetMaxX() < aabb_2.GetMinX() || aabb_2.GetMaxX() < aabb_1.GetMinX()) {
-    return false;
+[[nodiscard]] static const bool AreTwoAabbsColliding(const AABB &aabb1, const AABB &aabb2) {
+  //check overlap from top-right corner
+  if (aabb1.GetMaxX() >= aabb2.GetMinX() && aabb1.GetMinX() <= aabb2.GetMinX() && aabb1.GetMaxY() >= aabb2.GetMinY()
+      && aabb1.GetMinY() <= aabb2.GetMinY()) {
+    return true;
   }
-  // Check for separation on the y-axis
-  if (aabb_1.GetMaxY() < aabb_2.GetMinY() || aabb_2.GetMaxY() < aabb_1.GetMinY()) {
-    return false;
+
+  //check overlap from bottom-right corner
+  if (aabb1.GetMaxX() >= aabb2.GetMinX() && aabb1.GetMinX() <= aabb2.GetMinX() && aabb1.GetMinY() <= aabb2.GetMaxY()
+      && aabb1.GetMaxY() >= aabb2.GetMaxY()) {
+    return true;
   }
-  // No separation found, the boxes must be colliding
-  return true;
+
+  //check overlap from bottom-left corner
+  if (aabb1.GetMinX() <= aabb2.GetMaxX() && aabb1.GetMaxX() >= aabb2.GetMaxX() && aabb1.GetMinY() <= aabb2.GetMaxY()
+      && aabb1.GetMaxY() >= aabb2.GetMaxY()) {
+    return true;
+  }
+
+  //check overlap from top-left corner
+  if (aabb1.GetMinX() <= aabb2.GetMaxX() && aabb1.GetMaxX() >= aabb2.GetMaxX() && aabb1.GetMaxY() >= aabb2.GetMinY()
+      && aabb1.GetMinY() <= aabb2.GetMinY()) {
+    return true;
+  }
+  return false;
 }
 
-
-
 // collision aabb - polygon and polygon - aabb
-[[nodiscard]] static const bool IsOneAabbCollidingWithOnePolygon(const AABB& aabb, const PhysicalPolygon& polygon)
-{
+[[nodiscard]] static const bool IsOneAabbCollidingWithOnePolygon(const AABB &aabb, const PhysicalPolygon &polygon) {
   const auto &vertices = polygon.GetVertices();
 
   // Axes to check for SAT: AABB axes (x, y) and DrawablePolygon edges' normals
@@ -158,8 +170,7 @@ namespace Physic {
   // No separating axis found, AABB and DrawablePolygon are colliding
   return true;
 }
-[[nodiscard]] static const bool IsOnePolygonCollidingWithOneAabb(const PhysicalPolygon& polygon, const AABB& aabb)
-{
+[[nodiscard]] static const bool IsOnePolygonCollidingWithOneAabb(const PhysicalPolygon &polygon, const AABB &aabb) {
   return IsOneAabbCollidingWithOnePolygon(aabb, polygon);
 }
 // collision circle - aabb and aabb - circle
@@ -174,14 +185,15 @@ namespace Physic {
 
   return (deltaX * deltaX + deltaY * deltaY) <= (circle.GetRadius() * circle.GetRadius());
 }
-[[nodiscard]] static const bool IsOneAabbCollidingWithOneCircle(const AABB& aabb, const PhysicalCircle& circle) {
+[[nodiscard]] static const bool IsOneAabbCollidingWithOneCircle(const AABB &aabb, const PhysicalCircle &circle) {
 
   return IsOneCircleCollidingWithOneAabb(circle, aabb);
 }
 // collision circle - polygon and polygon - circle
-[[nodiscard]] static const bool IsOneCircleCollidingWithOnePolygon(const PhysicalCircle &circle, const PhysicalPolygon &polygon) {
+[[nodiscard]] static const bool IsOneCircleCollidingWithOnePolygon(const PhysicalCircle &circle,
+                                                                   const PhysicalPolygon &polygon) {
   const auto circlePos = circle.GetPosition();
-  const auto& vertices = polygon.GetVertices();
+  const auto &vertices = polygon.GetVertices();
 
   float closestDistSq = std::numeric_limits<float>::max();
 
@@ -199,7 +211,8 @@ namespace Physic {
   }
   return closestDistSq <= (circle.GetRadius() * circle.GetRadius());
 }
-[[nodiscard]] static const bool IsOnePolygonCollidingWithOneCircle(const PhysicalPolygon &polygon, const PhysicalCircle &circle) {
+[[nodiscard]] static const bool IsOnePolygonCollidingWithOneCircle(const PhysicalPolygon &polygon,
+                                                                   const PhysicalCircle &circle) {
   return IsOneCircleCollidingWithOnePolygon(circle, polygon);
 }
 }  // namespace physic

@@ -13,7 +13,7 @@
 #include <array>
 
 
-constexpr static int max_array_size = 100;
+constexpr static int kMaxArraySize = 100;
 
 
 class PlanetSampleEngine final {
@@ -23,7 +23,7 @@ class PlanetSampleEngine final {
   bool running_ = true;
 
   const char *window_title_ = nullptr;
-  std::array<Planet, max_array_size> planets_{};
+  std::array<Planet, kMaxArraySize> planets_{};
 
   Uint32 last_time_ = 0;
   Uint32 current_time_ = 0;

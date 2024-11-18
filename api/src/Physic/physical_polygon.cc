@@ -8,7 +8,9 @@
 PhysicalPolygon::PhysicalPolygon(core::Vec2<float> velocity, float mass, std::vector<core::Vec2<float>> vertices) :
 PhysicalShape(core::Vec2<float>::Zero(), velocity, mass), vertices_(vertices)
 {
+  vertices_ = GenerateConvexHull(vertices);
   SetPositionToCenter();
+  bounds_.UpdatePos(GetMinBounds().x_, GetMaxBounds().x_, GetMinBounds().x_, GetMaxBounds().y_);
 }
 
 void PhysicalPolygon::SetPositionToCenter() {
@@ -77,6 +79,6 @@ void PhysicalPolygon::Update(const float delta_time, const float max_x_bound, co
   }
   SetPositionToCenter();
 
-  collider_.UpdatePos(GetMinBounds().x_, GetMaxBounds().x_,
+  bounds_.UpdatePos(GetMinBounds().x_, GetMaxBounds().x_,
                       GetMinBounds().y_, GetMaxBounds().y_);
 }
