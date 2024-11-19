@@ -13,33 +13,6 @@
 
 using Vec2f = core::Vec2<float>;
 
-// Initialize variables for tracking FPS
-static int frameCount = 0;
-static double fps = 0.0;
-static auto startTime = std::chrono::high_resolution_clock::now();
-
-// Call this function in your main loop to update and display FPS
-static void calculateFPS() {
-  // Increment the frame counter
-  frameCount++;
-
-  // Get the current time
-  auto currentTime = std::chrono::high_resolution_clock::now();
-
-  // Calculate the duration (in seconds) since the last FPS calculation
-  std::chrono::duration<double> elapsedTime = currentTime - startTime;
-
-  // If a second has passed, update the FPS and reset counters
-  if (elapsedTime.count() >= 1.0) {
-    fps = frameCount / elapsedTime.count();  // Calculate FPS
-    frameCount = 0;                          // Reset frame counter
-    startTime = currentTime;                 // Reset start time
-
-    // Display the FPS (or store it as needed)
-    std::cout << "FPS: " << fps << std::endl;
-  }
-}
-
 static const void SetVertices(std::vector<core::Vec2<float>> &vertices) {
   vertices = {core::Vec2<float>(common::GenerateRandomNumber(0.0f, 50.0f),
                                 common::GenerateRandomNumber(0.0f, 80.0f)),
@@ -159,7 +132,7 @@ void TriggerCollisionEngine::Update() {
     renderer_->ClearScreen();
 
     NarrowPhase();
-    calculateFPS();
+
 
 #ifdef TRACY_ENABLE
     TracyCZoneN(const present, "present", true)
@@ -191,22 +164,6 @@ void TriggerCollisionEngine::NarrowPhase() {
       renderer_->DrawFullCircle(_, normal_color);
     }
   }
-
-  for (auto &_ : polygons_) {
-    if (_.bounds().collider().is_trigger()) {
-      renderer_->DrawPolygon(_, red_color);
-    } else {
-      renderer_->DrawPolygon(_, normal_color);
-    }
-  }
-
-  for (auto &_ : aabbs_) {
-    if (_.collider().is_trigger()) {
-      renderer_->DrawAABB(_, red_color);
-    } else {
-      renderer_->DrawAABB(_, normal_color);
-    }
-  }
 }
 
 void TriggerCollisionEngine::BroadPhase(const float delta_time_sec) {// Update the circle's position
@@ -216,18 +173,9 @@ void TriggerCollisionEngine::BroadPhase(const float delta_time_sec) {// Update t
   for (auto &_ : circles_) {
     _.Update(delta_time_sec, window_width_, window_height_);
   }
-  for (auto &_ : polygons_) {
-    _.Update(delta_time_sec, window_width_, window_height_);
-  }
-  for (auto &_ : aabbs_) {
-    _.Update(delta_time_sec, window_width_, window_height_);
-  }
 
 
   // Update the collider
-  UpdateContactPolyPoly();
-  UpdateContactPolyCircle();
-  UpdateContactAABBAABB();
   UpdateContactCircleCircle();
 }
 

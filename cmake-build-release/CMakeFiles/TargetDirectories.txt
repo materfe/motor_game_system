@@ -1,0 +1,17 @@
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-release/CMakeFiles/main.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-release/CMakeFiles/test.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-release/CMakeFiles/edit_cache.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-release/CMakeFiles/rebuild_cache.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-release/core/CMakeFiles/core.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-release/core/CMakeFiles/core_test.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-release/core/CMakeFiles/test.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-release/core/CMakeFiles/edit_cache.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-release/core/CMakeFiles/rebuild_cache.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-release/api/CMakeFiles/api.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-release/api/CMakeFiles/api_test.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-release/api/CMakeFiles/trigger_sample.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-release/api/CMakeFiles/planet_sample.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-release/api/CMakeFiles/collision_sample.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-release/api/CMakeFiles/test.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-release/api/CMakeFiles/edit_cache.dir
+C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-release/api/CMakeFiles/rebuild_cache.dir

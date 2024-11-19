@@ -1,0 +1,61 @@
+waiting to take filesystem lock on C:\vcpkg\vcpkg\.vcpkg-root...
+Detecting compiler hash for triplet x64-windows...
+Compiler found: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.41.34120/bin/Hostx64/x64/cl.exe
+The following packages will be built and installed:
+    gtest:x64-windows@1.14.0#1 -- C:\vcpkg\vcpkg\buildtrees\versioning_\versions\gtest\75ebdb53e37267a1d5f6283223367cd0aa1104ef
+    imgui[core,sdl2-binding,sdl2-renderer-binding]:x64-windows@1.90.2 -- C:\vcpkg\vcpkg\buildtrees\versioning_\versions\imgui\d9be79046f87d6b17d50967e3b76f2460e0d1bf3
+    sdl2:x64-windows@2.30.1 -- C:\vcpkg\vcpkg\buildtrees\versioning_\versions\sdl2\71b609d356d21c9479ddeb27f4737ab70982f4a5
+    tracy[core,crash-handler]:x64-windows@0.10.0#2 -- C:\vcpkg\vcpkg\buildtrees\versioning_\versions\tracy\6be8e3b56374cde0053ca09807520831c97f4441
+  * vcpkg-cmake:x64-windows@2024-04-18 -- C:\vcpkg\vcpkg\buildtrees\versioning_\versions\vcpkg-cmake\a10a94e8d0071ed4804d40d0f0f0c5e4e7180afd
+  * vcpkg-cmake-config:x64-windows@2022-02-06#1 -- C:\vcpkg\vcpkg\buildtrees\versioning_\versions\vcpkg-cmake-config\8d54cc4f487d51b655abec5f9c9c3f86ca83311f
+Additional packages (*) will be modified to complete this operation.
+Restored 6 package(s) from C:\Users\Mat\AppData\Local\vcpkg\archives in 353 ms. Use --debug to see more details.
+Installing 1/6 vcpkg-cmake-config:x64-windows@2022-02-06#1...
+Elapsed time to handle vcpkg-cmake-config:x64-windows: 5.13 ms
+vcpkg-cmake-config:x64-windows package ABI: 33324e1f3ae57f724ae0337ec59d09b1505d6727d7f5fabe0f401363dc35ec36
+Installing 2/6 vcpkg-cmake:x64-windows@2024-04-18...
+Elapsed time to handle vcpkg-cmake:x64-windows: 4.14 ms
+vcpkg-cmake:x64-windows package ABI: 1e88e469bd4a98ddec04b4c6e0fe34e2bfeb4bb164876d85278ea58c94b5c08d
+Installing 3/6 gtest:x64-windows@1.14.0#1...
+Elapsed time to handle gtest:x64-windows: 25.8 ms
+gtest:x64-windows package ABI: 88f7214df01a504fc6dd08f2a22bcbc919ca8f97ca87f285cc97f08465055a4f
+Installing 4/6 sdl2:x64-windows@2.30.1...
+Elapsed time to handle sdl2:x64-windows: 27.2 ms
+sdl2:x64-windows package ABI: 70eac90d7c6459ba072966b80b0d1f004c204d1c9385d4aa9df07b98c55a4f15
+Installing 5/6 imgui[core,sdl2-binding,sdl2-renderer-binding]:x64-windows@1.90.2...
+Elapsed time to handle imgui:x64-windows: 11.5 ms
+imgui:x64-windows package ABI: 2d6880b85f5966aefa411035a503905e4ba5e88f08f220b4e093b6beff315017
+Installing 6/6 tracy[core,crash-handler]:x64-windows@0.10.0#2...
+Elapsed time to handle tracy:x64-windows: 15.7 ms
+tracy:x64-windows package ABI: 3f0d8b378975dadf3f893edd85b7817815b46f2e0fd9c99a42df846e154d3d7b
+Total install time: 90.1 ms
+The package gtest is compatible with built-in CMake targets:
+
+    enable_testing()
+    
+    find_package(GTest CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock_main)
+    
+    add_test(AllTestsInMain main)
+
+sdl2 provides CMake targets:
+
+    find_package(SDL2 CONFIG REQUIRED)
+    target_link_libraries(main
+        PRIVATE
+        $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>
+        $<IF:$<TARGET_EXISTS:SDL2::SDL2>,SDL2::SDL2,SDL2::SDL2-static>
+    )
+
+imgui provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(imgui CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE imgui::imgui)
+
+tracy provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(Tracy CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE Tracy::TracyClient)
+

@@ -18,7 +18,7 @@
 #include <unordered_map>
 
 
-static constexpr size_t kMaxArraySize = 10;
+static constexpr std::size_t kMaxArraySize = 10;
 
 
 
