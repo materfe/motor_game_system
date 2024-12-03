@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/gtest-x64-windows-1.14.0#1-7e069969-4788-4a06-bc61-f0c86f755b3a",
-  "name": "gtest:x64-windows@1.14.0#1 88f7214df01a504fc6dd08f2a22bcbc919ca8f97ca87f285cc97f08465055a4f",
+  "documentNamespace": "https://spdx.org/spdxdocs/gtest-x64-windows-1.14.0#1-b25e0f89-0025-4d54-90b8-8135665e94c7",
+  "name": "gtest:x64-windows@1.14.0#1 9e782c0209fa16a565d0c94b30a3fb82f80e64c3a5040b626b8d890b70db49cb",
   "creationInfo": {
     "creators": [
-      "Tool: vcpkg-d6945642ee5c3076addd1a42c331bbf4cfc97457"
+      "Tool: vcpkg-2024-11-12-eb492805e92a2c14a230f5c3deb3e89f6771c321"
     ],
-    "created": "2024-10-10T13:21:00Z"
+    "created": "2024-11-20T12:53:30Z"
   },
   "relationships": [
     {
@@ -99,7 +99,7 @@
     {
       "name": "gtest:x64-windows",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "88f7214df01a504fc6dd08f2a22bcbc919ca8f97ca87f285cc97f08465055a4f",
+      "versionInfo": "9e782c0209fa16a565d0c94b30a3fb82f80e64c3a5040b626b8d890b70db49cb",
       "downloadLocation": "NONE",
       "licenseConcluded": "BSD-3-Clause",
       "licenseDeclared": "NOASSERTION",

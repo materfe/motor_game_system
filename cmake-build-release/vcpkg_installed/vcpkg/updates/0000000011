@@ -1,8 +1,8 @@
-Package: imgui
-Version: 1.90.2
+Package: sdl2
+Version: 2.30.1
 Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 2d6880b85f5966aefa411035a503905e4ba5e88f08f220b4e093b6beff315017
-Description: Bloat-free Immediate Mode Graphical User interface for C++ with minimal dependencies.
-Status: install ok installed
+Abi: 70eac90d7c6459ba072966b80b0d1f004c204d1c9385d4aa9df07b98c55a4f15
+Description: Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D.
+Status: purge ok not-installed

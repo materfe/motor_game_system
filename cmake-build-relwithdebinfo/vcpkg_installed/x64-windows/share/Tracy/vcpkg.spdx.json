@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/tracy-x64-windows-0.10.0#2-f96dc9e7-2464-40dc-9a34-90a4a0119681",
-  "name": "tracy:x64-windows@0.10.0#2 3f0d8b378975dadf3f893edd85b7817815b46f2e0fd9c99a42df846e154d3d7b",
+  "documentNamespace": "https://spdx.org/spdxdocs/tracy-x64-windows-0.10.0#2-6e9bfac8-bf74-4002-8ca1-a8d6a3948bfc",
+  "name": "tracy:x64-windows@0.10.0#2 97070d6dd527ec93057ad8677264d7e7641763aa3c7eea68c9429f5a269cfc5f",
   "creationInfo": {
     "creators": [
-      "Tool: vcpkg-d6945642ee5c3076addd1a42c331bbf4cfc97457"
+      "Tool: vcpkg-2024-11-12-eb492805e92a2c14a230f5c3deb3e89f6771c321"
     ],
-    "created": "2024-10-10T13:21:40Z"
+    "created": "2024-11-20T12:54:22Z"
   },
   "relationships": [
     {
@@ -79,7 +79,7 @@
     {
       "name": "tracy:x64-windows",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "3f0d8b378975dadf3f893edd85b7817815b46f2e0fd9c99a42df846e154d3d7b",
+      "versionInfo": "97070d6dd527ec93057ad8677264d7e7641763aa3c7eea68c9429f5a269cfc5f",
       "downloadLocation": "NONE",
       "licenseConcluded": "BSD-3-Clause",
       "licenseDeclared": "NOASSERTION",

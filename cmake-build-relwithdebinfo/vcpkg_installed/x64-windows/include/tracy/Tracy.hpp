@@ -140,7 +140,7 @@
 #  define ZoneTransientN( varname, name, active ) tracy::ScopedZone varname( TracyLine, TracyFile, strlen( TracyFile ), TracyFunction, strlen( TracyFunction ), name, strlen( name ), active )
 #endif
 
-#define ZoneScoped ZoneNamed( _tracy_scoped_zone, true )
+#define ZoneScoped ZoneNamed( ___tracy_scoped_zone, true )
 #define ZoneScopedN( name ) ZoneNamedN( ___tracy_scoped_zone, name, true )
 #define ZoneScopedC( color ) ZoneNamedC( ___tracy_scoped_zone, color, true )
 #define ZoneScopedNC( name, color ) ZoneNamedNC( ___tracy_scoped_zone, name, color, true )

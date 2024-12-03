@@ -1,7 +1,64 @@
 Detecting compiler hash for triplet x64-windows...
 Compiler found: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.41.34120/bin/Hostx64/x64/cl.exe
-All requested packages are currently installed.
-Total install time: 1.1 us
+The following packages will be rebuilt:
+    gtest:x64-windows@1.14.0#1 -- C:\vcpkg\vcpkg\buildtrees\versioning_\versions\gtest\75ebdb53e37267a1d5f6283223367cd0aa1104ef
+    imgui[core,sdl2-binding,sdl2-renderer-binding]:x64-windows@1.90.2 -- C:\vcpkg\vcpkg\buildtrees\versioning_\versions\imgui\d9be79046f87d6b17d50967e3b76f2460e0d1bf3
+    sdl2:x64-windows@2.30.1 -- C:\vcpkg\vcpkg\buildtrees\versioning_\versions\sdl2\71b609d356d21c9479ddeb27f4737ab70982f4a5
+    tracy[core,crash-handler]:x64-windows@0.10.0#2 -- C:\vcpkg\vcpkg\buildtrees\versioning_\versions\tracy\6be8e3b56374cde0053ca09807520831c97f4441
+  * vcpkg-cmake:x64-windows@2024-04-18 -- C:\vcpkg\vcpkg\buildtrees\versioning_\versions\vcpkg-cmake\a10a94e8d0071ed4804d40d0f0f0c5e4e7180afd
+  * vcpkg-cmake-config:x64-windows@2022-02-06#1 -- C:\vcpkg\vcpkg\buildtrees\versioning_\versions\vcpkg-cmake-config\8d54cc4f487d51b655abec5f9c9c3f86ca83311f
+Additional packages (*) will be modified to complete this operation.
+Restored 5 package(s) from C:\Users\Mat\AppData\Local\vcpkg\archives in 408 ms. Use --debug to see more details.
+Removing 1/12 imgui:x64-windows
+Elapsed time to handle imgui:x64-windows: 21.9 ms
+Removing 2/12 sdl2:x64-windows
+Elapsed time to handle sdl2:x64-windows: 27.9 ms
+Removing 3/12 tracy:x64-windows
+Elapsed time to handle tracy:x64-windows: 19.2 ms
+Removing 4/12 gtest:x64-windows
+Elapsed time to handle gtest:x64-windows: 28.5 ms
+Removing 5/12 vcpkg-cmake:x64-windows
+Elapsed time to handle vcpkg-cmake:x64-windows: 4.03 ms
+Removing 6/12 vcpkg-cmake-config:x64-windows
+Elapsed time to handle vcpkg-cmake-config:x64-windows: 3.21 ms
+Installing 7/12 vcpkg-cmake-config:x64-windows@2022-02-06#1...
+Elapsed time to handle vcpkg-cmake-config:x64-windows: 5.87 ms
+vcpkg-cmake-config:x64-windows package ABI: a2bde9c54566191086481f5c5c14ef5ef7fcc148ac3c2ea757ad539b40ecb9e5
+Installing 8/12 vcpkg-cmake:x64-windows@2024-04-18...
+Elapsed time to handle vcpkg-cmake:x64-windows: 4.12 ms
+vcpkg-cmake:x64-windows package ABI: ae8e654f33e7ec3757985f7d571d4f34308db05f18583059204a79157b50ea23
+Installing 9/12 gtest:x64-windows@1.14.0#1...
+Elapsed time to handle gtest:x64-windows: 23.7 ms
+gtest:x64-windows package ABI: 9e782c0209fa16a565d0c94b30a3fb82f80e64c3a5040b626b8d890b70db49cb
+Installing 10/12 sdl2:x64-windows@2.30.1...
+Elapsed time to handle sdl2:x64-windows: 26.7 ms
+sdl2:x64-windows package ABI: 743ebd632d8126c5ec95267417680397fdaa685c939eae1c30f3bba5c4218eae
+Installing 11/12 imgui[core,sdl2-binding,sdl2-renderer-binding]:x64-windows@1.90.2...
+Elapsed time to handle imgui:x64-windows: 9.61 ms
+imgui:x64-windows package ABI: c6eef8eaf14ddb3e527f3b5ba2277da204c4e875c75115e3daa49923e67eb818
+Installing 12/12 tracy[core,crash-handler]:x64-windows@0.10.0#2...
+Building tracy[core,crash-handler]:x64-windows@0.10.0#2...
+C:\vcpkg\vcpkg\buildtrees\versioning_\versions\tracy\6be8e3b56374cde0053ca09807520831c97f4441: info: installing overlay port from here
+-- Note: tracy only supports static library linkage. Building static library.
+-- Using cached wolfpld-tracy-v0.10.tar.gz.
+-- Cleaning sources at C:/vcpkg/vcpkg/buildtrees/tracy/src/v0.10-b0e1fd57f2.clean. Use --editable to skip cleaning for the packages you specify.
+-- Extracting source C:/vcpkg/vcpkg/downloads/wolfpld-tracy-v0.10.tar.gz
+-- Applying patch 001-fix-vcxproj-vcpkg.patch
+-- Applying patch 002-use-internal-imgui.patch
+-- Using source at C:/vcpkg/vcpkg/buildtrees/tracy/src/v0.10-b0e1fd57f2.clean
+-- Found external ninja('1.11.0').
+-- Configuring x64-windows
+-- Building x64-windows-dbg
+-- Building x64-windows-rel
+-- Using cached msys2-mingw-w64-x86_64-pkgconf-1~2.3.0-1-any.pkg.tar.zst.
+-- Using cached msys2-msys2-runtime-3.5.4-2-x86_64.pkg.tar.zst.
+-- Using msys root at C:/vcpkg/vcpkg/downloads/tools/msys2/21caed2f81ec917b
+-- Installing: C:/vcpkg/vcpkg/packages/tracy_x64-windows/share/tracy/copyright
+-- Performing post-build validation
+Stored binaries in 1 destinations in 208 ms.
+Elapsed time to handle tracy:x64-windows: 5 s
+tracy:x64-windows package ABI: 97070d6dd527ec93057ad8677264d7e7641763aa3c7eea68c9429f5a269cfc5f
+Total install time: 5.2 s
 The package gtest is compatible with built-in CMake targets:
 
     enable_testing()

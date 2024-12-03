@@ -3,8 +3,13 @@
 waiting to take filesystem lock on C:\vcpkg\vcpkg\.vcpkg-root...
 Detecting compiler hash for triplet x64-windows...
 Compiler found: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.41.34120/bin/Hostx64/x64/cl.exe
-All requested packages are currently installed.
-Total install time: 1 us
+The following packages will be built and installed:
+    tracy[core,crash-handler]:x64-windows@0.10.0#2 -- C:\vcpkg\vcpkg\buildtrees\versioning_\versions\tracy\6be8e3b56374cde0053ca09807520831c97f4441
+Restored 1 package(s) from C:\Users\Mat\AppData\Local\vcpkg\archives in 136 ms. Use --debug to see more details.
+Installing 1/1 tracy[core,crash-handler]:x64-windows@0.10.0#2...
+Elapsed time to handle tracy:x64-windows: 23.5 ms
+tracy:x64-windows package ABI: 97070d6dd527ec93057ad8677264d7e7641763aa3c7eea68c9429f5a269cfc5f
+Total install time: 23.5 ms
 The package gtest is compatible with built-in CMake targets:
 
     enable_testing()
@@ -36,6 +41,6 @@ tracy provides CMake targets:
   target_link_libraries(main PRIVATE Tracy::TracyClient)
 
 -- Running vcpkg install - done
--- Configuring done (5.2s)
+-- Configuring done (11.7s)
 -- Generating done (0.0s)
 -- Build files have been written to: C:/Users/Mat/special_repo/game_motor_system/motor_game_system/cmake-build-relwithdebinfo

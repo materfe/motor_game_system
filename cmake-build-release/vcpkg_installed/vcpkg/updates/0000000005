@@ -1,9 +1,7 @@
-Package: gtest
-Version: 1.14.0
-Port-Version: 1
-Depends: vcpkg-cmake, vcpkg-cmake-config
+Package: imgui
+Feature: sdl2-renderer-binding
+Depends: sdl2
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 88f7214df01a504fc6dd08f2a22bcbc919ca8f97ca87f285cc97f08465055a4f
-Description: Google Testing and Mocking Framework
-Status: install ok installed
+Description: Make available SDL2 Renderer binding
+Status: purge ok half-installed

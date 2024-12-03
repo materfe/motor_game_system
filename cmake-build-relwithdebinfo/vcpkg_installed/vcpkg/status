@@ -3,14 +3,14 @@ Version: 2022-02-06
 Port-Version: 1
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 33324e1f3ae57f724ae0337ec59d09b1505d6727d7f5fabe0f401363dc35ec36
+Abi: a2bde9c54566191086481f5c5c14ef5ef7fcc148ac3c2ea757ad539b40ecb9e5
 Status: install ok installed
 
 Package: vcpkg-cmake
 Version: 2024-04-18
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 1e88e469bd4a98ddec04b4c6e0fe34e2bfeb4bb164876d85278ea58c94b5c08d
+Abi: ae8e654f33e7ec3757985f7d571d4f34308db05f18583059204a79157b50ea23
 Status: install ok installed
 
 Package: gtest
@@ -19,7 +19,7 @@ Port-Version: 1
 Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 88f7214df01a504fc6dd08f2a22bcbc919ca8f97ca87f285cc97f08465055a4f
+Abi: 9e782c0209fa16a565d0c94b30a3fb82f80e64c3a5040b626b8d890b70db49cb
 Description: Google Testing and Mocking Framework
 Status: install ok installed
 
@@ -32,21 +32,21 @@ Multi-Arch: same
 Abi: 3f0d8b378975dadf3f893edd85b7817815b46f2e0fd9c99a42df846e154d3d7b
 Description: A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications.
 Default-Features: crash-handler
-Status: install ok installed
+Status: purge ok not-installed
 
 Package: tracy
 Feature: crash-handler
 Architecture: x64-windows
 Multi-Arch: same
 Description: Enable crash handler
-Status: install ok installed
+Status: purge ok not-installed
 
 Package: sdl2
 Version: 2.30.1
 Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 70eac90d7c6459ba072966b80b0d1f004c204d1c9385d4aa9df07b98c55a4f15
+Abi: 743ebd632d8126c5ec95267417680397fdaa685c939eae1c30f3bba5c4218eae
 Description: Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D.
 Status: install ok installed
 
@@ -55,7 +55,7 @@ Version: 1.90.2
 Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 2d6880b85f5966aefa411035a503905e4ba5e88f08f220b4e093b6beff315017
+Abi: c6eef8eaf14ddb3e527f3b5ba2277da204c4e875c75115e3daa49923e67eb818
 Description: Bloat-free Immediate Mode Graphical User interface for C++ with minimal dependencies.
 Status: install ok installed
 

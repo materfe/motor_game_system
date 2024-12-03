@@ -1,6 +1,10 @@
-Package: vcpkg-cmake
-Version: 2024-04-18
+Package: tracy
+Version: 0.10.0
+Port-Version: 2
+Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 1e88e469bd4a98ddec04b4c6e0fe34e2bfeb4bb164876d85278ea58c94b5c08d
-Status: install ok half-installed
+Abi: 3f0d8b378975dadf3f893edd85b7817815b46f2e0fd9c99a42df846e154d3d7b
+Description: A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications.
+Default-Features: crash-handler
+Status: purge ok not-installed

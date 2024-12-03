@@ -1,9 +1,8 @@
-Package: gtest
-Version: 1.14.0
-Port-Version: 1
+Package: imgui
+Version: 1.90.2
 Depends: vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 88f7214df01a504fc6dd08f2a22bcbc919ca8f97ca87f285cc97f08465055a4f
-Description: Google Testing and Mocking Framework
-Status: install ok half-installed
+Abi: 2d6880b85f5966aefa411035a503905e4ba5e88f08f220b4e093b6beff315017
+Description: Bloat-free Immediate Mode Graphical User interface for C++ with minimal dependencies.
+Status: purge ok half-installed
